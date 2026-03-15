@@ -2,16 +2,11 @@
 
 import { useLocale, useTranslations } from 'next-intl'
 
+const ITEMS = ['item1', 'item2', 'item3', 'item4'] as const
+
 export function History() {
   const t = useTranslations('history')
   const locale = useLocale()
-
-  const items = [
-    { key: 'item1' as const },
-    { key: 'item2' as const },
-    { key: 'item3' as const },
-    { key: 'item4' as const },
-  ]
 
   return (
     <section id="history" className="mx-auto max-w-[900px] px-4 py-8">
@@ -19,7 +14,7 @@ export function History() {
         {t('title')}
       </h2>
       <div className="grid gap-4">
-        {items.map(({ key }) => (
+        {ITEMS.map((key) => (
           <div
             key={key}
             className="rounded-md border-l-4 border-mosque-green bg-mosque-muted p-4"

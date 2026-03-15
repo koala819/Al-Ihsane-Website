@@ -11,7 +11,6 @@ export function Hero() {
       className="relative flex min-h-[320px] items-center justify-center bg-gradient-to-b from-white to-mosque-green-light"
     >
       <div className="relative rounded-xl border-2 border-mosque-green bg-white/75 px-8 py-8 text-center">
-        {/* Logo optionnel : déposer public/logo.png pour l'afficher */}
         <div className="mb-2 flex justify-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

@@ -31,12 +31,12 @@ export function Navbar() {
   const closeSheet = () => setIsSheetOpen(false)
 
   const navLinks = [
-    { href: '/#home', label: t('home') },
-    { href: '/#about', label: t('about') },
-    { href: '/#history', label: t('history') },
-    { href: '/#news', label: t('news') },
+    { href: '/', label: t('mosque') },
+    { href: '/association', label: t('association') },
     { href: '/contact', label: t('contact') },
   ]
+
+  const donateLabel = t('donate')
 
   return (
     <header className="sticky top-0 z-50 bg-gradient-to-b from-[rgba(4,62,47,0.95)] to-mosque-green text-white shadow-md">
@@ -46,7 +46,7 @@ export function Navbar() {
             {t('logo')}
           </Link>
 
-          <nav className="hidden gap-4 md:flex">
+          <nav className="hidden gap-4 md:flex items-center">
             {navLinks.map(({ href, label }) => (
               <Link
                 key={href}
@@ -56,6 +56,12 @@ export function Navbar() {
                 {label}
               </Link>
             ))}
+            <Link
+              href="/don"
+              className="rounded-lg bg-amber-500 px-3 py-1.5 text-sm font-bold text-white shadow hover:bg-amber-400 transition-colors"
+            >
+              {donateLabel}
+            </Link>
           </nav>
 
           <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
@@ -81,6 +87,13 @@ export function Navbar() {
                     {label}
                   </Link>
                 ))}
+                <Link
+                  href="/don"
+                  onClick={closeSheet}
+                  className="mt-1 rounded-lg bg-amber-500 px-3 py-2 text-center font-bold text-white hover:bg-amber-400 transition-colors"
+                >
+                  {donateLabel}
+                </Link>
                 <div className="mt-4 flex items-center gap-2 border-t pt-4">
                   <LangSwitcher />
                   <ThemeSwitcher />

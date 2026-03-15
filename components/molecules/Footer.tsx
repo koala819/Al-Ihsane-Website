@@ -17,23 +17,17 @@ export function Footer() {
         </span>
       </p>
       <nav className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-1 text-sm">
-        <LocaleLink
-          href="/mentions"
-          className="text-mosque-green hover:underline"
-        >
+        <LocaleLink href="/association" className="text-mosque-green hover:underline">
+          {tNav('association')}
+        </LocaleLink>
+        <LocaleLink href="/contact" className="text-mosque-green hover:underline">
+          {tNav('contact')}
+        </LocaleLink>
+        <LocaleLink href="/mentions" className="text-mosque-green hover:underline">
           {tNav('mentions')}
         </LocaleLink>
-        <LocaleLink
-          href="/protection"
-          className="text-mosque-green hover:underline"
-        >
+        <LocaleLink href="/protection" className="text-mosque-green hover:underline">
           {tNav('protection')}
-        </LocaleLink>
-        <LocaleLink
-          href="/contact"
-          className="text-mosque-green hover:underline"
-        >
-          {tNav('contact')}
         </LocaleLink>
       </nav>
     </footer>
