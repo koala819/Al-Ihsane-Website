@@ -29,7 +29,49 @@
   "association": {
     "title": "Notre Association",
     "subtitle": "Association Al Ihsane — Mosquée de Colomiers",
-    "placeholder": "Le contenu de cette page sera bientôt disponible."
+    "hero": {
+      "title": "Bienvenue à notre Association",
+      "text": "Promouvoir nos valeurs culturelles et cultuelles et l'entraide au sein de notre communauté"
+    },
+    "about": {
+      "title": "À propos de nous",
+      "mission": "Notre Mission",
+      "p1": "Notre association a pour objectif de créer un espace d'échange et de partage pour tous les membres intéressés par nos valeurs culturelles et cultuelles. Nous œuvrons pour renforcer la cohésion, l'entraide et le respect mutuel au sein de notre communauté.",
+      "p2": "Affiliée à la Mosquée Al Ihsane de Colomiers, notre association favorise une atmosphère d'inclusion et de tolérance pour tous.",
+      "value1Title": "Entraide",
+      "value1Text": "Solidarité entre membres",
+      "value2Title": "Savoir",
+      "value2Text": "Partage de connaissances",
+      "value3Title": "Respect",
+      "value3Text": "Tolérance et inclusion"
+    },
+    "activities": {
+      "title": "Nos Activités",
+      "meals": {
+        "tag": "Convivialité",
+        "title": "Partage de Repas",
+        "subtitle": "Moments Conviviaux",
+        "p1": "Nos repas partagés sont des moments essentiels de notre association. Ils renforcent les liens entre nos membres et créent une atmosphère de solidarité et d'entraide.",
+        "p2": "Ces événements permettent à chacun de se sentir accueilli et d'échanger dans une ambiance chaleureuse et familiale, tout en dégustant des spécialités culinaires variées.",
+        "p3": "Que ce soit lors de petits déjeuners, déjeuners ou dîners, nos repas partagés sont des occasions privilégiées de renforcer notre communauté."
+      },
+      "social": {
+        "tag": "Solidarité",
+        "title": "Actions Sociales",
+        "subtitle": "Aider les Personnes Démunies",
+        "p1": "Notre mission sociale est d'apporter de l'aide aux personnes en difficulté, tant en France qu'à l'étranger.",
+        "p2": "Nous collectons des dons alimentaires, des dons financiers et du matériel pour les personnes qui en ont besoin. Nous finançons également des projets d'aide humanitaire comme la construction de puits dans les zones en détresse.",
+        "p3": "Chaque don, aussi petit soit-il, contribue à faire une différence dans la vie de ces personnes. Ensemble, nous créons un impact positif et durable."
+      },
+      "events": {
+        "tag": "Famille",
+        "title": "Événements",
+        "subtitle": "Journées d'Activités en Famille",
+        "p1": "Nous organisons régulièrement des journées d'événements où les enfants et les familles peuvent s'amuser et créer des souvenirs ensemble.",
+        "p2": "Ces journées incluent des activités ludiques, des repas en commun, des jeux pour enfants et des moments d'échanges familiaux. C'est une excellente occasion pour que la communauté se réunisse autour de valeurs communes.",
+        "p3": "Que ce soit pour les célébrations, les sorties en groupe ou les ateliers créatifs, nos événements visent à renforcer les liens communautaires et à créer une atmosphère accueillante pour tous."
+      }
+    }
   },
   "home": {
     "title": "Al Ihsane",
