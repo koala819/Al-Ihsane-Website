@@ -11,7 +11,23 @@ export function Footer() {
   const { theme, setTheme } = useTheme()
 
   return (
-    <footer className="bg-mosque-footer py-8 text-center text-mosque-green">
+    <footer className="bg-mosque-footer py-10 text-center text-mosque-green">
+      {/* Logo adaptatif */}
+      <div className="mb-4 flex justify-center">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/al-ihsane-light.jpg"
+          alt="Al'ihsane School"
+          className="block h-20 w-auto object-contain dark:hidden"
+        />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/al-ihsane-dark.jpg"
+          alt="Al'ihsane School"
+          className="hidden h-20 w-auto object-contain dark:block"
+        />
+      </div>
+
       {/* Identité */}
       <p className="text-base font-semibold">{t('tagline')}</p>
       <p className="mt-0.5 text-sm text-mosque-green/70">{t('subtitle')}</p>
