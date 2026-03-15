@@ -1,0 +1,87 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "history": "Histoire",
+    "news": "Actualités",
+    "contact": "Contact",
+    "logo": "Al Ihsane",
+    "mentions": "Mentions légales",
+    "protection": "Protection des données"
+  },
+  "home": {
+    "title": "Al Ihsane",
+    "subtitle": "Mosquée Colomiers"
+  },
+  "about": {
+    "title": "À propos",
+    "p1": "Bienvenus sur le site de la mosquée de Colomiers ! Vous y trouverez son histoire ainsi que ses actualités.",
+    "p2": "يستقبل مسجد الإحسان مجتمع كولومير. يعرض هذا الموقع تاريخ المسجد وأخباره ومعلومات الاتصال."
+  },
+  "history": {
+    "title": "Histoire",
+    "item1": {
+      "year": "1977",
+      "text": "Prêt d'une salle par nos amis chrétiens dans l'enceinte de l'église Saint Bernadette de Colomiers.",
+      "textAr": "تم توفير قاعة من قبل أصدقائنا المسيحيين داخل باحة كنيسة سانت برناديت في كولومير."
+    },
+    "item2": {
+      "year": "1990",
+      "text": "Fondation de l'association, premier nom : « association interculturelle de Colomiers ».",
+      "textAr": "تأسيس الجمعية باسمها الأول: «الجمعية الثقافية بين الثقافات بكولومير»."
+    },
+    "item3": {
+      "year": "1993 / 1994",
+      "text": "Achat du terrain & obtention du permis de construire.",
+      "textAr": "شراء الأرض والحصول على رخصة البناء."
+    },
+    "item4": {
+      "year": "1995 / 1996",
+      "text": "Pose de la 1ère pierre et accueil des 1ers fidèles au sein de la mosquée.",
+      "textAr": "وضع حجر الأساس واستقبال أول المصلين داخل المسجد."
+    }
+  },
+  "news": {
+    "title": "Actualités",
+    "item1": {
+      "title": "Bienvenue à la Mosquée Al-Ihsane",
+      "p1": "Aid al-Fitr 2026.",
+      "p2Ar": "خبر قابل للتعديل. استبدل هذا النص بإعلاناتك وفعالياتك أو المواعيد."
+    },
+    "item2": {
+      "title": "Inscription au cours enfants",
+      "p1": "Chers fidèles,",
+      "p2": "Si l'un ou l'une d'entre vous souhaite inscrire son enfant (6 ans révolus) aux cours dispensés à la Mosquée de Colomiers par demi-journée (samedi matin ou samedi après-midi ou dimanche matin), il doit se présenter aux créneaux suivants :",
+      "slots": ["Samedi après-midi 05 Juin 2021 de 15H-17H00", "Dimanche matin 06 Juin 2021 de 10H-12H00"],
+      "p3": "Fraternellement, la Direction de la Mosquée de Colomiers"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "address": "7 CHEMIN DE LA PLAINE\n31770 COLOMIERS",
+    "addressAr": "٧ طريق بلاين\n31770 كولومير",
+    "phone": "Tél : 05 61 30 26 50",
+    "phoneAr": "هاتف: 05 61 30 26 50",
+    "formTitle": "Nous écrire",
+    "formIntro": "Pour toute question ou demande d'information, envoyez-nous un message. Nous vous répondrons dans les meilleurs délais.",
+    "successTitle": "Message envoyé",
+    "successMessage": "Votre message a bien été reçu. Qu'Allah vous garde.",
+    "namePlaceholder": "Votre nom",
+    "emailPlaceholder": "Votre adresse e-mail",
+    "messagePlaceholder": "Votre message",
+    "send": "Envoyer",
+    "mapTitle": "Nous trouver",
+    "mapLink": "Ouvrir dans Google Maps"
+  },
+  "footer": {
+    "tagline": "Al Ihsane — Mosquée Colomiers",
+    "taglineAr": "مسجد الإحسان",
+    "discover": "Découvrez davantage",
+    "usefulLinks": "Liens utiles"
+  },
+  "lang": {
+    "switchToFr": "Passer en français",
+    "switchToEn": "Passer en anglais",
+    "switchToAr": "Passer en arabe"
+  }
+}
