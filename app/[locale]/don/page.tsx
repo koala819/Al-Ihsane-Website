@@ -1,12 +1,14 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-import { Heart, Building2, Mail, FileText } from 'lucide-react'
-import { Link } from '@/i18n/navigation'
+import { useLocale, useTranslations } from 'next-intl'
+import { Heart, FileText, ExternalLink } from 'lucide-react'
+
+const HELLOASSO_URL = 'https://www.helloasso.com' // À remplacer par l'URL du compte une fois créé
 
 export default function DonPage() {
   const t = useTranslations('donate')
   const tNav = useTranslations('nav')
+  const locale = useLocale()
 
   return (
     <section className="mx-auto max-w-3xl px-4 py-12 md:py-20">
@@ -27,55 +29,37 @@ export default function DonPage() {
           {t('intro')}
         </p>
 
-        {/* Bouton CTA principal */}
+        {/* Bouton CTA HelloAsso */}
         <div className="mt-8">
-          <Link
-            href="/contact"
+          <a
+            href={HELLOASSO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-xl bg-amber-500 px-8 py-4 text-lg font-bold text-white shadow-lg transition-colors hover:bg-amber-400 active:bg-amber-600"
           >
             <Heart className="h-5 w-5" />
             {tNav('donate')}
-          </Link>
+            <ExternalLink className="h-4 w-4 opacity-70" />
+          </a>
+          <p className="mt-3 text-xs text-muted-foreground">{t('helloassoNote')}</p>
         </div>
       </header>
 
       {/* Hadith */}
       <blockquote className="mb-12 rounded-xl border-l-4 border-mosque-green bg-mosque-green-light px-6 py-5">
-        <p className="font-arabic text-xl leading-relaxed text-mosque-green" dir="rtl">
-          {t('hadith')}
-        </p>
+        {locale === 'ar' ? (
+          <p className="font-arabic text-xl leading-relaxed text-mosque-green" dir="rtl">
+            {t('hadith')}
+          </p>
+        ) : (
+          <p className="text-lg leading-relaxed text-mosque-green">
+            {t('hadith')}
+          </p>
+        )}
         <footer className="mt-2 text-sm text-muted-foreground">{t('hadithRef')}</footer>
       </blockquote>
 
-      <div className="grid gap-6 md:grid-cols-2">
-        {/* Virement bancaire */}
-        <div className="rounded-xl border border-mosque-green/20 bg-white p-6 shadow-sm dark:bg-slate-900">
-          <div className="mb-4 flex items-center gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-mosque-green/10">
-              <Building2 className="h-5 w-5 text-mosque-green" />
-            </div>
-            <h2 className="text-lg font-semibold text-mosque-green">
-              {t('virementTitle')}
-            </h2>
-          </div>
-          <p className="mb-3 text-sm text-muted-foreground">{t('virementIntro')}</p>
-          <dl className="space-y-1 text-sm">
-            <div>
-              <dt className="font-medium text-foreground">{t('virementName')}</dt>
-            </div>
-            <div>
-              <dd className="text-muted-foreground">{t('virementBank')}</dd>
-            </div>
-          </dl>
-          <Link
-            href="/contact"
-            className="mt-4 inline-flex items-center gap-2 rounded-lg border border-mosque-green px-4 py-2 text-sm font-semibold text-mosque-green transition-colors hover:bg-mosque-green hover:text-white"
-          >
-            <Mail className="h-4 w-4" />
-            {t('virementContact')}
-          </Link>
-        </div>
-
+      <div className="grid gap-6">
         {/* Chèque */}
         <div className="rounded-xl border border-mosque-green/20 bg-white p-6 shadow-sm dark:bg-slate-900">
           <div className="mb-4 flex items-center gap-3">
