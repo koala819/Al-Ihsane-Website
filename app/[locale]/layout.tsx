@@ -22,7 +22,7 @@ export default async function LocaleLayout({
   children: React.ReactNode
   params: Promise<{ locale: string }>
 }) {
-  await params
+  const { locale } = await params
   const messages = await getMessages()
 
   return (
@@ -32,7 +32,7 @@ export default async function LocaleLayout({
         <div className={cn('min-h-screen min-w-screen')}>
           <div className="flex flex-col min-h-screen">
             <Navbar />
-            <main className="flex-1 pt-16">
+            <main className="flex-1">
               <GoogleAnalytics />
               {children}
             </main>
