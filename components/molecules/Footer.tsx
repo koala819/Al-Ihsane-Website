@@ -1,11 +1,14 @@
 'use client'
 
+import { useTheme } from 'next-themes'
+import { Moon, Sun } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { Link as LocaleLink } from '@/i18n/navigation'
 
 export function Footer() {
   const t = useTranslations('footer')
   const tNav = useTranslations('nav')
+  const { theme, setTheme } = useTheme()
 
   return (
     <footer className="bg-mosque-footer py-8 text-center text-mosque-green">
@@ -26,8 +29,22 @@ export function Footer() {
         </LocaleLink>
       </nav>
 
-      {/* Copyright */}
-      <p className="mt-5 text-xs text-mosque-green/50">{t('copyright')}</p>
+      {/* Thème + Copyright */}
+      <div className="mt-5 flex flex-col items-center gap-2">
+        <button
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          className="flex cursor-pointer items-center gap-1.5 text-xs text-mosque-green/50 transition-colors hover:text-mosque-green"
+          aria-label="Changer de thème"
+        >
+          {theme === 'dark' ? (
+            <Sun className="h-3.5 w-3.5" />
+          ) : (
+            <Moon className="h-3.5 w-3.5" />
+          )}
+          {theme === 'dark' ? t('themeLight') : t('themeDark')}
+        </button>
+        <p className="text-xs text-mosque-green/50">{t('copyright')}</p>
+      </div>
     </footer>
   )
 }

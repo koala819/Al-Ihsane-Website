@@ -98,7 +98,9 @@
   "footer": {
     "tagline": "Al Ihsane",
     "subtitle": "Mosquée de Colomiers",
-    "copyright": "© 2026 Centre Culturel et Cultuel de Colomiers"
+    "copyright": "© 2026 Centre Culturel et Cultuel de Colomiers",
+    "themeDark": "Mode sombre",
+    "themeLight": "Mode clair"
   },
   "lang": {
     "switchToFr": "Passer en français",

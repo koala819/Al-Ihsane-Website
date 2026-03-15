@@ -22,10 +22,10 @@ const config = {
       },
       colors: {
         mosque: {
-          green: '#024d08',
-          'green-light': '#eef6f0',
-          muted: '#f3eee2',
-          footer: '#f1f6f4',
+          green: 'hsl(var(--mosque-green))',
+          'green-light': 'hsl(var(--mosque-green-light))',
+          muted: 'hsl(var(--mosque-muted))',
+          footer: 'hsl(var(--mosque-footer))',
         },
       },
     },
