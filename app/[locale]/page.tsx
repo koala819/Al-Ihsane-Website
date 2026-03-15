@@ -12,9 +12,9 @@ export default async function Page() {
     <>
       <PrayerTimes locale={locale} />
       <Hero />
+      <News />
       <About />
       <History />
-      <News />
     </>
   )
 }

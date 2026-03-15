@@ -66,15 +66,19 @@
   "news": {
     "title": "Actualités",
     "item1": {
-      "title": "Bienvenue à la Mosquée Al-Ihsane",
-      "p1": "Aid al-Fitr 2026.",
-      "p2Ar": "خبر قابل للتعديل. استبدل هذا النص بإعلاناتك وفعالياتك أو المواعيد."
+      "tag": "Fête",
+      "title": "Aïd al-Fitr 2026",
+      "date": "Mars 2026",
+      "p1": "La direction de la mosquée Al Ihsane de Colomiers vous souhaite un Aïd al-Fitr béni. Que cette fête qui clôture le mois sacré du Ramadan soit pour vous et vos familles une source de joie, de paix et de renouveau spirituel. Taqabbal Allahu minna wa minkum.",
+      "p2Ar": "تهنئ إدارة مسجد الإحسان بكولومير جميع المؤمنين والمؤمنات بمناسبة عيد الفطر المبارك. نسأل الله أن يتقبل منا ومنكم الصيام والقيام وصالح الأعمال. عيد مبارك وكل عام وأنتم بخير. تقبل الله منا ومنكم."
     },
     "item2": {
-      "title": "Inscription au cours enfants",
-      "p1": "Chers fidèles,",
-      "p2": "Si l'un ou l'une d'entre vous souhaite inscrire son enfant (6 ans révolus) aux cours dispensés à la Mosquée de Colomiers par demi-journée (samedi matin ou samedi après-midi ou dimanche matin), il doit se présenter aux créneaux suivants :",
-      "slots": ["Samedi après-midi 05 Juin 2021 de 15H-17H00", "Dimanche matin 06 Juin 2021 de 10H-12H00"],
+      "tag": "Cours",
+      "title": "Inscriptions cours enfants",
+      "date": "Juin 2021",
+      "p1": "La mosquée de Colomiers propose des cours d'apprentissage pour les enfants à partir de 6 ans, organisés en demi-journée le samedi ou le dimanche matin. Ces séances encadrées par des enseignants qualifiés permettent aux jeunes d'apprendre les bases de la récitation du Coran, la langue arabe et les valeurs islamiques dans un cadre bienveillant.",
+      "p2": "Pour inscrire votre enfant, présentez-vous directement à la mosquée aux créneaux suivants :",
+      "slots": ["Samedi après-midi 05 Juin 2021 de 15H à 17H", "Dimanche matin 06 Juin 2021 de 10H à 12H"],
       "p3": "Fraternellement, la Direction de la Mosquée de Colomiers"
     }
   },
