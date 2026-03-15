@@ -96,10 +96,9 @@
     "mapLink": "فتح في خرائط Google"
   },
   "footer": {
-    "tagline": "Al Ihsane — Mosquée Colomiers",
-    "taglineAr": "مسجد الإحسان",
-    "discover": "اكتشف المزيد",
-    "usefulLinks": "روابط مفيدة"
+    "tagline": "الإحسان",
+    "subtitle": "مسجد كولومير",
+    "copyright": "© 2026 المركز الثقافي والديني بكولومير"
   },
   "lang": {
     "switchToFr": "التبديل إلى الفرنسية",

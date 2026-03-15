@@ -96,10 +96,9 @@
     "mapLink": "Ouvrir dans Google Maps"
   },
   "footer": {
-    "tagline": "Al Ihsane — Mosquée Colomiers",
-    "taglineAr": "مسجد الإحسان",
-    "discover": "Découvrez davantage",
-    "usefulLinks": "Liens utiles"
+    "tagline": "Al Ihsane",
+    "subtitle": "Mosquée de Colomiers",
+    "copyright": "© 2026 Centre Culturel et Cultuel de Colomiers"
   },
   "lang": {
     "switchToFr": "Passer en français",
