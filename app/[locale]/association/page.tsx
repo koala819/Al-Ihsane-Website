@@ -3,6 +3,16 @@
 import { useLocale, useTranslations } from 'next-intl'
 import { Heart, BookOpen, Handshake, Utensils, Star } from 'lucide-react'
 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Separator } from '@/components/ui/separator'
+
 const ACTIVITIES_KEYS = ['meals', 'social', 'events'] as const
 
 const ACTIVITY_ICONS = {
@@ -21,13 +31,17 @@ function ValueCard({
   text: string
 }) {
   return (
-    <div className="flex flex-col items-center rounded-2xl border border-mosque-green/10 bg-white p-6 text-center shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md dark:bg-slate-900">
-      <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-mosque-green/10">
-        <Icon className="h-6 w-6 text-mosque-green" />
-      </div>
-      <h3 className="mb-1 font-bold text-mosque-green">{title}</h3>
-      <p className="text-sm text-muted-foreground">{text}</p>
-    </div>
+    <Card className="border-mosque-green/10 text-center shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md">
+      <CardHeader className="items-center pb-2">
+        <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-mosque-green/10">
+          <Icon className="h-6 w-6 text-mosque-green" />
+        </div>
+        <CardTitle className="text-base text-mosque-green">{title}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <CardDescription>{text}</CardDescription>
+      </CardContent>
+    </Card>
   )
 }
 
@@ -41,26 +55,31 @@ function ActivityCard({
   const Icon = ACTIVITY_ICONS[actKey]
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-mosque-green/10 bg-white shadow-sm dark:bg-slate-900">
-      <div className="h-1.5 bg-gradient-to-r from-mosque-green to-mosque-green/40" />
-      <div className="p-6">
-        <div className="mb-4 flex items-center gap-3">
+    <Card className="overflow-hidden border-mosque-green/10 shadow-sm transition-shadow hover:shadow-md">
+      <div className="h-1 bg-gradient-to-r from-mosque-green to-mosque-green/40" />
+      <CardHeader className="pb-3">
+        <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-mosque-green/10">
             <Icon className="h-5 w-5 text-mosque-green" />
           </div>
-          <div>
-            <span className="inline-flex items-center rounded-full bg-mosque-green/10 px-2.5 py-0.5 text-xs font-semibold text-mosque-green">
+          <div className="min-w-0">
+            <Badge
+              variant="secondary"
+              className="mb-1 bg-mosque-green/10 text-mosque-green"
+            >
               {t(`${actKey}.tag`)}
-            </span>
-            <h3 className="mt-0.5 text-base font-bold text-foreground">{t(`${actKey}.title`)}</h3>
+            </Badge>
+            <CardTitle className="text-base">{t(`${actKey}.title`)}</CardTitle>
           </div>
         </div>
-        <p className="mb-2 text-sm font-semibold text-mosque-green">{t(`${actKey}.subtitle`)}</p>
-        <p className="mb-2 text-sm leading-relaxed text-muted-foreground">{t(`${actKey}.p1`)}</p>
-        <p className="mb-2 text-sm leading-relaxed text-muted-foreground">{t(`${actKey}.p2`)}</p>
+      </CardHeader>
+      <CardContent className="space-y-2">
+        <p className="text-sm font-semibold text-mosque-green">{t(`${actKey}.subtitle`)}</p>
+        <p className="text-sm leading-relaxed text-muted-foreground">{t(`${actKey}.p1`)}</p>
+        <p className="text-sm leading-relaxed text-muted-foreground">{t(`${actKey}.p2`)}</p>
         <p className="text-sm leading-relaxed text-muted-foreground">{t(`${actKey}.p3`)}</p>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   )
 }
 
@@ -70,11 +89,12 @@ export default function AssociationPage() {
   const locale = useLocale()
   const isAr = locale === 'ar'
 
+  void isAr
+
   return (
     <div className="min-h-screen">
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-b from-mosque-green to-mosque-green/80 py-16 text-white md:py-24">
-        {/* Motif géométrique islamique en filigrane */}
         <div
           className="pointer-events-none absolute inset-0 opacity-5"
           style={{
@@ -82,35 +102,40 @@ export default function AssociationPage() {
           }}
         />
         <div className="relative mx-auto max-w-3xl px-4 text-center">
-        <div className="mb-4 flex justify-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/al-ihsane-light.jpg"
-            alt="Al'ihsane School"
-            className="max-h-28 w-auto max-w-[200px] rounded-2xl object-contain shadow-lg"
-          />
-        </div>
+          <div className="mb-4 flex justify-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/al-ihsane-light.jpg"
+              alt="Al'ihsane School"
+              className="max-h-28 w-auto max-w-[200px] rounded-2xl object-contain shadow-lg"
+            />
+          </div>
           <h1 className="mb-3 text-3xl font-bold md:text-5xl">{t('hero.title')}</h1>
           <p className="mx-auto max-w-xl text-base leading-relaxed text-white/80 md:text-lg">
             {t('hero.text')}
           </p>
+          <Separator className="mx-auto mt-8 max-w-24 bg-white/20" />
         </div>
       </section>
 
       {/* À propos / Notre Mission */}
       <section className="mx-auto max-w-4xl px-4 py-12 md:py-16">
-        <div className="mb-10 text-center">
+        <div className="mb-8 text-center">
           <h2 className="mb-1 text-2xl font-bold text-mosque-green md:text-3xl">
             {t('about.title')}
           </h2>
-          <div className="mx-auto mt-2 h-1 w-16 rounded-full bg-mosque-green/30" />
+          <Separator className="mx-auto mt-3 max-w-16 bg-mosque-green/30" />
         </div>
 
-        <div className="mb-10 rounded-2xl border border-mosque-green/10 bg-mosque-green-light p-6 md:p-8">
-          <h3 className="mb-4 text-lg font-semibold text-mosque-green">{t('about.mission')}</h3>
-          <p className="mb-3 leading-relaxed text-foreground">{t('about.p1')}</p>
-          <p className="leading-relaxed text-muted-foreground">{t('about.p2')}</p>
-        </div>
+        <Card className="mb-8 border-mosque-green/10 bg-mosque-green-light shadow-sm">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-lg text-mosque-green">{t('about.mission')}</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-3">
+            <p className="leading-relaxed text-foreground">{t('about.p1')}</p>
+            <p className="leading-relaxed text-muted-foreground">{t('about.p2')}</p>
+          </CardContent>
+        </Card>
 
         {/* 3 valeurs */}
         <div className="grid gap-4 sm:grid-cols-3">
@@ -135,11 +160,11 @@ export default function AssociationPage() {
       {/* Nos Activités */}
       <section className="bg-mosque-muted/40 py-12 md:py-16">
         <div className="mx-auto max-w-4xl px-4">
-          <div className="mb-10 text-center">
+          <div className="mb-8 text-center">
             <h2 className="mb-1 text-2xl font-bold text-mosque-green md:text-3xl">
               {tActivities('title')}
             </h2>
-            <div className="mx-auto mt-2 h-1 w-16 rounded-full bg-mosque-green/30" />
+            <Separator className="mx-auto mt-3 max-w-16 bg-mosque-green/30" />
           </div>
 
           <div className="grid gap-6 md:grid-cols-3">

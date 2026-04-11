@@ -4,6 +4,16 @@ import { useState } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
 import { ChevronDown, ChevronUp, Calendar } from 'lucide-react'
 
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+
 function NewsCard({
   tag,
   title,
@@ -24,28 +34,27 @@ function NewsCard({
   const collapseLabel = isAr ? 'طي' : 'Réduire'
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-2xl border border-mosque-green/10 bg-background shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg">
-      {/* Bandeau coloré en haut */}
-      <div className="h-1.5 bg-gradient-to-r from-mosque-green to-mosque-green/50" />
+    <Card className="group flex flex-col overflow-hidden border-mosque-green/10 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md">
+      {/* Bandeau coloré */}
+      <div className="h-1 bg-gradient-to-r from-mosque-green to-mosque-green/40" />
 
-      <div className="flex flex-1 flex-col p-5">
-        {/* Tag + date */}
-        <div className="mb-3 flex items-center justify-between">
-          <span className="inline-flex items-center rounded-full bg-mosque-green/10 px-2.5 py-0.5 text-xs font-semibold text-mosque-green">
+      <CardHeader className="pb-3">
+        <div className="flex items-center justify-between gap-2">
+          <Badge
+            variant="secondary"
+            className="bg-mosque-green/10 text-mosque-green hover:bg-mosque-green/15"
+          >
             {tag}
-          </span>
+          </Badge>
           <span className="flex items-center gap-1 text-xs text-muted-foreground">
             <Calendar className="h-3 w-3" />
             {date}
           </span>
         </div>
+        <CardTitle className="mt-2 text-base leading-snug">{title}</CardTitle>
+      </CardHeader>
 
-        {/* Titre */}
-        <h3 className="mb-3 text-base font-bold leading-snug text-foreground">
-          {title}
-        </h3>
-
-        {/* Contenu */}
+      <CardContent className="flex-1 pb-3">
         {!expanded ? (
           <p className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">
             {preview}
@@ -55,20 +64,27 @@ function NewsCard({
             {children}
           </div>
         )}
+      </CardContent>
 
-        {/* Bouton */}
-        <button
+      <CardFooter className="pt-0">
+        <Button
+          variant="outline"
+          size="sm"
           onClick={() => setExpanded((v) => !v)}
-          className="mt-4 flex cursor-pointer items-center gap-1 self-start rounded-lg border border-mosque-green/30 px-3 py-1.5 text-xs font-semibold text-mosque-green transition-colors hover:bg-mosque-green hover:text-white"
+          className="border-mosque-green/30 text-mosque-green hover:bg-mosque-green hover:text-white"
         >
           {expanded ? (
-            <>{collapseLabel} <ChevronUp className="h-3.5 w-3.5" /></>
+            <>
+              {collapseLabel} <ChevronUp className="ml-1 h-3.5 w-3.5" />
+            </>
           ) : (
-            <>{readLabel} <ChevronDown className="h-3.5 w-3.5" /></>
+            <>
+              {readLabel} <ChevronDown className="ml-1 h-3.5 w-3.5" />
+            </>
           )}
-        </button>
-      </div>
-    </article>
+        </Button>
+      </CardFooter>
+    </Card>
   )
 }
 
@@ -78,13 +94,12 @@ export function News() {
   const isAr = locale === 'ar'
 
   return (
-    <section id="news" className="mx-auto max-w-[900px] px-4 py-8">
-      <h2 className="mb-5 text-xl font-semibold text-mosque-green md:text-2xl">
+    <section id="news" className="mx-auto max-w-[900px] px-4 py-10">
+      <h2 className="mb-6 text-xl font-semibold text-mosque-green md:text-2xl">
         {t('title')}
       </h2>
 
       <div className="grid gap-5 sm:grid-cols-2">
-        {/* Card 1 — Aïd al-Fitr */}
         <NewsCard
           tag={t('item1.tag')}
           title={t('item1.title')}
@@ -95,7 +110,6 @@ export function News() {
           <p>{isAr ? t('item1.p2Ar') : t('item1.p1')}</p>
         </NewsCard>
 
-        {/* Card 2 — Cours enfants */}
         <NewsCard
           tag={t('item2.tag')}
           title={t('item2.title')}

@@ -8,6 +8,7 @@ import { MapPin, Phone, Send } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -74,8 +75,8 @@ export default function Page() {
 
   return (
     <section className="relative flex min-h-screen flex-col text-foreground md:flex-row">
-      {/* Un seul bloc : en haut sur mobile, à gauche sur desktop */}
-      <div className="relative z-10 w-full shrink-0 overflow-y-auto border-b border-mosque-green/20 bg-white/95 shadow-xl dark:bg-slate-900/95 md:max-w-[420px] md:border-b-0 md:border-r">
+      {/* Panneau gauche */}
+      <div className="relative z-10 w-full shrink-0 overflow-y-auto border-b border-mosque-green/20 bg-card shadow-xl md:max-w-[420px] md:border-b-0 md:border-r">
         <div className="p-4 sm:p-6 md:p-8">
           <header className="mb-8">
             <h1 className="font-display text-3xl font-normal text-mosque-green md:text-4xl">
@@ -87,7 +88,7 @@ export default function Page() {
           </header>
 
           <div className="space-y-8">
-            {/* Adresse + téléphone + lien carte */}
+            {/* Adresse + téléphone */}
             <div>
               <h2 className="text-lg font-semibold text-mosque-green">
                 {t('mapTitle')}
@@ -107,15 +108,16 @@ export default function Page() {
                   </a>
                 </p>
               </address>
-              <a
-                href={MOSQUE_MAPS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3 inline-flex items-center gap-2 rounded-lg bg-mosque-green px-4 py-2 text-sm text-white hover:opacity-90"
-              >
-                <MapPin className="h-4 w-4" />
-                {t('mapLink')}
-              </a>
+              <Button asChild className="mt-4">
+                <a
+                  href={MOSQUE_MAPS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <MapPin className="mr-2 h-4 w-4" />
+                  {t('mapLink')}
+                </a>
+              </Button>
             </div>
 
             {/* Formulaire */}
@@ -133,9 +135,10 @@ export default function Page() {
               ) : (
                 <form
                   onSubmit={handleSubmit(handleSendMail)}
-                  className="mt-6 space-y-4"
+                  className="mt-6 space-y-5"
                 >
-                  <div>
+                  <div className="space-y-1.5">
+                    <Label htmlFor="first_name">{t('namePlaceholder')}</Label>
                     <Controller
                       name="first_name"
                       control={control}
@@ -145,17 +148,18 @@ export default function Page() {
                           type="text"
                           id="first_name"
                           placeholder={t('namePlaceholder')}
-                          className="border-mosque-green/30 bg-background"
                         />
                       )}
                     />
                     {errors.first_name && (
-                      <p className="mt-1 text-xs text-red-600">
+                      <p className="text-xs text-destructive">
                         {errors.first_name.message}
                       </p>
                     )}
                   </div>
-                  <div>
+
+                  <div className="space-y-1.5">
+                    <Label htmlFor="email">{t('emailPlaceholder')}</Label>
                     <Controller
                       name="email"
                       control={control}
@@ -165,17 +169,18 @@ export default function Page() {
                           type="email"
                           id="email"
                           placeholder={t('emailPlaceholder')}
-                          className="border-mosque-green/30 bg-background"
                         />
                       )}
                     />
                     {errors.email && (
-                      <p className="mt-1 text-xs text-red-600">
+                      <p className="text-xs text-destructive">
                         {errors.email.message}
                       </p>
                     )}
                   </div>
-                  <div>
+
+                  <div className="space-y-1.5">
+                    <Label htmlFor="msg">{t('messagePlaceholder')}</Label>
                     <Controller
                       name="msg"
                       control={control}
@@ -186,20 +191,17 @@ export default function Page() {
                           id="msg"
                           placeholder={t('messagePlaceholder')}
                           rows={4}
-                          className="border-mosque-green/30 bg-background"
                         />
                       )}
                     />
                     {errors.msg && (
-                      <p className="mt-1 text-xs text-red-600">
+                      <p className="text-xs text-destructive">
                         {errors.msg.message}
                       </p>
                     )}
                   </div>
-                  <Button
-                    type="submit"
-                    className="w-full bg-mosque-green hover:bg-mosque-green/90"
-                  >
+
+                  <Button type="submit" className="w-full">
                     <Send className="mr-2 h-4 w-4" />
                     {t('send')}
                   </Button>
@@ -210,7 +212,7 @@ export default function Page() {
         </div>
       </div>
 
-      {/* Carte : en bas sur mobile (hauteur fixe), à droite sur desktop */}
+      {/* Carte */}
       <div className="relative min-h-[320px] flex-1 sm:min-h-[50vh] md:min-h-0">
         <iframe
           title={t('mapTitle')}

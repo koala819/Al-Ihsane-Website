@@ -1,6 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
+import { Separator } from '@/components/ui/separator'
 
 export function Hero() {
   const t = useTranslations('home')
@@ -19,7 +20,6 @@ export function Hero() {
       />
 
       <div className="relative mx-auto max-w-3xl px-4 text-center">
-        {/* Logo dans un encadré blanc — fond blanc du JPG se fond naturellement */}
         <div className="mb-5 flex justify-center">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
@@ -35,6 +35,8 @@ export function Hero() {
         <p className="mx-auto mt-3 max-w-xl text-base leading-relaxed text-white/80 md:text-lg">
           {t('subtitle')}
         </p>
+
+        <Separator className="mx-auto mt-8 max-w-24 bg-white/20" />
       </div>
     </section>
   )
