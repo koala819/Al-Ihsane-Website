@@ -1,19 +1,33 @@
 import Link from 'next/link'
 
 const PRAYERS = [
-  { key: 'fajr',    label: 'Fajr',    labelAr: 'الفجر',   idx: 0 },
+  { key: 'fajr',    label: 'Fajr',     labelAr: 'الفجر',   idx: 0 },
   { key: 'shuruq',  label: 'Chourouk', labelAr: 'الشروق',  idx: -1 },
-  { key: 'dhuhr',   label: 'Dhuhr',   labelAr: 'الظهر',   idx: 1 },
-  { key: 'asr',     label: 'Asr',     labelAr: 'العصر',   idx: 2 },
-  { key: 'maghrib', label: 'Maghrib', labelAr: 'المغرب',  idx: 3 },
-  { key: 'isha',    label: 'Isha',    labelAr: 'العشاء',  idx: 4 },
+  { key: 'dhuhr',   label: 'Dhuhr',    labelAr: 'الظهر',   idx: 1 },
+  { key: 'asr',     label: 'Asr',      labelAr: 'العصر',   idx: 2 },
+  { key: 'maghrib', label: 'Maghrib',  labelAr: 'المغرب',  idx: 3 },
+  { key: 'isha',    label: 'Isha',     labelAr: 'العشاء',  idx: 4 },
 ]
+
+// ── Types ─────────────────────────────────────────────────────────────────
 
 interface PrayerTimesData {
   times: string[]
   shuruq: string
   jumua: string | null
 }
+
+interface AlAdhanDate {
+  data: {
+    hijri: {
+      day: string
+      month: { en: string; ar: string }
+      year: string
+    }
+  }
+}
+
+// ── Fetchers ──────────────────────────────────────────────────────────────
 
 async function fetchPrayerTimes(): Promise<PrayerTimesData | null> {
   try {
@@ -32,81 +46,185 @@ async function fetchPrayerTimes(): Promise<PrayerTimesData | null> {
   }
 }
 
+/**
+ * Convertit la date du jour en date hégirien via l'API AlAdhan.
+ * Utilise le calendrier Umm al-Qura (HJCoSA) — standard saoudien,
+ * le plus reconnu mondialement pour les mosquées.
+ * Revalidation toutes les heures pour couvrir le changement de jour.
+ */
+async function fetchHijriDate(): Promise<AlAdhanDate['data'] | null> {
+  try {
+    const now = new Date()
+    const dd = String(now.getDate()).padStart(2, '0')
+    const mm = String(now.getMonth() + 1).padStart(2, '0')
+    const yyyy = now.getFullYear()
+
+    const res = await fetch(
+      `https://api.aladhan.com/v1/gToH?date=${dd}-${mm}-${yyyy}`,
+      { next: { revalidate: 3600 } },
+    )
+    if (!res.ok) return null
+    const json: AlAdhanDate = await res.json()
+    return json.data ?? null
+  } catch {
+    return null
+  }
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────
+
+/** Convertit les chiffres latins en chiffres arabes-indiens (٠١٢٣…) */
+function toArabicIndic(s: string): string {
+  return s.replace(/[0-9]/g, (d) => '٠١٢٣٤٥٦٧٨٩'[+d])
+}
+
+// ── Composant ─────────────────────────────────────────────────────────────
+
 export async function PrayerTimes({ locale }: { locale: string }) {
-  const data = await fetchPrayerTimes()
+  const [prayerData, dateData] = await Promise.all([
+    fetchPrayerTimes(),
+    fetchHijriDate(),
+  ])
   const isAr = locale === 'ar'
-
-  const getTime = (idx: number, d: PrayerTimesData) =>
-    idx === -1 ? d.shuruq : d.times[idx]
-
-  // Détecter la prochaine prière
   const now = new Date()
+
+  // ── Date grégorienne (Intl est fiable pour le calendrier civil standard) ──
+  const gregorian = now.toLocaleDateString(isAr ? 'ar-DZ' : 'fr-FR', {
+    weekday: 'short',
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  })
+
+  // ── Date hégirien depuis AlAdhan ──────────────────────────────────────────
+  let hijri: string | null = null
+  if (dateData) {
+    const { day, month, year } = dateData.hijri
+    if (isAr) {
+      // Chiffres arabes-indiens + mois en arabe + suffixe هـ (هجري)
+      hijri = `${toArabicIndic(day)} ${month.ar} ${toArabicIndic(year)}\u00a0هـ`
+    } else {
+      // Chiffres latins + mois translittéré (Shawwāl, Ramadān…)
+      hijri = `${day} ${month.en} ${year}`
+    }
+  }
+
+  // ── Détection de la prochaine prière ─────────────────────────────────────
   const nowMin = now.getHours() * 60 + now.getMinutes()
   let nextIdx = -1
-  if (data) {
-    const prayerMins = data.times.map((t) => {
+  if (prayerData) {
+    const prayerMins = prayerData.times.map((t) => {
       const [h, m] = t.split(':').map(Number)
       return h * 60 + m
     })
     nextIdx = prayerMins.findIndex((m) => m > nowMin)
   }
-  // nextIdx dans times[] : 0=Fajr,1=Dhuhr,2=Asr,3=Maghrib,4=Isha
-  // Dans PRAYERS, shuruq est idx -1, donc les vraies prières ont idx 0,1,2,3,4
-  // On mappe : nextIdx 0→prayerKey fajr, 1→dhuhr, etc.
-  const nextPrayerKey = nextIdx >= 0 ? PRAYERS.filter(p => p.idx >= 0)[nextIdx]?.key : null
+  const nextPrayerKey =
+    nextIdx >= 0 ? PRAYERS.filter((p) => p.idx >= 0)[nextIdx]?.key : null
 
-  if (!data) {
-    return (
-      <div className="bg-mosque-green/5 border-b border-mosque-green/10 py-2 text-center text-xs text-muted-foreground">
-        <Link href="https://mawaqit.net/fr/m/alihsane-colomiers" target="_blank" rel="noopener noreferrer" className="hover:underline">
-          Horaires de prière sur Mawaqit ↗
-        </Link>
-      </div>
-    )
-  }
+  const getTime = (idx: number) =>
+    idx === -1 ? prayerData!.shuruq : prayerData!.times[idx]
 
   return (
-    <div className="border-b border-mosque-green/15 bg-mosque-green-light">
+    <div className="border-b border-mosque-green/20 bg-mosque-green-light">
       <div className="mx-auto max-w-7xl px-4">
-        <div className="flex items-center justify-between py-1.5 sm:py-2">
-          {/* Prières */}
-          <div className="flex flex-1 items-center justify-around gap-1 overflow-x-auto sm:gap-3">
-            {PRAYERS.map(({ key, label, labelAr, idx }) => {
-              const time = getTime(idx, data)
-              const isNext = key === nextPrayerKey
-              return (
-                <div
-                  key={key}
-                  className={[
-                    'flex min-w-[52px] flex-col items-center rounded-lg px-2 py-1 transition-colors sm:min-w-[60px]',
-                    isNext
-                      ? 'bg-mosque-green text-white'
-                      : 'text-mosque-green',
-                  ].join(' ')}
-                >
-                  <span className={[
-                    'text-[10px] font-medium uppercase tracking-wide',
-                    isNext ? 'opacity-90' : 'opacity-60',
-                  ].join(' ')}>
-                    {isAr ? labelAr : label}
-                  </span>
-                  <span className="text-sm font-bold tabular-nums sm:text-base">
-                    {time}
-                  </span>
-                </div>
-              )
-            })}
+        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 py-2 sm:py-2.5">
+
+          {/* ── Dates ─────────────────────────────────────────────────── */}
+          <div className="flex shrink-0 items-center gap-2 text-[11px]">
+            {/* Grégorien — gauche */}
+            <span
+              className="capitalize text-mosque-green/70 dark:text-mosque-green/90"
+              lang={isAr ? 'ar' : 'fr'}
+              dir={isAr ? 'rtl' : 'ltr'}
+            >
+              {gregorian}
+            </span>
+
+            {/* Séparateur */}
+            {hijri && <span className="select-none text-mosque-green/30 dark:text-mosque-green/50">·</span>}
+
+            {/* Hégirien — droite */}
+            {hijri && (
+              <span
+                className={[
+                  'font-semibold text-mosque-green',
+                  isAr ? 'font-arabic text-[12px]' : '',
+                ].join(' ')}
+                lang={isAr ? 'ar' : 'fr'}
+                dir={isAr ? 'rtl' : 'ltr'}
+              >
+                {hijri}
+              </span>
+            )}
           </div>
 
-          {/* Lien Mawaqit */}
-          <Link
-            href="https://mawaqit.net/fr/m/alihsane-colomiers"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="ml-3 hidden shrink-0 text-[10px] text-mosque-green/50 hover:text-mosque-green hover:underline sm:block"
-          >
-            Mawaqit ↗
-          </Link>
+          {/* ── Horaires de prière ────────────────────────────────────── */}
+          {prayerData ? (
+            <div className="flex items-center gap-0.5 sm:gap-1">
+              {PRAYERS.map(({ key, label, labelAr, idx }) => {
+                const time = getTime(idx)
+                const isNext = key === nextPrayerKey
+                return (
+                  <div
+                    key={key}
+                    className={[
+                      'flex min-w-[44px] flex-col items-center rounded-lg px-1.5 py-1 transition-all duration-200 sm:min-w-[58px] sm:px-2',
+                      isNext
+                        ? 'bg-mosque-green text-white shadow-sm dark:ring-1 dark:ring-mosque-green/60'
+                        : 'text-mosque-green hover:bg-mosque-green/10',
+                    ].join(' ')}
+                  >
+                    <span
+                      className={[
+                        'text-[9px] font-semibold uppercase tracking-wide sm:text-[10px]',
+                        isNext ? 'text-white/80' : 'text-mosque-green/55 dark:text-mosque-green/80',
+                      ].join(' ')}
+                    >
+                      {isAr ? labelAr : label}
+                    </span>
+                    <span
+                      className={[
+                        'text-[13px] font-bold tabular-nums sm:text-sm',
+                        isNext ? 'text-white' : 'text-mosque-green',
+                      ].join(' ')}
+                    >
+                      {time}
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
+          ) : (
+            <Link
+              href="https://mawaqit.net/fr/m/alihsane-colomiers"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-medium text-mosque-green hover:underline"
+            >
+              {isAr ? 'مواقيت الصلاة ↗' : 'Horaires de prière ↗'}
+            </Link>
+          )}
+
+          {/* ── Jumu'a + Mawaqit ──────────────────────────────────────── */}
+          <div className="hidden flex-col items-end gap-0.5 text-[11px] sm:flex">
+            {prayerData?.jumua && (
+              <span className="font-semibold text-mosque-green">
+                {isAr
+                  ? `الجمعة\u00a0${prayerData.jumua}`
+                  : `Jumu\u2019a\u00a0${prayerData.jumua}`}
+              </span>
+            )}
+            <Link
+              href="https://mawaqit.net/fr/m/alihsane-colomiers"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-mosque-green/40 hover:text-mosque-green hover:underline"
+            >
+              Mawaqit ↗
+            </Link>
+          </div>
+
         </div>
       </div>
     </div>

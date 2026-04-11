@@ -124,7 +124,7 @@ export default function AssociationPage() {
           <h2 className="mb-1 text-2xl font-bold text-mosque-green md:text-3xl">
             {t('about.title')}
           </h2>
-          <Separator className="mx-auto mt-3 max-w-16 bg-mosque-green/30" />
+          <div className="mt-2 h-1 w-12 rounded-full bg-mosque-green/30" />
         </div>
 
         <Card className="mb-8 border-mosque-green/10 bg-mosque-green-light shadow-sm">
@@ -161,10 +161,10 @@ export default function AssociationPage() {
       <section className="bg-mosque-muted/40 py-12 md:py-16">
         <div className="mx-auto max-w-4xl px-4">
           <div className="mb-8 text-center">
-            <h2 className="mb-1 text-2xl font-bold text-mosque-green md:text-3xl">
-              {tActivities('title')}
-            </h2>
-            <Separator className="mx-auto mt-3 max-w-16 bg-mosque-green/30" />
+          <h2 className="mb-1 text-2xl font-bold text-mosque-green md:text-3xl">
+            {tActivities('title')}
+          </h2>
+          <div className="mt-2 h-1 w-12 rounded-full bg-mosque-green/30" />
           </div>
 
           <div className="grid gap-6 md:grid-cols-3">

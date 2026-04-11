@@ -39,25 +39,25 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 134 35% 52%;
+    --background: 155 15% 7%;
+    --foreground: 150 8% 93%;
+    --card: 155 12% 10%;
+    --card-foreground: 150 8% 93%;
+    --popover: 155 12% 10%;
+    --popover-foreground: 150 8% 93%;
+    --primary: 134 45% 58%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 134 18% 16%;
-    --secondary-foreground: 134 35% 80%;
-    --muted: 134 18% 13%;
-    --muted-foreground: 134 15% 55%;
-    --accent: 134 18% 18%;
-    --accent-foreground: 134 35% 80%;
+    --secondary: 155 12% 15%;
+    --secondary-foreground: 134 35% 75%;
+    --muted: 155 10% 13%;
+    --muted-foreground: 150 10% 55%;
+    --accent: 155 12% 16%;
+    --accent-foreground: 134 35% 75%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 134 18% 22%;
-    --input: 134 18% 22%;
-    --ring: 134 35% 52%;
+    --border: 155 10% 19%;
+    --input: 155 10% 19%;
+    --ring: 134 45% 58%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -65,10 +65,10 @@
     --chart-5: 340 75% 55%;
 
     /* Couleurs mosquée — mode sombre */
-    --mosque-green: 134 35% 52%;         /* vert sauge doux, lisible sans être fluo */
-    --mosque-green-text: 134 35% 52%;
-    --mosque-green-light: 134 18% 13%;   /* fond vert très sombre */
-    --mosque-muted: 220 18% 16%;         /* fond ardoise légèrement chaud */
-    --mosque-footer: 220 22% 11%;        /* footer sombre */
+    --mosque-green: 134 45% 58%;         /* vert lumineux, lisible sur fond sombre */
+    --mosque-green-text: 134 45% 58%;
+    --mosque-green-light: 155 15% 11%;   /* fond sections légèrement teinté vert */
+    --mosque-muted: 155 12% 14%;         /* fond ardoise vert chaud */
+    --mosque-footer: 155 15% 5%;         /* footer — plus sombre que le fond */
   }
 }

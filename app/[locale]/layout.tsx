@@ -4,11 +4,11 @@ import { getMessages } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { Footer } from '@/components/molecules/Footer'
 import { Navbar } from '@/components/molecules/Navbar'
+import { PrayerTimes } from '@/components/sections/PrayerTimes'
 import GoogleAnalytics from '@/components/util/GoogleAnalytics'
 import SetLocaleAttributes from '@/components/util/SetLocaleAttributes'
 
 import { Providers } from '../providers'
-
 import { cn } from '@/lib/utils'
 
 export function generateStaticParams() {
@@ -29,8 +29,11 @@ export default async function LocaleLayout({
     <NextIntlClientProvider messages={messages}>
       <SetLocaleAttributes />
       <Providers>
-        <div className={cn('min-h-screen min-w-screen')}>
-          <div className="flex flex-col min-h-screen">
+        <div className={cn('min-h-screen')}>
+          <div className="flex min-h-screen flex-col">
+            {/* Bandeau horaires + dates — non sticky, scroll naturellement */}
+            <PrayerTimes locale={locale} />
+            {/* Navbar — sticky en dessous */}
             <Navbar />
             <main className="flex-1">
               <GoogleAnalytics />

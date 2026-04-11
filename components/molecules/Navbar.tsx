@@ -33,15 +33,22 @@ export function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-gradient-to-b from-[rgba(4,62,47,0.97)] to-mosque-green text-white shadow-md backdrop-blur supports-[backdrop-filter]:bg-mosque-green/95">
+    <header className="sticky top-0 z-50 bg-gradient-to-b from-[rgba(4,62,47,0.97)] to-mosque-green text-white shadow-md backdrop-blur supports-[backdrop-filter]:bg-mosque-green/95 dark:from-[hsl(155,40%,12%)] dark:to-[hsl(155,35%,16%)]">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 items-center justify-between gap-4">
           {/* Logo */}
           <Link
             href="/"
-            className="shrink-0 font-semibold tracking-wide transition-opacity hover:opacity-80"
+            className="flex shrink-0 items-center gap-2.5 transition-opacity hover:opacity-80"
           >
-            {t('logo')}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/al-ihsane-light.jpg"
+              alt=""
+              aria-hidden="true"
+              className="h-8 w-auto rounded-md object-contain"
+            />
+            <span className="font-semibold tracking-wide">{t('logo')}</span>
           </Link>
 
           {/* Desktop nav */}
@@ -96,8 +103,15 @@ export function Navbar() {
               className="w-72 border-r-mosque-green/20 bg-mosque-green p-0 text-white"
             >
               <SheetHeader className="border-b border-white/10 px-6 py-4">
-                <SheetTitle className="text-left text-base font-semibold text-white">
-                  {t('logo')}
+                <SheetTitle className="flex items-center gap-2.5 text-white">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/al-ihsane-light.jpg"
+                    alt=""
+                    aria-hidden="true"
+                    className="h-8 w-auto rounded-md object-contain"
+                  />
+                  <span className="text-base font-semibold">{t('logo')}</span>
                 </SheetTitle>
               </SheetHeader>
 
