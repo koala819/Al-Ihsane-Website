@@ -16,7 +16,7 @@ export default async function Page() {
 
   return (
     <>
-      {/* Actualités — Sanity si configuré, sinon textes dans messages/*.json */}
+      {/* Actualités — contenu Sanity (Studio) ; libellé vide si aucun document */}
       <News cmsArticles={cmsArticles} />
 
       {/* Ancrage spirituel */}

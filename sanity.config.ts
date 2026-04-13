@@ -1,4 +1,5 @@
 import { visionTool } from '@sanity/vision'
+import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import { defineConfig } from 'sanity'
 import { structureTool } from 'sanity/structure'
 
@@ -14,7 +15,7 @@ export default defineConfig({
   projectId,
   dataset,
   basePath: '/studio',
-  plugins: [structureTool(), visionTool()],
+  plugins: [structureTool(), visionTool(), unsplashImageAsset()],
   schema: {
     types: schemaTypes,
   },

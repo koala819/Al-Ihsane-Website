@@ -130,67 +130,41 @@ export function News({ cmsArticles = [] }: NewsProps) {
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2">
-          {useCms
-            ? cmsArticles.map((article) => {
-                const title = isAr ? article.titleAr : article.titleFr
-                const tag = (isAr ? article.tagAr : article.tagFr)?.trim() || '—'
-                const excerpt = (isAr ? article.excerptAr : article.excerptFr)?.trim() || ''
-                const body = isAr ? article.bodyAr : article.bodyFr
-                const date = formatDateLabel(article)
-                const img = article.mainImage
-                const imageUrl =
-                  img?.asset && urlForImage(img)?.width(900).height(500).fit('crop').url()
+          {useCms ? (
+            cmsArticles.map((article) => {
+              const title = isAr ? article.titleAr : article.titleFr
+              const tag = (isAr ? article.tagAr : article.tagFr)?.trim() || '—'
+              const excerpt = (isAr ? article.excerptAr : article.excerptFr)?.trim() || ''
+              const body = isAr ? article.bodyAr : article.bodyFr
+              const date = formatDateLabel(article)
+              const img = article.mainImage
+              const imageUrl =
+                img?.asset && urlForImage(img)?.width(900).height(500).fit('crop').url()
 
-                return (
-                  <NewsCard
-                    key={article._id}
-                    tag={tag}
-                    title={title}
-                    date={date}
-                    preview={excerpt}
-                    isAr={isAr}
-                    imageUrl={imageUrl}
-                    imageAlt={img?.alt ?? title}
-                  >
-                    {body?.length ? (
-                      <PortableArticleBody value={body} dir={isAr ? 'rtl' : 'ltr'} />
-                    ) : (
-                      excerpt && <p>{excerpt}</p>
-                    )}
-                  </NewsCard>
-                )
-              })
-            : null}
-
-          {!useCms ? (
-            <>
-              <NewsCard
-                tag={t('item1.tag')}
-                title={t('item1.title')}
-                date={t('item1.date')}
-                preview={isAr ? t('item1.p2Ar') : t('item1.p1')}
-                isAr={isAr}
-              >
-                <p>{isAr ? t('item1.p2Ar') : t('item1.p1')}</p>
-              </NewsCard>
-
-              <NewsCard
-                tag={t('item2.tag')}
-                title={t('item2.title')}
-                date={t('item2.date')}
-                preview={t('item2.p1')}
-                isAr={isAr}
-              >
-                <p>{t('item2.p1')}</p>
-                <p>{t('item2.p2')}</p>
-                <ul className={['list-disc space-y-1', isAr ? 'pr-5' : 'pl-5'].join(' ')}>
-                  <li>{t('item2.slots.0')}</li>
-                  <li>{t('item2.slots.1')}</li>
-                </ul>
-                <p className="pt-1 font-medium text-mosque-green">{t('item2.p3')}</p>
-              </NewsCard>
-            </>
-          ) : null}
+              return (
+                <NewsCard
+                  key={article._id}
+                  tag={tag}
+                  title={title}
+                  date={date}
+                  preview={excerpt}
+                  isAr={isAr}
+                  imageUrl={imageUrl}
+                  imageAlt={img?.alt ?? title}
+                >
+                  {body?.length ? (
+                    <PortableArticleBody value={body} dir={isAr ? 'rtl' : 'ltr'} />
+                  ) : (
+                    excerpt && <p>{excerpt}</p>
+                  )}
+                </NewsCard>
+              )
+            })
+          ) : (
+            <p className="col-span-full py-10 text-center text-sm leading-relaxed text-muted-foreground sm:col-span-2">
+              {t('empty')}
+            </p>
+          )}
         </div>
       </div>
     </section>
