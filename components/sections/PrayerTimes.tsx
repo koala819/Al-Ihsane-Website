@@ -219,7 +219,7 @@ export async function PrayerTimes({ locale }: { locale: string }) {
               href="https://mawaqit.net/fr/m/alihsane-colomiers"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-mosque-green/40 hover:text-mosque-green hover:underline"
+              className="text-mosque-green/70 underline-offset-2 hover:text-mosque-green hover:underline dark:text-mosque-green/80"
             >
               Mawaqit ↗
             </Link>

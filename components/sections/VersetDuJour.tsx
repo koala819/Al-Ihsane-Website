@@ -52,7 +52,7 @@ export async function VersetDuJour({ locale }: { locale: string }) {
           {/* ── Label ── */}
           <div className="mb-5 flex items-center justify-center gap-2">
             <Separator className="max-w-12 bg-mosque-green/25" />
-            <span className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-mosque-green/60">
+            <span className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-mosque-green/75">
               <BookOpen className="h-3.5 w-3.5" />
               {isAr ? 'آية اليوم' : 'Verset du jour'}
             </span>
@@ -75,7 +75,7 @@ export async function VersetDuJour({ locale }: { locale: string }) {
             </p>
           )}
 
-          <p className="mt-3 text-sm text-mosque-green/60">— {ref}</p>
+          <p className="mt-3 text-sm text-mosque-green/75">— {ref}</p>
 
           {/* ── Carte récitant ── */}
           <div className="mx-auto mt-8 flex items-center gap-4 rounded-2xl border border-mosque-green/15 bg-white/70 px-5 py-4 text-left shadow-sm backdrop-blur-sm dark:border-white/8 dark:bg-white/[0.07] dark:ring-1 dark:ring-white/[0.07]">
@@ -91,13 +91,13 @@ export async function VersetDuJour({ locale }: { locale: string }) {
 
             {/* Infos */}
             <div className="min-w-0 flex-1">
-              <p className="text-[10px] font-semibold uppercase tracking-widest text-mosque-green/50">
+              <p className="text-xs font-semibold uppercase tracking-widest text-mosque-green/70">
                 {isAr ? 'تلاوات قرآنية' : 'Récitations coraniques'}
               </p>
               <p className="mt-0.5 font-semibold text-mosque-green">
                 Abderrahmane Mesli
               </p>
-              <p className="text-xs text-foreground/50">
+              <p className="text-xs text-muted-foreground">
                 {isAr ? 'أخ من مسجد الإحسان' : 'Frère de la mosquée Al Ihsane · Colomiers'}
               </p>
             </div>

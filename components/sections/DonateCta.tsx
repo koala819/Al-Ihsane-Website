@@ -21,7 +21,7 @@ export function DonateCta() {
   const isAr = locale === 'ar'
 
   return (
-    <section className="bg-amber-50/60 py-14 dark:bg-[hsl(38,20%,9%)]">
+    <section className="bg-mosque-gold-light/80 py-14 dark:bg-mosque-gold-light/40">
       <div className="mx-auto max-w-2xl px-4 text-center">
         {/* Verset */}
         <p
@@ -40,13 +40,13 @@ export function DonateCta() {
           — {isAr ? VERSE_REF_AR : VERSE_REF_FR}
         </p>
 
-        <Separator className="mx-auto my-8 max-w-20 bg-amber-300/50 dark:bg-amber-700/30" />
+        <Separator className="mx-auto my-8 max-w-20 bg-mosque-gold/25 dark:bg-mosque-gold/20" />
 
         {/* Titre */}
         <h2 className="mb-2 text-2xl font-bold text-mosque-green md:text-3xl">
           {t('subtitle')}
         </h2>
-        <div className="mx-auto mb-6 h-1 w-12 rounded-full bg-amber-400/50" />
+        <div className="mx-auto mb-6 h-1 w-12 rounded-full bg-mosque-gold/35" />
         <p className="mx-auto mb-8 max-w-lg text-sm leading-relaxed text-muted-foreground">
           {t('intro')}
         </p>
@@ -56,7 +56,7 @@ export function DonateCta() {
           <Button
             asChild
             size="lg"
-            className="bg-amber-500 text-white shadow-md hover:bg-amber-400"
+            className="bg-mosque-gold text-white shadow-md transition-colors hover:bg-mosque-gold-hover"
           >
             <a href={HELLOASSO_URL} target="_blank" rel="noopener noreferrer">
               <Heart className="mr-2 h-5 w-5" />

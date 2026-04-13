@@ -10,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
+import { SiteLogo } from '@/components/atoms/SiteLogo'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 
@@ -103,12 +104,9 @@ export default function AssociationPage() {
         />
         <div className="relative mx-auto max-w-3xl px-4 text-center">
           <div className="mb-4 flex justify-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/al-ihsane-light.jpg"
-              alt="Al'ihsane School"
-              className="max-h-28 w-auto max-w-[200px] rounded-2xl object-contain shadow-lg"
-            />
+            <div className="rounded-2xl bg-white p-2 shadow-lg ring-1 ring-white/30">
+              <SiteLogo className="max-h-28 w-auto max-w-[220px] object-contain" />
+            </div>
           </div>
           <h1 className="mb-3 text-3xl font-bold md:text-5xl">{t('hero.title')}</h1>
           <p className="mx-auto max-w-xl text-base leading-relaxed text-white/80 md:text-lg">

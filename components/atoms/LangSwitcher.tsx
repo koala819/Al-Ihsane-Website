@@ -37,7 +37,7 @@ export default function LangSwitcher() {
               'cursor-pointer px-3 py-1.5 text-sm font-semibold transition-colors',
               isActive
                 ? 'bg-white/25 text-white'
-                : 'bg-transparent text-white/70 hover:bg-white/10 hover:text-white',
+                : 'bg-transparent text-white/85 hover:bg-white/10 hover:text-white',
               loc === 'ar' ? 'font-arabic' : '',
             ]
               .filter(Boolean)

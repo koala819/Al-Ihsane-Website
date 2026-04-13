@@ -77,7 +77,7 @@ export async function HadithDuJour({ locale }: { locale: string }) {
         <div className="mx-auto max-w-3xl px-4 text-center">
           <div className="mb-5 flex items-center justify-center gap-2">
             <Separator className="max-w-12 bg-white/20" />
-            <span className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-white/60">
+            <span className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-white/75">
               <MessageCircle className="h-3.5 w-3.5" />
               {isAr ? 'حديث اليوم' : 'Hadith du jour'}
             </span>
@@ -95,12 +95,12 @@ export async function HadithDuJour({ locale }: { locale: string }) {
 
           {/* Traduction française */}
           {!isAr && (
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/80 italic">
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/85 italic">
               « {hadith.title} »
             </p>
           )}
 
-          <p className="mt-3 text-sm text-white/50">
+          <p className="mt-3 text-sm text-white/70">
             — {hadith.attribution} · {hadith.grade}
           </p>
         </div>

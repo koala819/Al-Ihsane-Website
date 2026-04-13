@@ -35,7 +35,7 @@ function NewsCard({
   return (
     <article className="group flex flex-col overflow-hidden rounded-2xl border border-mosque-green/10 bg-card shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl">
 
-      {/* ── Header : image ou dégradé vert ── */}
+      {/* ── Header : image ou dégradé bleu ── */}
       <div className="relative h-40 overflow-hidden">
         {image ? (
           <>
@@ -51,8 +51,8 @@ function NewsCard({
           </>
         ) : (
           <>
-            {/* Fond dégradé vert + motif zellige */}
-            <div className="absolute inset-0 bg-gradient-to-br from-mosque-green via-mosque-green to-mosque-green/80 dark:from-[hsl(155,20%,14%)] dark:via-[hsl(155,18%,12%)] dark:to-[hsl(155,15%,10%)]" />
+            {/* Fond dégradé bleu + motif zellige */}
+            <div className="absolute inset-0 bg-gradient-to-br from-mosque-green via-mosque-green to-mosque-green/80 dark:from-[hsl(220,22%,14%)] dark:via-[hsl(220,20%,12%)] dark:to-[hsl(220,18%,10%)]" />
             <div
               className="absolute inset-0"
               style={{ backgroundImage: ISLAMIC_PATTERN }}

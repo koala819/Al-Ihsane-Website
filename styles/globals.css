@@ -2,73 +2,101 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  Thème aligné sur le logo : bleu institutionnel, accents orange (écriture du logo).
+  Mode clair : papier chaud, bleus profonds, orange sobre pour les actions.
+  Mode sombre : fond bleu nuit, bleus adoucis, orange lisible sur fond sombre.
+*/
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 126 93% 16%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 128 42% 95%;
-    --secondary-foreground: 126 93% 16%;
-    --muted: 128 42% 95%;
-    --muted-foreground: 126 20% 40%;
-    --accent: 128 42% 93%;
-    --accent-foreground: 126 93% 16%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 126 20% 88%;
-    --input: 126 20% 88%;
-    --ring: 126 93% 16%;
+    --background: 43 30% 97%;
+    --foreground: 220 28% 13%;
+    --card: 43 26% 99%;
+    --card-foreground: 220 28% 13%;
+    --popover: 43 26% 99%;
+    --popover-foreground: 220 28% 13%;
+    /* Bleu logo */
+    --primary: 217 58% 32%;
+    --primary-foreground: 43 40% 98%;
+    --secondary: 214 28% 93%;
+    --secondary-foreground: 217 55% 28%;
+    --muted: 214 22% 93%;
+    --muted-foreground: 220 18% 32%;
+    --accent: 214 35% 92%;
+    --accent-foreground: 217 55% 28%;
+    --destructive: 0 72% 48%;
+    --destructive-foreground: 43 40% 98%;
+    --border: 214 18% 86%;
+    --input: 214 18% 86%;
+    --ring: 217 58% 38%;
     --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --chart-1: 217 55% 45%;
+    --chart-2: 28 85% 52%;
+    --chart-3: 214 40% 55%;
+    --chart-4: 43 45% 52%;
+    --chart-5: 200 65% 48%;
 
-    /* Couleurs mosquée — mode clair */
-    --mosque-green: 126 93% 16%;         /* #024d08 */
-    --mosque-green-text: 126 93% 16%;    /* texte vert sur fond clair */
-    --mosque-green-light: 128 42% 95%;   /* #eef6f0 */
-    --mosque-muted: 40 33% 94%;          /* #f3eee2 */
-    --mosque-footer: 135 27% 95%;        /* #f1f6f4 */
+    /* Tokens « mosque-* » : palette bleue + fonds doux (noms inchangés pour le code existant) */
+    --mosque-green: 217 58% 32%;
+    --mosque-green-text: 217 58% 28%;
+    --mosque-green-light: 214 42% 94%;
+    --mosque-muted: 214 24% 94%;
+    --mosque-footer: 217 28% 97%;
+
+    /* Orange logo — boutons, filets */
+    --mosque-gold: 24 88% 46%;
+    --mosque-gold-hover: 24 88% 40%;
+    --mosque-gold-light: 32 55% 93%;
+
+    /* Navigation */
+    --mosque-nav-from: 217 62% 24%;
+    --mosque-nav-to: 217 55% 34%;
   }
 
   .dark {
-    --background: 155 15% 7%;
-    --foreground: 150 8% 93%;
-    --card: 155 12% 10%;
-    --card-foreground: 150 8% 93%;
-    --popover: 155 12% 10%;
-    --popover-foreground: 150 8% 93%;
-    --primary: 134 45% 58%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 155 12% 15%;
-    --secondary-foreground: 134 35% 75%;
-    --muted: 155 10% 13%;
-    --muted-foreground: 150 10% 55%;
-    --accent: 155 12% 16%;
-    --accent-foreground: 134 35% 75%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 155 10% 19%;
-    --input: 155 10% 19%;
-    --ring: 134 45% 58%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --background: 220 22% 8%;
+    --foreground: 40 20% 94%;
+    --card: 220 20% 11%;
+    --card-foreground: 40 20% 94%;
+    --popover: 220 20% 11%;
+    --popover-foreground: 40 20% 94%;
+    --primary: 213 72% 62%;
+    --primary-foreground: 220 25% 8%;
+    --secondary: 220 18% 16%;
+    --secondary-foreground: 213 50% 88%;
+    --muted: 220 16% 17%;
+    --muted-foreground: 215 14% 76%;
+    --accent: 220 18% 18%;
+    --accent-foreground: 213 55% 82%;
+    --destructive: 0 62% 42%;
+    --destructive-foreground: 43 40% 98%;
+    --border: 220 14% 22%;
+    --input: 220 14% 22%;
+    --ring: 213 72% 62%;
+    --chart-1: 213 70% 58%;
+    --chart-2: 28 80% 58%;
+    --chart-3: 214 45% 55%;
+    --chart-4: 43 40% 62%;
+    --chart-5: 200 55% 55%;
 
-    /* Couleurs mosquée — mode sombre */
-    --mosque-green: 134 45% 58%;         /* vert lumineux, lisible sur fond sombre */
-    --mosque-green-text: 134 45% 58%;
-    --mosque-green-light: 155 15% 11%;   /* fond sections légèrement teinté vert */
-    --mosque-muted: 155 12% 14%;         /* fond ardoise vert chaud */
-    --mosque-footer: 155 15% 5%;         /* footer — plus sombre que le fond */
+    --mosque-green: 213 72% 62%;
+    --mosque-green-text: 213 55% 78%;
+    --mosque-green-light: 220 18% 13%;
+    --mosque-muted: 220 16% 15%;
+    --mosque-footer: 222 24% 6%;
+
+    --mosque-gold: 28 82% 58%;
+    --mosque-gold-hover: 28 82% 52%;
+    --mosque-gold-light: 220 16% 14%;
+
+    --mosque-nav-from: 220 28% 12%;
+    --mosque-nav-to: 220 24% 16%;
+  }
+
+  /* Focus clavier visible (WCAG 2.4.7) */
+  :where(a, button, input, textarea, select, summary):focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
   }
 }

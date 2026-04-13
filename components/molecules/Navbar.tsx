@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
 import LangSwitcher from '@/components/atoms/LangSwitcher'
+import { SiteLogo } from '@/components/atoms/SiteLogo'
 import { Button } from '@/components/ui/button'
 import {
   Sheet,
@@ -33,22 +34,15 @@ export function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-gradient-to-b from-[rgba(4,62,47,0.97)] to-mosque-green text-white shadow-md backdrop-blur supports-[backdrop-filter]:bg-mosque-green/95 dark:from-[hsl(155,40%,12%)] dark:to-[hsl(155,35%,16%)]">
+    <header className="sticky top-0 z-50 bg-gradient-to-b from-mosque-nav-from to-mosque-nav-to text-white shadow-md backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 items-center justify-between gap-4">
           {/* Logo */}
           <Link
             href="/"
-            className="flex shrink-0 items-center gap-2.5 transition-opacity hover:opacity-80"
+            className="flex shrink-0 items-center transition-opacity hover:opacity-90"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/al-ihsane-light.jpg"
-              alt=""
-              aria-hidden="true"
-              className="h-8 w-auto rounded-md object-contain"
-            />
-            <span className="font-semibold tracking-wide">{t('logo')}</span>
+            <SiteLogo className="h-9 w-auto max-w-[140px] rounded-md bg-white p-0.5 object-contain shadow-sm ring-1 ring-white/20" />
           </Link>
 
           {/* Desktop nav */}
@@ -75,7 +69,7 @@ export function Navbar() {
             <Button
               asChild
               size="sm"
-              className="ml-2 bg-amber-500 text-white shadow hover:bg-amber-400"
+              className="ml-2 bg-mosque-gold text-white shadow transition-colors hover:bg-mosque-gold-hover"
             >
               <Link href="/don">{t('donate')}</Link>
             </Button>
@@ -103,15 +97,8 @@ export function Navbar() {
               className="w-72 border-r-mosque-green/20 bg-mosque-green p-0 text-white"
             >
               <SheetHeader className="border-b border-white/10 px-6 py-4">
-                <SheetTitle className="flex items-center gap-2.5 text-white">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="/al-ihsane-light.jpg"
-                    alt=""
-                    aria-hidden="true"
-                    className="h-8 w-auto rounded-md object-contain"
-                  />
-                  <span className="text-base font-semibold">{t('logo')}</span>
+                <SheetTitle className="flex items-center text-white">
+                  <SiteLogo className="h-9 w-auto max-w-[160px] rounded-md bg-white p-0.5 object-contain shadow-sm ring-1 ring-white/20" />
                 </SheetTitle>
               </SheetHeader>
 
@@ -137,7 +124,7 @@ export function Navbar() {
                 })}
                 <SheetClose asChild>
                   <Link href="/don">
-                    <Button className="mt-1 w-full bg-amber-500 text-white hover:bg-amber-400">
+                    <Button className="mt-1 w-full bg-mosque-gold text-white hover:bg-mosque-gold-hover">
                       {t('donate')}
                     </Button>
                   </Link>

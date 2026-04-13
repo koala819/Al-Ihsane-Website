@@ -24,8 +24,8 @@ export default function DonPage() {
       {/* Hero CTA */}
       <header className="mb-12 text-center">
         <div className="mb-4 flex justify-center">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-900/30">
-            <Heart className="h-8 w-8 text-amber-500" />
+          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-mosque-gold-light dark:bg-mosque-gold-light">
+            <Heart className="h-8 w-8 text-mosque-gold" />
           </div>
         </div>
         <h1 className="font-display text-4xl font-normal text-mosque-green md:text-5xl">
@@ -40,7 +40,7 @@ export default function DonPage() {
           <Button
             asChild
             size="lg"
-            className="bg-amber-500 text-white shadow-lg hover:bg-amber-400 active:bg-amber-600"
+            className="bg-mosque-gold text-white shadow-lg transition-colors hover:bg-mosque-gold-hover active:opacity-90"
           >
             <a href={HELLOASSO_URL} target="_blank" rel="noopener noreferrer">
               <Heart className="mr-2 h-5 w-5" />
@@ -89,14 +89,14 @@ export default function DonPage() {
       </Card>
 
       {/* Déduction fiscale */}
-      <Card className="border-amber-200 bg-amber-50 shadow-none dark:border-amber-900 dark:bg-amber-950/30">
+      <Card className="border-mosque-gold/25 bg-mosque-gold-light/90 shadow-none dark:border-mosque-gold/20 dark:bg-mosque-gold-light/50">
         <CardHeader className="pb-2">
-          <CardTitle className="text-base font-semibold text-amber-700 dark:text-amber-400">
+          <CardTitle className="text-base font-semibold text-mosque-gold">
             {t('taxTitle')}
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-amber-800 dark:text-amber-300">{t('taxText')}</p>
+          <p className="text-sm text-foreground/90 dark:text-foreground/85">{t('taxText')}</p>
         </CardContent>
       </Card>
     </section>
