@@ -21,6 +21,7 @@ const nextConfig = {
     path: '/_next/image',
     remotePatterns: [
       { hostname: 'images.unsplash.com' },
+      { protocol: 'https', hostname: 'cdn.sanity.io' },
     ],
   },
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],

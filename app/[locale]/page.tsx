@@ -5,14 +5,19 @@ import { HadithDuJour } from '@/components/sections/HadithDuJour'
 import { History } from '@/components/sections/History'
 import { News } from '@/components/sections/News'
 import { VersetDuJour } from '@/components/sections/VersetDuJour'
+import { getNewsArticles } from '@/lib/sanity/queries'
+
+/** Actualités Sanity : revalidation ISR (secondes). */
+export const revalidate = 120
 
 export default async function Page() {
   const locale = await getLocale()
+  const cmsArticles = await getNewsArticles()
 
   return (
     <>
-      {/* Actualités — premier contact avec la vie de la mosquée */}
-      <News />
+      {/* Actualités — Sanity si configuré, sinon textes dans messages/*.json */}
+      <News cmsArticles={cmsArticles} />
 
       {/* Ancrage spirituel */}
       <VersetDuJour locale={locale} />
