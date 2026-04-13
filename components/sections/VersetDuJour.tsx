@@ -107,7 +107,7 @@ export async function VersetDuJour({ locale }: { locale: string }) {
               href={YOUTUBE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex shrink-0 items-center gap-1.5 rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-all hover:bg-red-700 hover:shadow-md active:scale-95"
+              className="flex shrink-0 items-center gap-1.5 rounded-xl bg-mosque-gold px-4 py-2 text-sm font-semibold text-white shadow-md transition-colors hover:bg-mosque-gold-hover hover:shadow-md active:scale-95"
               aria-label="Voir la chaîne YouTube d'Abderrahmane Mesli"
             >
               <Youtube className="h-4 w-4" />

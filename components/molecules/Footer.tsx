@@ -45,7 +45,7 @@ export function Footer() {
               href={YOUTUBE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex w-fit items-center gap-2 rounded-lg border border-mosque-green/25 px-3 py-1.5 text-xs font-medium text-mosque-green/80 transition-all hover:border-red-500/40 hover:bg-red-50 hover:text-red-600 dark:border-mosque-green/35 dark:text-mosque-green/90 dark:hover:bg-red-950/30"
+              className="flex w-fit items-center gap-2 rounded-lg border border-mosque-green/25 px-3 py-1.5 text-xs font-medium text-mosque-green/80 transition-colors hover:border-mosque-gold/45 hover:bg-mosque-gold-light hover:text-mosque-gold dark:border-mosque-green/35 dark:text-mosque-green/90 dark:hover:border-mosque-gold/40 dark:hover:bg-mosque-gold/15 dark:hover:text-mosque-gold"
             >
               <Youtube className="h-3.5 w-3.5" />
               Récitations · Abderrahmane Mesli
