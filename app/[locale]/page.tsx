@@ -16,19 +16,16 @@ export default async function Page() {
 
   return (
     <>
-      {/* Actualités — contenu Sanity (Studio) ; libellé vide si aucun document */}
+      {/* Actus */}
       <News cmsArticles={cmsArticles} />
 
-      {/* Ancrage spirituel */}
       <VersetDuJour locale={locale} />
 
       {/* Soutenir la mosquée */}
       <DonateCta />
 
-      {/* Hadith du jour */}
       <HadithDuJour locale={locale} />
 
-      {/* Histoire */}
       <History />
     </>
   )
