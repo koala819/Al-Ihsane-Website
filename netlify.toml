@@ -1,0 +1,11 @@
+# https://docs.netlify.com/build/configure-builds/file-based-configuration/
+[build]
+  command = "pnpm run build"
+
+# Next.js : runtime Netlify (SSR, images, etc.)
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+[build.environment]
+  # Aligné avec l’image Netlify « Current » / Node 22
+  NODE_VERSION = "22"

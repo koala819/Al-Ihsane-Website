@@ -5,6 +5,7 @@
   "description": "Site web Al Ihsane avec gestion multilingue",
   "author": "Xavier",
   "license": "MIT",
+  "packageManager": "pnpm@10.6.4",
   "scripts": {
     "clean": "pnpm store prune && rm -rf .next node_modules pnpm-lock.yaml",
     "dev": "next dev",
@@ -51,6 +52,7 @@
   "devDependencies": {
     "@commitlint/cli": "19.5.0",
     "@commitlint/config-conventional": "19.5.0",
+    "@netlify/plugin-nextjs": "^5.15.9",
     "@sanity/vision": "^5.20.0",
     "@types/node": "latest",
     "@types/nodemailer": "6.4.17",
