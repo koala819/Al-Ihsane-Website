@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { fetchPrayerTimes } from '@/lib/server/prayer-times'
 
 const PRAYERS = [
   { key: 'fajr',    label: 'Fajr',     labelAr: 'الفجر',   idx: 0 },
@@ -11,12 +12,6 @@ const PRAYERS = [
 
 // ── Types ─────────────────────────────────────────────────────────────────
 
-interface PrayerTimesData {
-  times: string[]
-  shuruq: string
-  jumua: string | null
-}
-
 interface AlAdhanDate {
   data: {
     hijri: {
@@ -28,23 +23,6 @@ interface AlAdhanDate {
 }
 
 // ── Fetchers ──────────────────────────────────────────────────────────────
-
-async function fetchPrayerTimes(): Promise<PrayerTimesData | null> {
-  try {
-    const res = await fetch('https://mawaqit.net/fr/alihsane-colomiers', {
-      next: { revalidate: 3600 },
-      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; AlIhsaneWebsite/1.0)' },
-    })
-    if (!res.ok) return null
-    const html = await res.text()
-    const match = html.match(/let confData\s*=\s*(\{[\s\S]*?\});/)
-    if (!match) return null
-    const conf = JSON.parse(match[1])
-    return { times: conf.times, shuruq: conf.shuruq, jumua: conf.jumua }
-  } catch {
-    return null
-  }
-}
 
 /**
  * Convertit la date du jour en date hégirien via l'API AlAdhan.
