@@ -21,6 +21,8 @@ const nextConfig = {
     path: '/_next/image',
     remotePatterns: [
       { hostname: 'images.unsplash.com' },
+      { hostname: 'yt3.googleusercontent.com' },
+      { hostname: 'i.ytimg.com' },
       { protocol: 'https', hostname: 'cdn.sanity.io' },
     ],
   },

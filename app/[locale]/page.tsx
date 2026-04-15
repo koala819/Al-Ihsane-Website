@@ -5,6 +5,7 @@ import { HadithDuJour } from '@/components/sections/HadithDuJour'
 import { History } from '@/components/sections/History'
 import { News } from '@/components/sections/News'
 import { VersetDuJour } from '@/components/sections/VersetDuJour'
+import { YoutubeLatest } from '@/components/sections/YoutubeLatest'
 import { getNewsArticles } from '@/lib/sanity/queries'
 
 /** Actualités Sanity : revalidation ISR (secondes). */
@@ -20,6 +21,8 @@ export default async function Page() {
       <News cmsArticles={cmsArticles} />
 
       <VersetDuJour locale={locale} />
+
+      <YoutubeLatest locale={locale} />
 
       {/* Soutenir la mosquée */}
       <DonateCta />

@@ -77,44 +77,6 @@ export async function VersetDuJour({ locale }: { locale: string }) {
 
           <p className="mt-3 text-sm text-mosque-green/75">— {ref}</p>
 
-          {/* ── Carte récitant ── */}
-          <div className="mx-auto mt-8 flex items-center gap-4 rounded-2xl border border-mosque-green/15 bg-white/70 px-5 py-4 text-left shadow-sm backdrop-blur-sm dark:border-white/8 dark:bg-white/[0.07] dark:ring-1 dark:ring-white/[0.07]">
-            {/* Avatar */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={AVATAR_URL}
-              alt="Abderrahmane Mesli"
-              width={56}
-              height={56}
-              className="h-14 w-14 shrink-0 rounded-full object-cover ring-2 ring-mosque-green/25"
-            />
-
-            {/* Infos */}
-            <div className="min-w-0 flex-1">
-              <p className="text-xs font-semibold uppercase tracking-widest text-mosque-green/70">
-                {isAr ? 'تلاوات قرآنية' : 'Récitations coraniques'}
-              </p>
-              <p className="mt-0.5 font-semibold text-mosque-green">
-                Abderrahmane Mesli
-              </p>
-              <p className="text-xs text-muted-foreground">
-                {isAr ? 'أخ من مسجد الإحسان' : 'Frère de la mosquée Al Ihsane · Colomiers'}
-              </p>
-            </div>
-
-            {/* CTA */}
-            <a
-              href={YOUTUBE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex shrink-0 items-center gap-1.5 rounded-xl bg-mosque-gold px-4 py-2 text-sm font-semibold text-white shadow-md transition-colors hover:bg-mosque-gold-hover hover:shadow-md active:scale-95"
-              aria-label="Voir la chaîne YouTube d'Abderrahmane Mesli"
-            >
-              <Youtube className="h-4 w-4" />
-              <span className="hidden sm:inline">{isAr ? 'القناة' : 'Voir la chaîne'}</span>
-            </a>
-          </div>
-
         </div>
       </section>
     )
