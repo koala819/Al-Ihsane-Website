@@ -24,8 +24,7 @@ export type SanityNewsArticle = {
   } | null
 }
 
-const newsListQuery = groq`
-  *[_type == "newsArticle" && defined(publishedAt)] | order(publishedAt desc) [0...20] {
+const newsArticleProjection = groq`{
     _id,
     publishedAt,
     dateLabel,
@@ -38,19 +37,42 @@ const newsListQuery = groq`
     bodyFr,
     bodyAr,
     mainImage
-  }
+  }`
+
+/** Aperçu accueil : 4 dernières actualités. */
+const newsListQueryPreview = groq`
+  *[_type == "newsArticle" && defined(publishedAt)] | order(publishedAt desc) [0...4] ${newsArticleProjection}
 `
 
-export async function getNewsArticles(): Promise<SanityNewsArticle[]> {
+/** Page liste : jusqu’à 100 entrées (ajuster si besoin). */
+const newsListQueryFull = groq`
+  *[_type == "newsArticle" && defined(publishedAt)] | order(publishedAt desc) [0...100] ${newsArticleProjection}
+`
+
+export async function getNewsArticlesPreview(): Promise<SanityNewsArticle[]> {
   if (!getSanityConfigured()) return []
   const client = getSanityClient()
   if (!client) return []
 
   try {
-    const rows = await client.fetch<SanityNewsArticle[]>(newsListQuery)
+    const rows = await client.fetch<SanityNewsArticle[]>(newsListQueryPreview)
     return rows ?? []
   } catch (e) {
-    console.error('[sanity] getNewsArticles', e)
+    console.error('[sanity] getNewsArticlesPreview', e)
+    return []
+  }
+}
+
+export async function getNewsArticlesFull(): Promise<SanityNewsArticle[]> {
+  if (!getSanityConfigured()) return []
+  const client = getSanityClient()
+  if (!client) return []
+
+  try {
+    const rows = await client.fetch<SanityNewsArticle[]>(newsListQueryFull)
+    return rows ?? []
+  } catch (e) {
+    console.error('[sanity] getNewsArticlesFull', e)
     return []
   }
 }

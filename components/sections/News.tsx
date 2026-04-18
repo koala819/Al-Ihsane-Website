@@ -6,6 +6,8 @@ import { ChevronDown, ChevronUp, Calendar } from 'lucide-react'
 
 import { PortableArticleBody } from '@/components/portable/PortableArticleBody'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Link } from '@/i18n/navigation'
 import { urlForImage } from '@/lib/sanity/image'
 import type { SanityNewsArticle } from '@/lib/sanity/queries'
 
@@ -112,24 +114,32 @@ function NewsCard({
 
 type NewsProps = {
   cmsArticles?: SanityNewsArticle[]
+  /** Accueil : aperçu + bouton ; page dédiée : liste complète et titre adapté. */
+  variant?: 'home' | 'full'
 }
 
-export function News({ cmsArticles = [] }: NewsProps) {
+export function News({
+  cmsArticles = [],
+  variant = 'home',
+}: NewsProps) {
   const t = useTranslations('news')
   const locale = useLocale()
   const isAr = locale === 'ar'
 
   const useCms = cmsArticles.length > 0
+  const isHome = variant === 'home'
+  const heading = isHome ? t('title') : t('allActivitiesTitle')
+  const showViewAll = isHome && useCms
 
   return (
     <section id="news" className="bg-background py-14">
-      <div className="mx-auto max-w-[900px] px-4">
+      <div className="mx-auto max-w-7xl px-4">
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-mosque-green md:text-3xl">{t('title')}</h2>
+          <h2 className="text-2xl font-bold text-mosque-green md:text-3xl">{heading}</h2>
           <div className="mt-2 h-1 w-12 rounded-full bg-mosque-green/30" />
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {useCms ? (
             cmsArticles.map((article) => {
               const title = isAr ? article.titleAr : article.titleFr
@@ -161,11 +171,24 @@ export function News({ cmsArticles = [] }: NewsProps) {
               )
             })
           ) : (
-            <p className="col-span-full py-10 text-center text-sm leading-relaxed text-muted-foreground sm:col-span-2">
+            <p className="col-span-full py-10 text-center text-sm leading-relaxed text-muted-foreground xl:col-span-4">
               {t('empty')}
             </p>
           )}
         </div>
+
+        {showViewAll && (
+          <div className="mt-10 flex justify-center">
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="min-w-[min(100%,280px)] border-mosque-green/40 font-semibold text-mosque-green hover:bg-mosque-green hover:text-white"
+            >
+              <Link href="/activites">{t('viewAllActivities')}</Link>
+            </Button>
+          </div>
+        )}
       </div>
     </section>
   )

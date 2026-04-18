@@ -6,14 +6,14 @@ import { History } from '@/components/sections/History'
 import { News } from '@/components/sections/News'
 import { VersetDuJour } from '@/components/sections/VersetDuJour'
 import { YoutubeLatest } from '@/components/sections/YoutubeLatest'
-import { getNewsArticles } from '@/lib/sanity/queries'
+import { getNewsArticlesPreview } from '@/lib/sanity/queries'
 
 /** Actualités Sanity : revalidation ISR (secondes). */
 export const revalidate = 120
 
 export default async function Page() {
   const locale = await getLocale()
-  const cmsArticles = await getNewsArticles()
+  const cmsArticles = await getNewsArticlesPreview()
 
   return (
     <>

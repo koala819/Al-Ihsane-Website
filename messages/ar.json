@@ -107,6 +107,8 @@
   },
   "news": {
     "title": "الأخبار",
+    "allActivitiesTitle": "جميع الأخبار",
+    "viewAllActivities": "عرض جميع الأخبار",
     "empty": "لا توجد أخبار حالياً. ستُنشر الرسائل القادمة هنا."
   },
   "contact": {

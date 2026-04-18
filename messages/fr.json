@@ -107,6 +107,8 @@
   },
   "news": {
     "title": "Actualités",
+    "allActivitiesTitle": "Toutes les actualités",
+    "viewAllActivities": "Voir toutes les actualités",
     "empty": "Aucune actualité pour le moment. Les prochains messages seront publiés ici."
   },
   "contact": {
