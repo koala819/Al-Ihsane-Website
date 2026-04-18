@@ -35,9 +35,9 @@ export default async function LocaleLayout({
             <PrayerTimes locale={locale} />
             {/* Navbar — sticky en dessous */}
             <Navbar />
-            <main className="flex-1">
+            <main className="flex min-h-0 flex-1 flex-col">
               <GoogleAnalytics />
-              {children}
+              <div className="flex min-h-0 flex-1 flex-col">{children}</div>
             </main>
             <Footer />
           </div>

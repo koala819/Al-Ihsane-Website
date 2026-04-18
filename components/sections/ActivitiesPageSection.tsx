@@ -18,7 +18,7 @@ export function ActivitiesPageSection() {
 
   return (
     <section className="bg-background py-14">
-      <div className="mx-auto max-w-6xl px-4">
+      <div className="mx-auto max-w-7xl px-4">
         <ActivitiesBreadcrumb />
 
         <header className={cn('mb-8 md:mb-10', isAr && 'text-right')}>
@@ -94,14 +94,16 @@ export function ActivitiesPageSection() {
             <p className="mb-6 flex-1 text-sm leading-relaxed text-muted-foreground md:text-[15px]">
               {t('kitchen.cardTeaser')}
             </p>
+            {/* Même style que le bouton « Lire la suite » des cartes Actualités (NewsCard) */}
             <span
               className={cn(
-                'mt-auto inline-flex items-center gap-1 text-sm font-semibold text-mosque-green',
+                'mt-auto flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-mosque-gold/40 py-2 text-sm font-semibold text-mosque-gold transition-all',
+                'group-hover:border-transparent group-hover:bg-mosque-gold group-hover:text-white',
                 isAr && 'flex-row-reverse',
               )}
             >
               {t('kitchen.openPage')}
-              <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" aria-hidden />
+              <ChevronRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5 rtl:rotate-180 rtl:group-hover:-translate-x-0.5" aria-hidden />
             </span>
           </Link>
         </div>

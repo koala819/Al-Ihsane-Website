@@ -38,10 +38,15 @@ function isPlausibleGoogleBrowserApiKey(key: string): boolean {
   return t.length >= 30 && t.length <= 200 && /^[A-Za-z0-9_-]+$/.test(t)
 }
 
+type SharedKitchenSectionProps = {
+  /** Page dédiée : titre + chapô affichés au niveau page (comme Activités) — masque la carte d’intro. */
+  hideIntro?: boolean
+}
+
 /**
  * Bloc « La cuisine partagée » — tarifs, documents, calendrier (iframe optionnelle via env).
  */
-export function SharedKitchenSection() {
+export function SharedKitchenSection({ hideIntro = false }: SharedKitchenSectionProps) {
   const t = useTranslations('activitiesPage')
   const locale = useLocale()
   const isAr = locale === 'ar'
@@ -69,34 +74,35 @@ export function SharedKitchenSection() {
 
   return (
     <div id="cuisine-partagee" className="scroll-mt-[5.5rem]">
-      {/* Intro — même logique que Actualités / Histoire : carte légère, pas de bandeau plein vert */}
-      <div
-        className={cn(
-          'rounded-2xl border border-mosque-green/12 bg-card p-6 shadow-sm sm:p-8 md:p-9',
-          isAr && 'text-right',
-        )}
-        lang={isAr ? 'ar' : 'fr'}
-      >
-        <Badge
-          variant="secondary"
-          className="mb-3 bg-mosque-green/10 text-[11px] font-semibold uppercase tracking-wider text-mosque-green hover:bg-mosque-green/15"
-        >
-          {t('kitchen.tag')}
-        </Badge>
-        <h2 className="text-2xl font-bold text-mosque-green md:text-3xl">{t('kitchen.title')}</h2>
+      {!hideIntro && (
         <div
           className={cn(
-            'mt-2 h-1 w-12 rounded-full bg-mosque-green/30',
-            isAr && 'ms-auto',
+            'rounded-2xl border border-mosque-green/12 bg-card p-6 shadow-sm sm:p-8 md:p-9',
+            isAr && 'text-right',
           )}
-        />
-        <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-          {t('kitchen.lead')}
-        </p>
-      </div>
+          lang={isAr ? 'ar' : 'fr'}
+        >
+          <Badge
+            variant="secondary"
+            className="mb-3 bg-mosque-green/10 text-[11px] font-semibold uppercase tracking-wider text-mosque-green hover:bg-mosque-green/15"
+          >
+            {t('kitchen.tag')}
+          </Badge>
+          <h2 className="text-2xl font-bold text-mosque-green md:text-3xl">{t('kitchen.title')}</h2>
+          <div
+            className={cn(
+              'mt-2 h-1 w-12 rounded-full bg-mosque-green/30',
+              isAr && 'ms-auto',
+            )}
+          />
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+            {t('kitchen.lead')}
+          </p>
+        </div>
+      )}
 
       {/* Pourquoi cet espace ? */}
-      <div className="mt-10 md:mt-12">
+      <div className={cn(!hideIntro && 'mt-10 md:mt-12')}>
         <h3
           className={cn(
             'mb-6 text-lg font-bold text-mosque-green md:text-xl',

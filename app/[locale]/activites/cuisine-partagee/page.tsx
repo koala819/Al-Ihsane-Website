@@ -1,7 +1,6 @@
 import { getTranslations } from 'next-intl/server'
 
-import { ActivitiesBreadcrumb } from '@/components/molecules/ActivitiesBreadcrumb'
-import { SharedKitchenSection } from '@/components/sections/SharedKitchenSection'
+import { CuisinePartageeView } from '@/components/sections/CuisinePartageeView'
 
 export const revalidate = 120
 
@@ -18,12 +17,5 @@ export async function generateMetadata({
 }
 
 export default function CuisinePartageePage() {
-  return (
-    <div className="bg-background py-14">
-      <div className="mx-auto max-w-6xl px-4">
-        <ActivitiesBreadcrumb />
-        <SharedKitchenSection />
-      </div>
-    </div>
-  )
+  return <CuisinePartageeView />
 }

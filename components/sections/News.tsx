@@ -8,6 +8,7 @@ import { PortableArticleBody } from '@/components/portable/PortableArticleBody'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Link } from '@/i18n/navigation'
+import { cn } from '@/lib/utils'
 import { urlForImage } from '@/lib/sanity/image'
 import type { SanityNewsArticle } from '@/lib/sanity/queries'
 
@@ -123,6 +124,7 @@ export function News({
   variant = 'home',
 }: NewsProps) {
   const t = useTranslations('news')
+  const tActivities = useTranslations('activitiesPage')
   const locale = useLocale()
   const isAr = locale === 'ar'
 
@@ -131,13 +133,50 @@ export function News({
   const heading = isHome ? t('title') : t('allActivitiesTitle')
   const showViewAll = isHome && useCms
 
+  const HeadingTag = isHome ? 'h2' : 'h1'
+
   return (
     <section id="news" className="bg-background py-14">
       <div className="mx-auto max-w-7xl px-4">
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-mosque-green md:text-3xl">{heading}</h2>
-          <div className="mt-2 h-1 w-12 rounded-full bg-mosque-green/30" />
-        </div>
+        {/* Même fil d’Ariane que la page Activités : accueil = segment seul ; /actualités = Al'Ihsane / Actualités */}
+        <nav
+          aria-label={isAr ? 'مسار التصفح' : 'Fil d’Ariane'}
+          className={cn(
+            'mb-8 flex flex-wrap items-center text-sm text-muted-foreground md:mb-10',
+            isAr && 'justify-end text-right',
+          )}
+        >
+          {isHome ? (
+            <span className="font-semibold text-foreground">
+              {tActivities('breadcrumb.home')}
+            </span>
+          ) : (
+            <>
+              <Link
+                href="/"
+                className="font-medium transition-colors hover:text-mosque-green"
+              >
+                {tActivities('breadcrumb.home')}
+              </Link>
+              <span className="select-none px-1.5 text-mosque-green/35" aria-hidden>
+                /
+              </span>
+              <span className="font-semibold text-foreground">{t('title')}</span>
+            </>
+          )}
+        </nav>
+
+        <header className={cn('mb-8 md:mb-10', isAr && 'text-right')}>
+          <HeadingTag className="text-2xl font-bold text-mosque-green md:text-3xl">
+            {heading}
+          </HeadingTag>
+          <div
+            className={cn(
+              'mt-2 h-1 w-12 rounded-full bg-mosque-green/30',
+              isAr && 'ms-auto',
+            )}
+          />
+        </header>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {useCms ? (
