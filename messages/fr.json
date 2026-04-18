@@ -128,6 +128,16 @@
     "mapTitle": "Nous trouver",
     "mapLink": "Ouvrir dans Google Maps"
   },
+  "activitiesPage": {
+    "title": "Nos activités",
+    "intro": "Retrouvez ici les informations sur les services proposés par la mosquée.",
+    "schoolTitle": "L'école",
+    "schoolBody": "Nous présenterons prochainement les activités de notre école : organisation, cours, vie du pôle éducatif et informations utiles pour les familles.",
+    "kitchenTitle": "Cuisine partagée",
+    "kitchenBody": "La mosquée propose une cuisine partagée, réservable pour vos événements (réceptions, rencontres, etc.). Les modalités de réservation seront indiquées ici.",
+    "constructionBadge": "En construction",
+    "constructionNotice": "Cette section est en cours de préparation. Les informations détaillées concernant ce service seront bientôt disponibles."
+  },
   "footer": {
     "tagline": "Al Ihsane",
     "subtitle": "Mosquée de Colomiers",

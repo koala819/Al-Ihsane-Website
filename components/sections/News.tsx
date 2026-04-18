@@ -185,7 +185,7 @@ export function News({
               size="lg"
               className="min-w-[min(100%,280px)] border-mosque-green/40 font-semibold text-mosque-green hover:bg-mosque-green hover:text-white"
             >
-              <Link href="/activites">{t('viewAllActivities')}</Link>
+              <Link href="/actualites">{t('viewAllActivities')}</Link>
             </Button>
           </div>
         )}

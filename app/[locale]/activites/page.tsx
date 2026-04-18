@@ -1,7 +1,6 @@
 import { getTranslations } from 'next-intl/server'
 
-import { News } from '@/components/sections/News'
-import { getNewsArticlesFull } from '@/lib/sanity/queries'
+import { ActivitiesPageSection } from '@/components/sections/ActivitiesPageSection'
 
 export const revalidate = 120
 
@@ -11,14 +10,12 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
-  const t = await getTranslations({ locale, namespace: 'news' })
+  const t = await getTranslations({ locale, namespace: 'activitiesPage' })
   return {
-    title: t('allActivitiesTitle'),
+    title: t('title'),
   }
 }
 
-export default async function ActivitesPage() {
-  const cmsArticles = await getNewsArticlesFull()
-
-  return <News variant="full" cmsArticles={cmsArticles} />
+export default function ActivitesPage() {
+  return <ActivitiesPageSection />
 }
