@@ -95,7 +95,7 @@ function NewsCard({
         <button
           type="button"
           onClick={() => setExpanded((v) => !v)}
-          className="mt-4 flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-mosque-green/25 py-2 text-sm font-semibold text-mosque-green transition-all hover:border-transparent hover:bg-mosque-green hover:text-white"
+          className="mt-4 flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-mosque-gold/40 py-2 text-sm font-semibold text-mosque-gold transition-all hover:border-transparent hover:bg-mosque-gold hover:text-white"
         >
           {expanded ? (
             <>
@@ -181,9 +181,8 @@ export function News({
           <div className="mt-10 flex justify-center">
             <Button
               asChild
-              variant="outline"
               size="lg"
-              className="min-w-[min(100%,280px)] border-mosque-green/40 font-semibold text-mosque-green hover:bg-mosque-green hover:text-white"
+              className="min-w-[min(100%,280px)] bg-mosque-gold font-semibold text-white shadow-md transition-colors hover:bg-mosque-gold-hover"
             >
               <Link href="/actualites">{t('viewAllActivities')}</Link>
             </Button>

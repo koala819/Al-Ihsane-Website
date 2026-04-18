@@ -10,8 +10,8 @@ export function History() {
   const locale = useLocale()
 
   return (
-    <section id="history" className="bg-background py-12">
-      <div className="mx-auto max-w-[900px] px-4">
+    <section id="history" className="bg-background py-14">
+      <div className="mx-auto max-w-7xl px-4">
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-mosque-green md:text-3xl">
             {t('title')}

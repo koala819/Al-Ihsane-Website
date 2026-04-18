@@ -19,11 +19,16 @@ export function DonateCta() {
 
   return (
     <section className="bg-mosque-gold-light/80 py-14 dark:bg-mosque-gold-light/40">
-      <div className="mx-auto max-w-5xl px-4">
+      <div className="mx-auto max-w-7xl px-4">
+        {/* Titre — même bloc que Actualités (News) */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold text-mosque-green md:text-3xl">{t('subtitle')}</h2>
+          <div className="mt-2 h-1 w-12 rounded-full bg-mosque-green/30" />
+        </div>
 
         <div className="flex flex-col gap-10">
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:items-start md:gap-12">
-            {/* Colonne gauche — appel */}
+            {/* Colonne gauche — texte d’appel */}
             <div
               className={cn(
                 'flex flex-col',
@@ -31,15 +36,6 @@ export function DonateCta() {
                 isAr ? 'md:items-end md:text-right' : 'md:items-start md:text-left',
               )}
             >
-              <h2 className="mb-2 text-2xl font-bold text-mosque-green md:text-3xl">
-                {t('subtitle')}
-              </h2>
-              <div
-                className={cn(
-                  'mb-6 h-1 w-12 rounded-full bg-mosque-gold/35',
-                  isAr ? 'self-center md:self-end' : 'self-center md:self-start',
-                )}
-              />
               <p className="max-w-lg text-sm leading-relaxed text-muted-foreground">
                 {t('intro')}
               </p>

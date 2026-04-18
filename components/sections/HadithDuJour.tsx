@@ -1,6 +1,3 @@
-import { MessageCircle } from 'lucide-react'
-import { Separator } from '@/components/ui/separator'
-
 interface HadeethListItem {
   id: string
   title: string
@@ -73,36 +70,35 @@ export async function HadithDuJour({ locale }: { locale: string }) {
     const hadith: HadeethOne = await hadithRes.json()
 
     return (
-      <section className="bg-mosque-green py-12 text-white">
-        <div className="mx-auto max-w-3xl px-4 text-center">
-          <div className="mb-5 flex items-center justify-center gap-2">
-            <Separator className="max-w-12 bg-white/20" />
-            <span className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-white/75">
-              <MessageCircle className="h-3.5 w-3.5" />
+      <section className="bg-mosque-green-light py-14">
+        <div className="mx-auto max-w-7xl px-4">
+          {/* Titre — même bloc que Actualités (News) */}
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-mosque-green md:text-3xl">
               {isAr ? 'حديث اليوم' : 'Hadith du jour'}
-            </span>
-            <Separator className="max-w-12 bg-white/20" />
+            </h2>
+            <div className="mt-2 h-1 w-12 rounded-full bg-mosque-green/30" />
           </div>
 
-          {/* Texte arabe */}
+          <div className="mx-auto max-w-3xl text-center">
           <p
-            className="font-arabic text-xl leading-loose text-white/90 sm:text-2xl"
+            className="font-arabic text-xl leading-loose text-mosque-green sm:text-2xl"
             dir="rtl"
             lang="ar"
           >
             {hadith.hadeeth_ar}
           </p>
 
-          {/* Traduction française */}
           {!isAr && (
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-white/85 italic">
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-foreground/85 italic">
               « {hadith.title} »
             </p>
           )}
 
-          <p className="mt-3 text-sm text-white/70">
+          <p className="mt-3 text-sm text-muted-foreground">
             — {hadith.attribution} · {hadith.grade}
           </p>
+          </div>
         </div>
       </section>
     )

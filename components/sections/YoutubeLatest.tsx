@@ -1,7 +1,6 @@
 import { PlayCircle, Youtube } from 'lucide-react'
 
 import { fetchLatestYoutubeVideos, fetchYoutubeChannelProfile } from '@/lib/server/youtube'
-import { Separator } from '@/components/ui/separator'
 import Image from 'next/image'
 
 const YOUTUBE_URL = 'https://youtube.com/@abderrahmanemesli4217'
@@ -17,8 +16,14 @@ export async function YoutubeLatest({ locale }: { locale: string }) {
   const avatarUrl = channelProfile?.avatarUrl ?? FALLBACK_AVATAR_URL
   if (videos.length === 0) {
     return (
-      <section className="bg-background py-12">
-        <div className="mx-auto max-w-6xl px-4">
+      <section className="bg-background py-14">
+        <div className="mx-auto max-w-7xl px-4">
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-mosque-green md:text-3xl">
+              {isAr ? 'تلاوات القرآن' : 'Récitations du Coran'}
+            </h2>
+            <div className="mt-2 h-1 w-12 rounded-full bg-mosque-green/30" />
+          </div>
           <div className="rounded-2xl border border-mosque-green/15 bg-mosque-green-light/50 p-6 text-center shadow-sm">
             <p className="text-sm text-mosque-green/80">
               {isAr ? 'تابع أحدث التلاوات على يوتيوب.' : 'Retrouvez les dernières récitations sur YouTube.'}
@@ -39,24 +44,16 @@ export async function YoutubeLatest({ locale }: { locale: string }) {
   }
 
   return (
-    <section className="bg-background py-12">
-      <div className="mx-auto max-w-6xl px-4">
-        <div className="mb-6">
-          <div className="mb-2 flex items-center justify-center gap-2 sm:justify-start">
-            <Separator className="w-8 bg-mosque-green/25" />
-            <span className="text-2xl font-semibold uppercase tracking-widest text-mosque-green/75">
-              {isAr ? 'تلاوات القرآن' : 'Récitations du Coran'}
-            </span>
-            <Separator className="w-8 bg-mosque-green/25" />
-          </div>
-          <h2 className="text-center font-bold text-mosque-green sm:text-left sm:text-sm">
-            {isAr ? 'القارئ عبد الرحمن مسلي' : 'Par le Qari Abdurrahman Masli'}
+    <section className="bg-background py-14">
+      <div className="mx-auto max-w-7xl px-4">
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold text-mosque-green md:text-3xl">
+            {isAr ? 'تلاوات القرآن' : 'Récitations du Coran'}
           </h2>
-          {/* <p className="mx-auto mt-2 max-w-2xl text-center text-sm text-mosque-green/75 sm:mx-0 sm:text-left">
-            {isAr
-              ? 'محتوى متجدد باستمرار من قناة عبد الرحمان مصلي.'
-              : 'Un contenu mis a jour automatiquement depuis la chaine YouTube.'}
-          </p> */}
+          <div className="mt-2 h-1 w-12 rounded-full bg-mosque-green/30" />
+          <p className="mt-3 text-sm font-medium text-mosque-green md:text-base">
+            {isAr ? 'القارئ عبد الرحمن مسلي' : 'Par le Qari Abdurrahman Masli'}
+          </p>
         </div>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

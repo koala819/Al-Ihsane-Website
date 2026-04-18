@@ -50,32 +50,11 @@ export function AssociationIntro() {
       className="scroll-mt-[4.5rem] border-t border-mosque-green/10 bg-background py-14"
     >
       <div className="mx-auto max-w-7xl px-4">
-        {/* En-tête — aligné sur News / History */}
-        <header className="mb-10 md:mb-12">
-          <p
-            className={cn(
-              'mb-1 text-xs font-semibold uppercase tracking-wider text-mosque-green/75',
-              isAr && 'text-right',
-            )}
-            lang={isAr ? 'ar' : 'fr'}
-          >
-            {t('subtitle')}
-          </p>
-          <h2
-            className={cn(
-              'text-2xl font-bold text-mosque-green md:text-3xl',
-              isAr && 'text-right',
-            )}
-          >
-            {t('title')}
-          </h2>
-          <div
-            className={cn(
-              'mt-2 h-1 w-12 rounded-full bg-mosque-green/30',
-              isAr && 'ms-auto',
-            )}
-          />
-        </header>
+        {/* En-tête — même bloc titre que Actualités (News) */}
+        <div className="mb-8">
+          <h2 className="text-2xl font-bold text-mosque-green md:text-3xl">{t('title')}</h2>
+          <div className="mt-2 h-1 w-12 rounded-full bg-mosque-green/30" />
+        </div>
 
         {/* Mission (texte) + valeurs (liste compacte) */}
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-14 lg:items-start">
@@ -138,16 +117,9 @@ export function AssociationIntro() {
 
         {/* Sous-section activités — même famille visuelle que les cartes actualités */}
         <div className="mt-14 border-t border-mosque-green/10 pt-12 md:mt-16 md:pt-14">
-          <div className={cn('mb-8', isAr && 'text-right')}>
-            <h3 className="text-xl font-bold text-mosque-green md:text-2xl">
-              {tActivities('title')}
-            </h3>
-            <div
-              className={cn(
-                'mt-2 h-1 w-12 rounded-full bg-mosque-green/30',
-                isAr && 'ms-auto',
-              )}
-            />
+          <div className="mb-8">
+            <h3 className="text-2xl font-bold text-mosque-green md:text-3xl">{tActivities('title')}</h3>
+            <div className="mt-2 h-1 w-12 rounded-full bg-mosque-green/30" />
           </div>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

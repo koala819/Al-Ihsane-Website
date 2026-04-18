@@ -19,7 +19,7 @@ export function Footer() {
     <footer className="bg-mosque-footer text-mosque-green">
 
       {/* ── Corps principal ── */}
-      <div className="mx-auto max-w-5xl px-6 py-12">
+      <div className="mx-auto max-w-7xl px-4 py-12">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-3">
 
           {/* ── Col 1 : Identité ── */}
@@ -99,7 +99,7 @@ export function Footer() {
 
       {/* ── Barre inférieure ── */}
       <Separator className="bg-mosque-green/10 dark:bg-mosque-green/20" />
-      <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-6 py-4">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-4 py-4">
         <p className="text-xs text-mosque-green/80 dark:text-mosque-green/88">{t('copyright')}</p>
 
         <div className="flex items-center gap-4">
