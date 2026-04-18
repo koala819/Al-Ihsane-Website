@@ -82,9 +82,7 @@ export default function Page() {
             <h1 className="font-display text-3xl font-normal text-mosque-green md:text-4xl">
               {t('title')}
             </h1>
-            <p className="mt-1 text-sm text-muted-foreground">
-              Mosquée Al Ihsane — Colomiers
-            </p>
+            <p className="mt-1 text-sm text-muted-foreground">{t('subtitle')}</p>
           </header>
 
           <div className="space-y-8">
@@ -108,7 +106,10 @@ export default function Page() {
                   </a>
                 </p>
               </address>
-              <Button asChild className="mt-4">
+              <Button
+                asChild
+                className="mt-4 bg-mosque-gold text-white hover:bg-mosque-gold-hover"
+              >
                 <a
                   href={MOSQUE_MAPS_URL}
                   target="_blank"
@@ -201,7 +202,10 @@ export default function Page() {
                     )}
                   </div>
 
-                  <Button type="submit" className="w-full">
+                  <Button
+                    type="submit"
+                    className="w-full bg-mosque-gold text-white hover:bg-mosque-gold-hover"
+                  >
                     <Send className="mr-2 h-4 w-4" />
                     {t('send')}
                   </Button>
