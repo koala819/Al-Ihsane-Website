@@ -60,7 +60,7 @@ export function Footer() {
             <nav className="flex flex-col gap-2.5">
               {[
                 { href: '/',            label: tNav('mosque') },
-                { href: '/association', label: tNav('association') },
+                { href: '/activites', label: tNav('activities') },
                 { href: '/don',         label: tNav('donate') },
                 { href: '/contact',     label: tNav('contact') },
               ].map(({ href, label }) => (

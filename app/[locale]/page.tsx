@@ -1,5 +1,6 @@
 import { getLocale } from 'next-intl/server'
 
+import { AssociationIntro } from '@/components/sections/AssociationIntro'
 import { DonateCta } from '@/components/sections/DonateCta'
 import { HadithDuJour } from '@/components/sections/HadithDuJour'
 import { History } from '@/components/sections/History'
@@ -28,6 +29,8 @@ export default async function Page() {
       <DonateCta />
 
       <HadithDuJour locale={locale} />
+
+      <AssociationIntro />
 
       <History />
     </>

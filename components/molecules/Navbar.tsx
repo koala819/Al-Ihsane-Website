@@ -24,7 +24,7 @@ export function Navbar() {
 
   const navLinks = [
     { href: '/', label: t('mosque') },
-    { href: '/association', label: t('association') },
+    { href: '/activites', label: t('activities') },
     { href: '/contact', label: t('contact') },
   ]
 
