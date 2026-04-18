@@ -12,6 +12,11 @@ const RECIPIENT_DEFAULT = 'x.genolhac@gmail.com'
 type Body = {
   firstName?: string
   lastName?: string
+  current2026SaturdayMorning?: boolean
+  current2026SaturdayAfternoon?: boolean
+  current2026SundayMorning?: boolean
+  current2026SundayAfternoon?: boolean
+  current2026Level?: string
   levelPreference?: 'specific' | 'indifferent'
   levelDetail?: string
   wantsAllFourSlots?: boolean
@@ -51,6 +56,18 @@ function validate(body: Body): string | null {
   const lastName = String(body.lastName ?? '').trim()
   if (!firstName || !lastName) return 'Nom et prénom sont obligatoires.'
 
+  const any2026 =
+    Boolean(body.current2026SaturdayMorning) ||
+    Boolean(body.current2026SaturdayAfternoon) ||
+    Boolean(body.current2026SundayMorning) ||
+    Boolean(body.current2026SundayAfternoon)
+  if (!any2026) {
+    return 'Indiquez au moins un créneau sur lequel vous enseignez cette année.'
+  }
+  if (!String(body.current2026Level ?? '').trim()) {
+    return 'Indiquez le niveau que vous enseignez cette année.'
+  }
+
   if (body.levelPreference !== 'specific' && body.levelPreference !== 'indifferent') {
     return 'Indiquez votre préférence de niveau.'
   }
@@ -80,6 +97,15 @@ function validate(body: Body): string | null {
   if (remarks.length > 4000) return 'Le champ remarques est trop long.'
 
   return null
+}
+
+function buildSlots2026Text(body: Body): string {
+  const parts: string[] = []
+  if (body.current2026SaturdayMorning) parts.push('Samedi matin')
+  if (body.current2026SaturdayAfternoon) parts.push('Samedi après-midi')
+  if (body.current2026SundayMorning) parts.push('Dimanche matin')
+  if (body.current2026SundayAfternoon) parts.push('Dimanche après-midi')
+  return parts.join(', ')
 }
 
 function buildSlotsText(body: Body): string {
@@ -134,6 +160,8 @@ export async function POST(request: Request): Promise<Response> {
   const to = (process.env.TEACHER_QUESTIONNAIRE_TO ?? RECIPIENT_DEFAULT).trim() || RECIPIENT_DEFAULT
   const firstName = String(body.firstName).trim()
   const lastName = String(body.lastName).trim()
+  const creneauxCetteAnnee = buildSlots2026Text(body)
+  const niveauCetteAnnee = String(body.current2026Level).trim()
   const levelLine =
     body.levelPreference === 'indifferent'
       ? 'Indifférent / pas de préférence de niveau'
@@ -149,7 +177,12 @@ export async function POST(request: Request): Promise<Response> {
     `Nom : ${lastName}`,
     `Prénom : ${firstName}`,
     '',
-    `Niveau : ${levelLine}`,
+    '— Cette année —',
+    `Créneaux : ${creneauxCetteAnnee}`,
+    `Niveau enseigné : ${niveauCetteAnnee}`,
+    '',
+    '— Année prochaine (souhaits) —',
+    `Niveau souhaité : ${levelLine}`,
     '',
     `Créneaux souhaités : ${slotsText}`,
     '',
@@ -161,11 +194,17 @@ export async function POST(request: Request): Promise<Response> {
 
   const html = `
   <h1 style="font-family:sans-serif;font-size:18px;">Questionnaire enseignants</h1>
+  <p style="font-family:sans-serif;font-size:13px;color:#444;margin:14px 0 8px;"><strong>Cette année</strong></p>
   <table style="font-family:sans-serif;font-size:14px;border-collapse:collapse;">
     <tr><td style="padding:6px 12px 6px 0;font-weight:600;">Nom</td><td>${escapeHtml(lastName)}</td></tr>
     <tr><td style="padding:6px 12px 6px 0;font-weight:600;">Prénom</td><td>${escapeHtml(firstName)}</td></tr>
-    <tr><td style="padding:6px 12px 6px 0;font-weight:600;vertical-align:top;">Niveau</td><td>${escapeHtml(levelLine)}</td></tr>
-    <tr><td style="padding:6px 12px 6px 0;font-weight:600;vertical-align:top;">Créneaux</td><td>${escapeHtml(slotsText)}</td></tr>
+    <tr><td style="padding:6px 12px 6px 0;font-weight:600;vertical-align:top;">Créneaux</td><td>${escapeHtml(creneauxCetteAnnee)}</td></tr>
+    <tr><td style="padding:6px 12px 6px 0;font-weight:600;vertical-align:top;">Niveau enseigné</td><td>${escapeHtml(niveauCetteAnnee)}</td></tr>
+  </table>
+  <p style="font-family:sans-serif;font-size:13px;color:#444;margin:16px 0 8px;"><strong>Année prochaine (souhaits)</strong></p>
+  <table style="font-family:sans-serif;font-size:14px;border-collapse:collapse;">
+    <tr><td style="padding:6px 12px 6px 0;font-weight:600;vertical-align:top;">Niveau souhaité</td><td>${escapeHtml(levelLine)}</td></tr>
+    <tr><td style="padding:6px 12px 6px 0;font-weight:600;vertical-align:top;">Créneaux souhaités</td><td>${escapeHtml(slotsText)}</td></tr>
     <tr><td style="padding:6px 12px 6px 0;font-weight:600;">E-mail</td><td><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td></tr>
     <tr><td style="padding:6px 12px 6px 0;font-weight:600;">Téléphone</td><td>${escapeHtml(phone)}</td></tr>
   </table>

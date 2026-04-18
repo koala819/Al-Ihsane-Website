@@ -16,6 +16,11 @@ import { cn } from '@/lib/utils'
 const defaultValues = {
   firstName: '',
   lastName: '',
+  current2026SaturdayMorning: false,
+  current2026SaturdayAfternoon: false,
+  current2026SundayMorning: false,
+  current2026SundayAfternoon: false,
+  current2026Level: '',
   levelPreference: '' as '' | 'specific' | 'indifferent',
   levelDetail: '',
   wantsAllFourSlots: false,
@@ -34,6 +39,11 @@ type FormValues = typeof defaultValues
 const schema = yup.object({
   firstName: yup.string().trim().required('Le prénom est obligatoire.'),
   lastName: yup.string().trim().required('Le nom est obligatoire.'),
+  current2026SaturdayMorning: yup.boolean(),
+  current2026SaturdayAfternoon: yup.boolean(),
+  current2026SundayMorning: yup.boolean(),
+  current2026SundayAfternoon: yup.boolean(),
+  current2026Level: yup.string().trim().required('Indiquez le niveau que vous enseignez cette année.'),
   levelPreference: yup
     .mixed<'specific' | 'indifferent'>()
     .oneOf(['specific', 'indifferent'], 'Choisissez une option pour le niveau.')
@@ -64,7 +74,22 @@ const schema = yup.object({
     }),
   remarks: yup.string().max(4000, 'Maximum 4000 caractères.'),
   company: yup.string(),
-}).test('slots', function (values) {
+})
+  .test('slots2026', function (values) {
+    if (!values) return true
+    const any2026 =
+      values.current2026SaturdayMorning ||
+      values.current2026SaturdayAfternoon ||
+      values.current2026SundayMorning ||
+      values.current2026SundayAfternoon
+    if (any2026) return true
+    return this.createError({
+      path: 'current2026SaturdayMorning',
+      message:
+        'Cochez au moins un créneau sur lequel vous enseignez cette année (un à quatre créneaux possibles).',
+    })
+  })
+  .test('slots', function (values) {
   if (!values) return true
   if (values.wantsAllFourSlots) return true
   const anySlot =
@@ -79,6 +104,13 @@ const schema = yup.object({
       'Choisissez au moins un créneau, ou cochez l’option pour les quatre créneaux.',
   })
 })
+
+const slotFields2026 = [
+  { name: 'current2026SaturdayMorning' as const, label: 'Samedi matin' },
+  { name: 'current2026SaturdayAfternoon' as const, label: 'Samedi après-midi' },
+  { name: 'current2026SundayMorning' as const, label: 'Dimanche matin' },
+  { name: 'current2026SundayAfternoon' as const, label: 'Dimanche après-midi' },
+]
 
 const slotFields = [
   { name: 'slotSaturdayMorning' as const, label: 'Samedi matin' },
@@ -120,6 +152,11 @@ export function QuestionnaireProfesseursForm() {
     const payload = {
       firstName: values.firstName,
       lastName: values.lastName,
+      current2026SaturdayMorning: values.current2026SaturdayMorning,
+      current2026SaturdayAfternoon: values.current2026SaturdayAfternoon,
+      current2026SundayMorning: values.current2026SundayMorning,
+      current2026SundayAfternoon: values.current2026SundayAfternoon,
+      current2026Level: values.current2026Level,
       levelPreference: values.levelPreference,
       levelDetail: values.levelPreference === 'specific' ? values.levelDetail : '',
       wantsAllFourSlots: values.wantsAllFourSlots,
@@ -162,7 +199,7 @@ export function QuestionnaireProfesseursForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-8" noValidate>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-10 sm:space-y-11" noValidate>
       <input
         type="text"
         tabIndex={-1}
@@ -204,8 +241,64 @@ export function QuestionnaireProfesseursForm() {
         </div>
       </fieldset>
 
+      <fieldset className="space-y-4">
+        <legend className="text-sm font-semibold text-mosque-green">Cette année — votre emploi du temps</legend>
+        <p className="text-sm text-muted-foreground">
+          Sur combien de créneaux enseignez-vous actuellement ? Cochez tous les créneaux concernés (un,
+          deux, trois ou quatre), puis indiquez le niveau du ou des groupes que vous avez cette année.
+        </p>
+        <div className="space-y-2">
+          <span className="text-sm font-medium text-foreground">Créneaux où vous enseignez</span>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {slotFields2026.map(({ name, label }) => (
+              <Controller
+                key={name}
+                name={name}
+                control={control}
+                render={({ field }) => (
+                  <label
+                    className={cn(
+                      'flex cursor-pointer items-start gap-3 rounded-xl border bg-background/60 p-4 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-mosque-gold',
+                      field.value && 'border-mosque-green/35 bg-mosque-green/5',
+                    )}
+                  >
+                    <input
+                      type="checkbox"
+                      className="mt-1 h-4 w-4 shrink-0 rounded border-input accent-mosque-gold"
+                      checked={field.value}
+                      onChange={(e) => field.onChange(e.target.checked)}
+                    />
+                    <span className="font-medium leading-snug">{label}</span>
+                  </label>
+                )}
+              />
+            ))}
+          </div>
+          {errors.current2026SaturdayMorning && (
+            <p className="text-xs text-destructive">{errors.current2026SaturdayMorning.message}</p>
+          )}
+        </div>
+        <div className="space-y-1.5">
+          <Label htmlFor="qp-current2026Level">Niveau enseigné cette année</Label>
+          <Controller
+            name="current2026Level"
+            control={control}
+            render={({ field }) => (
+              <Input
+                id="qp-current2026Level"
+                placeholder="Ex. débutants, grands débutants, intermédiaire…"
+                {...field}
+              />
+            )}
+          />
+          {errors.current2026Level && (
+            <p className="text-xs text-destructive">{errors.current2026Level.message}</p>
+          )}
+        </div>
+      </fieldset>
+
       <fieldset className="space-y-3">
-        <legend className="text-sm font-semibold text-mosque-green">Niveau</legend>
+        <legend className="text-sm font-semibold text-mosque-green">Pour l’année prochaine — niveau souhaité</legend>
         <p className="text-sm text-muted-foreground">
           Souhaitez-vous un niveau en particulier, ou cela vous est-il égal ?
         </p>
@@ -281,10 +374,10 @@ export function QuestionnaireProfesseursForm() {
       </fieldset>
 
       <fieldset className="space-y-4">
-        <legend className="text-sm font-semibold text-mosque-green">Créneaux</legend>
+        <legend className="text-sm font-semibold text-mosque-green">Pour l’année prochaine — créneaux souhaités</legend>
         <p className="text-sm text-muted-foreground">
-          Cochez les créneaux qui vous conviennent (plusieurs choix possibles), ou indiquez que
-          vous pouvez assurer les quatre.
+          Cochez les créneaux qui vous conviennent pour l’année prochaine (plusieurs choix possibles),
+          ou indiquez que vous pouvez assurer les quatre.
         </p>
 
         <Controller
