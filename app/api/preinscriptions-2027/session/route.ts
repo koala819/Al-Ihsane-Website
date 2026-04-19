@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 
 import { routing } from '@/i18n/routing'
+import { getPublicOriginFromRequest } from '@/lib/server/publicOrigin'
 import {
   createPreinscriptionsSessionToken,
   getPreinscriptionsAccessPath,
@@ -32,17 +33,19 @@ export async function POST(request: Request) {
     )
   }
 
-  /* 303 et non le défaut (307) : après un POST, le navigateur doit suivre en GET. En 307 il
-   * réessaie en POST sur la page HTML → échec au 1er essai sur Netlify, OK au 2e. */
+  /* 303 : après POST, suivre en GET. Origine publique : pas `request.url` seul (Netlify peut
+   * y mettre l’hôte du deploy preview → Location ≠ domaine du cookie → pas de session). */
+  const origin = getPublicOriginFromRequest(request)
+
   if (password !== expectedPassword) {
-    const url = new URL(getPreinscriptionsAccessPath(locale), request.url)
+    const url = new URL(getPreinscriptionsAccessPath(locale), origin)
     url.searchParams.set('error', '1')
     url.searchParams.set('next', nextPath)
     return NextResponse.redirect(url, 303)
   }
 
   const token = await createPreinscriptionsSessionToken(sessionSecret)
-  const url = new URL(nextPath, request.url)
+  const url = new URL(nextPath, origin)
   const response = NextResponse.redirect(url, 303)
 
   response.cookies.set({

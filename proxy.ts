@@ -1,6 +1,7 @@
 import createMiddleware from 'next-intl/middleware'
 import { NextRequest, NextResponse } from 'next/server'
 
+import { getPublicOriginFromRequest } from '@/lib/server/publicOrigin'
 import {
   PREINSCRIPTIONS_2027_COOKIE,
   getPreinscriptionsAccessPath,
@@ -35,7 +36,7 @@ export default async function proxy(request: NextRequest) {
   const hasAccess = await verifyPreinscriptionsSessionToken(sessionCookie, sessionSecret)
   if (hasAccess) return intlMiddleware(request)
 
-  const loginUrl = new URL(getPreinscriptionsAccessPath(locale), request.url)
+  const loginUrl = new URL(getPreinscriptionsAccessPath(locale), getPublicOriginFromRequest(request))
   loginUrl.searchParams.set('next', getPreinscriptionsProtectedPath(locale))
   return NextResponse.redirect(loginUrl)
 }
