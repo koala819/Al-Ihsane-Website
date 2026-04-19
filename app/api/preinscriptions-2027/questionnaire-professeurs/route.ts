@@ -108,6 +108,15 @@ function buildSlots2026Text(body: Body): string {
   return parts.join(', ')
 }
 
+function getMissingMailEnvKeys(): string[] {
+  const missing: string[] = []
+  if (!String(process.env.MAIL_HOST ?? '').trim()) missing.push('MAIL_HOST')
+  if (!String(process.env.MAIL_PORT ?? '').trim()) missing.push('MAIL_PORT')
+  if (!String(process.env.MAIL_USER ?? '').trim()) missing.push('MAIL_USER')
+  if (!String(process.env.MAIL_PWD ?? '').trim()) missing.push('MAIL_PWD')
+  return missing
+}
+
 function buildSlotsText(body: Body): string {
   if (body.wantsAllFourSlots) {
     return 'Les quatre créneaux (samedi matin et après-midi, dimanche matin et après-midi).'
@@ -149,13 +158,20 @@ export async function POST(request: Request): Promise<Response> {
     return NextResponse.json({ error: err }, { status: 400 })
   }
 
-  const mailUser = process.env.MAIL_USER
-  const mailPass = process.env.MAIL_PWD
-  const mailHost = process.env.MAIL_HOST
-  const mailPort = process.env.MAIL_PORT
-  if (!mailUser || !mailPass || !mailHost || !mailPort) {
-    return NextResponse.json({ error: 'Envoi d’e-mails non configuré sur le serveur.' }, { status: 500 })
+  const missingMail = getMissingMailEnvKeys()
+  if (missingMail.length > 0) {
+    return NextResponse.json(
+      {
+        error: `Envoi d’e-mails non configuré. Dans .env.local, renseignez le SMTP : ${missingMail.join(', ')} (identifiants fournis par votre hébergeur mail ou service SMTP).`,
+      },
+      { status: 500 },
+    )
   }
+
+  const mailUser = process.env.MAIL_USER!
+  const mailPass = process.env.MAIL_PWD!
+  const mailHost = process.env.MAIL_HOST!
+  const mailPort = process.env.MAIL_PORT!
 
   const to = (process.env.TEACHER_QUESTIONNAIRE_TO ?? RECIPIENT_DEFAULT).trim() || RECIPIENT_DEFAULT
   const firstName = String(body.firstName).trim()
