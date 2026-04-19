@@ -32,16 +32,18 @@ export async function POST(request: Request) {
     )
   }
 
+  /* 303 et non le défaut (307) : après un POST, le navigateur doit suivre en GET. En 307 il
+   * réessaie en POST sur la page HTML → échec au 1er essai sur Netlify, OK au 2e. */
   if (password !== expectedPassword) {
     const url = new URL(getPreinscriptionsAccessPath(locale), request.url)
     url.searchParams.set('error', '1')
     url.searchParams.set('next', nextPath)
-    return NextResponse.redirect(url)
+    return NextResponse.redirect(url, 303)
   }
 
   const token = await createPreinscriptionsSessionToken(sessionSecret)
   const url = new URL(nextPath, request.url)
-  const response = NextResponse.redirect(url)
+  const response = NextResponse.redirect(url, 303)
 
   response.cookies.set({
     httpOnly: true,
