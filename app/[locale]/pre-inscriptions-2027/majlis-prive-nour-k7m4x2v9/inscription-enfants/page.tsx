@@ -1,20 +1,26 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+import { getTranslations } from 'next-intl/server'
 
 import { Button } from '@/components/ui/button'
-
-export const metadata: Metadata = {
-  robots: { follow: false, index: false },
-  title: 'Inscription des enfants',
-}
 
 type PageProps = {
   params: Promise<{ locale: string }>
 }
 
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'preinscriptions2027' })
+  return {
+    robots: { follow: false, index: false },
+    title: t('inscriptionEnfants.metaTitle'),
+  }
+}
+
 export default async function InscriptionEnfantsPage({ params }: PageProps) {
   const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'preinscriptions2027' })
   const hub = `/${locale}/pre-inscriptions-2027/majlis-prive-nour-k7m4x2v9`
 
   return (
@@ -22,17 +28,14 @@ export default async function InscriptionEnfantsPage({ params }: PageProps) {
       <article className="mx-auto w-full max-w-lg rounded-2xl border border-border/80 bg-card/90 p-6 shadow-sm backdrop-blur-sm sm:p-8">
         <Button variant="ghost" size="sm" className="-ml-2 mb-4 gap-1.5 text-muted-foreground" asChild>
           <Link href={hub}>
-            <ArrowLeft className="h-4 w-4" aria-hidden />
-            Retour au choix
+            <ArrowLeft className="h-4 w-4 rtl:rotate-180" aria-hidden />
+            {t('inscriptionEnfants.back')}
           </Link>
         </Button>
         <h1 className="text-xl font-semibold text-mosque-green sm:text-2xl">
-          Inscription des enfants
+          {t('inscriptionEnfants.title')}
         </h1>
-        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-          Cette page accueillera le formulaire ou le lien vers l’inscription des enfants. Vous
-          pouvez la remplacer par votre flux (Typeform, Google Forms, page dédiée, etc.).
-        </p>
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{t('inscriptionEnfants.intro')}</p>
       </article>
     </div>
   )

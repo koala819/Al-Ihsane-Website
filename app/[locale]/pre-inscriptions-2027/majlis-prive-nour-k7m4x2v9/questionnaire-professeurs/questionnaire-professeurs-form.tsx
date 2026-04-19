@@ -1,8 +1,9 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Controller, useForm, type Resolver } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useTranslations } from 'next-intl'
 import toast from 'react-hot-toast'
 import * as yup from 'yup'
 import { Loader2, Send } from 'lucide-react'
@@ -36,90 +37,110 @@ const defaultValues = {
 
 type FormValues = typeof defaultValues
 
-const schema = yup.object({
-  firstName: yup.string().trim().required('Le prénom est obligatoire.'),
-  lastName: yup.string().trim().required('Le nom est obligatoire.'),
-  current2026SaturdayMorning: yup.boolean(),
-  current2026SaturdayAfternoon: yup.boolean(),
-  current2026SundayMorning: yup.boolean(),
-  current2026SundayAfternoon: yup.boolean(),
-  current2026Level: yup.string().trim().required('Indiquez le niveau que vous enseignez cette année.'),
-  levelPreference: yup
-    .mixed<'specific' | 'indifferent'>()
-    .oneOf(['specific', 'indifferent'], 'Choisissez une option pour le niveau.')
-    .required(),
-  levelDetail: yup.string().when('levelPreference', {
-    is: 'specific',
-    then: (s) => s.trim().required('Indiquez le niveau souhaité.'),
-    otherwise: (s) => s.strip(),
-  }),
-  wantsAllFourSlots: yup.boolean().required(),
-  slotSaturdayMorning: yup.boolean(),
-  slotSaturdayAfternoon: yup.boolean(),
-  slotSundayMorning: yup.boolean(),
-  slotSundayAfternoon: yup.boolean(),
-  email: yup
-    .string()
-    .trim()
-    .required("L'e-mail est obligatoire")
-    .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, "L'e-mail n'est pas valide"),
-  phone: yup
-    .string()
-    .transform((v) => (v ?? '').trim().replace(/\s/g, ''))
-    .required('Le numéro de mobile est obligatoire')
-    .test('fr-mobile', 'Numéro invalide (ex. 06 12 34 56 78 ou +33 6 12 34 56 78)', (v) => {
-      if (!v) return false
-      const s = v.startsWith('0033') ? `+33${v.slice(4)}` : v
-      return /^0[1-9]\d{8}$/.test(s) || /^\+33[1-9]\d{8}$/.test(s)
-    }),
-  remarks: yup.string().max(4000, 'Maximum 4000 caractères.'),
-  company: yup.string(),
-})
-  .test('slots2026', function (values) {
-    if (!values) return true
-    const any2026 =
-      values.current2026SaturdayMorning ||
-      values.current2026SaturdayAfternoon ||
-      values.current2026SundayMorning ||
-      values.current2026SundayAfternoon
-    if (any2026) return true
-    return this.createError({
-      path: 'current2026SaturdayMorning',
-      message:
-        'Cochez au moins un créneau sur lequel vous enseignez cette année (un à quatre créneaux possibles).',
+type SlotLabelKey =
+  | 'slotSaturdayMorning'
+  | 'slotSaturdayAfternoon'
+  | 'slotSundayMorning'
+  | 'slotSundayAfternoon'
+
+const slotFields2026: { name: keyof Pick<
+  FormValues,
+  | 'current2026SaturdayMorning'
+  | 'current2026SaturdayAfternoon'
+  | 'current2026SundayMorning'
+  | 'current2026SundayAfternoon'
+>; labelKey: SlotLabelKey }[] = [
+  { name: 'current2026SaturdayMorning', labelKey: 'slotSaturdayMorning' },
+  { name: 'current2026SaturdayAfternoon', labelKey: 'slotSaturdayAfternoon' },
+  { name: 'current2026SundayMorning', labelKey: 'slotSundayMorning' },
+  { name: 'current2026SundayAfternoon', labelKey: 'slotSundayAfternoon' },
+]
+
+const slotFields2027: { name: keyof Pick<
+  FormValues,
+  'slotSaturdayMorning' | 'slotSaturdayAfternoon' | 'slotSundayMorning' | 'slotSundayAfternoon'
+>; labelKey: SlotLabelKey }[] = [
+  { name: 'slotSaturdayMorning', labelKey: 'slotSaturdayMorning' },
+  { name: 'slotSaturdayAfternoon', labelKey: 'slotSaturdayAfternoon' },
+  { name: 'slotSundayMorning', labelKey: 'slotSundayMorning' },
+  { name: 'slotSundayAfternoon', labelKey: 'slotSundayAfternoon' },
+]
+
+function buildSchema(t: (key: string) => string) {
+  return yup
+    .object({
+      firstName: yup.string().trim().required(t('errors.firstName')),
+      lastName: yup.string().trim().required(t('errors.lastName')),
+      current2026SaturdayMorning: yup.boolean(),
+      current2026SaturdayAfternoon: yup.boolean(),
+      current2026SundayMorning: yup.boolean(),
+      current2026SundayAfternoon: yup.boolean(),
+      current2026Level: yup.string().trim().required(t('errors.currentLevel')),
+      levelPreference: yup
+        .mixed<'specific' | 'indifferent'>()
+        .oneOf(['specific', 'indifferent'], t('errors.levelPreference'))
+        .required(),
+      levelDetail: yup.string().when('levelPreference', {
+        is: 'specific',
+        then: (s) => s.trim().required(t('errors.levelDetail')),
+        otherwise: (s) => s.strip(),
+      }),
+      wantsAllFourSlots: yup.boolean().required(),
+      slotSaturdayMorning: yup.boolean(),
+      slotSaturdayAfternoon: yup.boolean(),
+      slotSundayMorning: yup.boolean(),
+      slotSundayAfternoon: yup.boolean(),
+      email: yup
+        .string()
+        .trim()
+        .required(t('errors.emailRequired'))
+        .matches(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, t('errors.emailInvalid')),
+      phone: yup
+        .string()
+        .transform((v) => (v ?? '').trim().replace(/\s/g, ''))
+        .required(t('errors.phoneRequired'))
+        .test('fr-mobile', t('errors.phoneInvalid'), (v) => {
+          if (!v) return false
+          const s = v.startsWith('0033') ? `+33${v.slice(4)}` : v
+          return /^0[1-9]\d{8}$/.test(s) || /^\+33[1-9]\d{8}$/.test(s)
+        }),
+      remarks: yup.string().max(4000, t('errors.remarksMax')),
+      company: yup.string(),
     })
-  })
-  .test('slots', function (values) {
-  if (!values) return true
-  if (values.wantsAllFourSlots) return true
-  const anySlot =
-    values.slotSaturdayMorning ||
-    values.slotSaturdayAfternoon ||
-    values.slotSundayMorning ||
-    values.slotSundayAfternoon
-  if (anySlot) return true
-  return this.createError({
-    path: 'wantsAllFourSlots',
-    message:
-      'Choisissez au moins un créneau, ou cochez l’option pour les quatre créneaux.',
-  })
-})
-
-const slotFields2026 = [
-  { name: 'current2026SaturdayMorning' as const, label: 'Samedi matin' },
-  { name: 'current2026SaturdayAfternoon' as const, label: 'Samedi après-midi' },
-  { name: 'current2026SundayMorning' as const, label: 'Dimanche matin' },
-  { name: 'current2026SundayAfternoon' as const, label: 'Dimanche après-midi' },
-]
-
-const slotFields = [
-  { name: 'slotSaturdayMorning' as const, label: 'Samedi matin' },
-  { name: 'slotSaturdayAfternoon' as const, label: 'Samedi après-midi' },
-  { name: 'slotSundayMorning' as const, label: 'Dimanche matin' },
-  { name: 'slotSundayAfternoon' as const, label: 'Dimanche après-midi' },
-]
+    .test('slots2026', function (values) {
+      if (!values) return true
+      const any2026 =
+        values.current2026SaturdayMorning ||
+        values.current2026SaturdayAfternoon ||
+        values.current2026SundayMorning ||
+        values.current2026SundayAfternoon
+      if (any2026) return true
+      return this.createError({
+        path: 'current2026SaturdayMorning',
+        message: t('errors.slots2026'),
+      })
+    })
+    .test('slots', function (values) {
+      if (!values) return true
+      if (values.wantsAllFourSlots) return true
+      const anySlot =
+        values.slotSaturdayMorning ||
+        values.slotSaturdayAfternoon ||
+        values.slotSundayMorning ||
+        values.slotSundayAfternoon
+      if (anySlot) return true
+      return this.createError({
+        path: 'wantsAllFourSlots',
+        message: t('errors.slots2027'),
+      })
+    })
+}
 
 export function QuestionnaireProfesseursForm() {
+  const t = useTranslations('preinscriptions2027.questionnaire.form')
+
+  const schema = useMemo(() => buildSchema(t), [t])
+
   const {
     control,
     register,
@@ -185,16 +206,16 @@ export function QuestionnaireProfesseursForm() {
     }
 
     if (res.status === 401) {
-      toast.error('Votre session a expiré. Reconnectez-vous via la page d’accès.')
+      toast.error(t('toastSessionExpired'))
       return
     }
 
     if (!res.ok) {
-      toast.error(data.error ?? 'Envoi impossible. Réessayez.')
+      toast.error(data.error ?? t('toastSendFailed'))
       return
     }
 
-    toast.success('Merci, votre réponse a bien été enregistrée. Nous vous recontactons si besoin.')
+    toast.success(t('toastSuccess'))
     reset(defaultValues)
   }
 
@@ -210,10 +231,10 @@ export function QuestionnaireProfesseursForm() {
       />
 
       <fieldset className="space-y-4">
-        <legend className="text-sm font-semibold text-mosque-green">Identité</legend>
+        <legend className="text-sm font-semibold text-mosque-green">{t('identityLegend')}</legend>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-1.5">
-            <Label htmlFor="qp-lastName">Nom</Label>
+            <Label htmlFor="qp-lastName">{t('lastName')}</Label>
             <Controller
               name="lastName"
               control={control}
@@ -226,7 +247,7 @@ export function QuestionnaireProfesseursForm() {
             )}
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="qp-firstName">Prénom</Label>
+            <Label htmlFor="qp-firstName">{t('firstName')}</Label>
             <Controller
               name="firstName"
               control={control}
@@ -242,15 +263,12 @@ export function QuestionnaireProfesseursForm() {
       </fieldset>
 
       <fieldset className="space-y-4">
-        <legend className="text-sm font-semibold text-mosque-green">Cette année — votre emploi du temps</legend>
-        <p className="text-sm text-muted-foreground">
-          Sur combien de créneaux enseignez-vous actuellement ? Cochez tous les créneaux concernés (un,
-          deux, trois ou quatre), puis indiquez le niveau du ou des groupes que vous avez cette année.
-        </p>
+        <legend className="text-sm font-semibold text-mosque-green">{t('currentYearLegend')}</legend>
+        <p className="text-sm text-muted-foreground">{t('currentYearIntro')}</p>
         <div className="space-y-2">
-          <span className="text-sm font-medium text-foreground">Créneaux où vous enseignez</span>
+          <span className="text-sm font-medium text-foreground">{t('slotsTeachingLabel')}</span>
           <div className="grid gap-3 sm:grid-cols-2">
-            {slotFields2026.map(({ name, label }) => (
+            {slotFields2026.map(({ name, labelKey }) => (
               <Controller
                 key={name}
                 name={name}
@@ -268,7 +286,7 @@ export function QuestionnaireProfesseursForm() {
                       checked={field.value}
                       onChange={(e) => field.onChange(e.target.checked)}
                     />
-                    <span className="font-medium leading-snug">{label}</span>
+                    <span className="font-medium leading-snug">{t(labelKey)}</span>
                   </label>
                 )}
               />
@@ -279,14 +297,14 @@ export function QuestionnaireProfesseursForm() {
           )}
         </div>
         <div className="space-y-1.5">
-          <Label htmlFor="qp-current2026Level">Niveau enseigné cette année</Label>
+          <Label htmlFor="qp-current2026Level">{t('currentLevelLabel')}</Label>
           <Controller
             name="current2026Level"
             control={control}
             render={({ field }) => (
               <Input
                 id="qp-current2026Level"
-                placeholder="Ex. débutants, grands débutants, intermédiaire…"
+                placeholder={t('currentLevelPlaceholder')}
                 {...field}
               />
             )}
@@ -298,10 +316,8 @@ export function QuestionnaireProfesseursForm() {
       </fieldset>
 
       <fieldset className="space-y-3">
-        <legend className="text-sm font-semibold text-mosque-green">Pour l’année prochaine — niveau souhaité</legend>
-        <p className="text-sm text-muted-foreground">
-          Souhaitez-vous un niveau en particulier, ou cela vous est-il égal ?
-        </p>
+        <legend className="text-sm font-semibold text-mosque-green">{t('nextYearLevelLegend')}</legend>
+        <p className="text-sm text-muted-foreground">{t('nextYearLevelIntro')}</p>
         <Controller
           name="levelPreference"
           control={control}
@@ -320,9 +336,9 @@ export function QuestionnaireProfesseursForm() {
                   onChange={() => field.onChange('specific')}
                 />
                 <span>
-                  <span className="font-medium">Un niveau en particulier</span>
+                  <span className="font-medium">{t('levelSpecificTitle')}</span>
                   <span className="mt-0.5 block text-xs text-muted-foreground">
-                    Vous préciserez lequel ci-dessous.
+                    {t('levelSpecificHint')}
                   </span>
                 </span>
               </label>
@@ -339,9 +355,9 @@ export function QuestionnaireProfesseursForm() {
                   onChange={() => field.onChange('indifferent')}
                 />
                 <span>
-                  <span className="font-medium">Cela m’est égal</span>
+                  <span className="font-medium">{t('levelIndifferentTitle')}</span>
                   <span className="mt-0.5 block text-xs text-muted-foreground">
-                    Pas de préférence de niveau.
+                    {t('levelIndifferentHint')}
                   </span>
                 </span>
               </label>
@@ -354,14 +370,14 @@ export function QuestionnaireProfesseursForm() {
 
         {levelPreference === 'specific' && (
           <div className="space-y-1.5 pt-1">
-            <Label htmlFor="qp-levelDetail">Niveau souhaité</Label>
+            <Label htmlFor="qp-levelDetail">{t('levelWishedLabel')}</Label>
             <Controller
               name="levelDetail"
               control={control}
               render={({ field }) => (
                 <Input
                   id="qp-levelDetail"
-                  placeholder="Ex. débutants, grands débutants, niveau intermédiaire…"
+                  placeholder={t('levelWishedPlaceholder')}
                   {...field}
                 />
               )}
@@ -374,11 +390,8 @@ export function QuestionnaireProfesseursForm() {
       </fieldset>
 
       <fieldset className="space-y-4">
-        <legend className="text-sm font-semibold text-mosque-green">Pour l’année prochaine — créneaux souhaités</legend>
-        <p className="text-sm text-muted-foreground">
-          Cochez les créneaux qui vous conviennent pour l’année prochaine (plusieurs choix possibles),
-          ou indiquez que vous pouvez assurer les quatre.
-        </p>
+        <legend className="text-sm font-semibold text-mosque-green">{t('nextYearSlotsLegend')}</legend>
+        <p className="text-sm text-muted-foreground">{t('nextYearSlotsIntro')}</p>
 
         <Controller
           name="wantsAllFourSlots"
@@ -396,16 +409,13 @@ export function QuestionnaireProfesseursForm() {
                 checked={field.value}
                 onChange={(e) => field.onChange(e.target.checked)}
               />
-              <span className="font-medium leading-snug">
-                Je peux travailler sur les quatre créneaux (samedi et dimanche, matin et
-                après-midi)
-              </span>
+              <span className="font-medium leading-snug">{t('allFourSlots')}</span>
             </label>
           )}
         />
 
         <div className="grid gap-3 sm:grid-cols-2">
-          {slotFields.map(({ name, label }) => (
+          {slotFields2027.map(({ name, labelKey }) => (
             <Controller
               key={name}
               name={name}
@@ -425,7 +435,7 @@ export function QuestionnaireProfesseursForm() {
                     checked={field.value}
                     onChange={(e) => field.onChange(e.target.checked)}
                   />
-                  <span className="font-medium leading-snug">{label}</span>
+                  <span className="font-medium leading-snug">{t(labelKey)}</span>
                 </label>
               )}
             />
@@ -437,9 +447,9 @@ export function QuestionnaireProfesseursForm() {
       </fieldset>
 
       <fieldset className="space-y-4">
-        <legend className="text-sm font-semibold text-mosque-green">Contact</legend>
+        <legend className="text-sm font-semibold text-mosque-green">{t('contactLegend')}</legend>
         <div className="space-y-1.5">
-          <Label htmlFor="qp-email">E-mail</Label>
+          <Label htmlFor="qp-email">{t('email')}</Label>
           <Controller
             name="email"
             control={control}
@@ -450,7 +460,7 @@ export function QuestionnaireProfesseursForm() {
           {errors.email && <p className="text-xs text-destructive">{errors.email.message}</p>}
         </div>
         <div className="space-y-1.5">
-          <Label htmlFor="qp-phone">Mobile</Label>
+          <Label htmlFor="qp-phone">{t('mobile')}</Label>
           <Controller
             name="phone"
             control={control}
@@ -460,7 +470,7 @@ export function QuestionnaireProfesseursForm() {
                 type="tel"
                 autoComplete="tel"
                 inputMode="tel"
-                placeholder="06 12 34 56 78"
+                placeholder={t('mobilePlaceholder')}
                 {...field}
               />
             )}
@@ -470,11 +480,8 @@ export function QuestionnaireProfesseursForm() {
       </fieldset>
 
       <fieldset className="space-y-2">
-        <legend className="text-sm font-semibold text-mosque-green">Remarques</legend>
-        <p className="text-sm text-muted-foreground">
-          Espace libre : contraintes personnelles, idées pour l’organisation, ou tout ce que vous
-          jugez utile de signaler — sans obligation.
-        </p>
+        <legend className="text-sm font-semibold text-mosque-green">{t('remarksLegend')}</legend>
+        <p className="text-sm text-muted-foreground">{t('remarksIntro')}</p>
         <Controller
           name="remarks"
           control={control}
@@ -483,7 +490,7 @@ export function QuestionnaireProfesseursForm() {
               {...field}
               rows={5}
               className="min-h-[120px] resize-y"
-              placeholder="Optionnel — vous pouvez rester très synthétique."
+              placeholder={t('remarksPlaceholder')}
             />
           )}
         />
@@ -498,11 +505,11 @@ export function QuestionnaireProfesseursForm() {
         className="w-full bg-mosque-gold text-white hover:bg-mosque-gold-hover sm:max-w-xs"
       >
         {isSubmitting ? (
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden />
+          <Loader2 className="me-2 h-4 w-4 animate-spin" aria-hidden />
         ) : (
-          <Send className="mr-2 h-4 w-4" aria-hidden />
+          <Send className="me-2 h-4 w-4" aria-hidden />
         )}
-        {isSubmitting ? 'Envoi…' : 'Envoyer'}
+        {isSubmitting ? t('submitting') : t('submit')}
       </Button>
     </form>
   )

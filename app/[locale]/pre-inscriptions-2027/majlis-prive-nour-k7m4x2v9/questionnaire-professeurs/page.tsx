@@ -1,23 +1,29 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft, Shield } from 'lucide-react'
+import { getTranslations } from 'next-intl/server'
 
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 import { QuestionnaireProfesseursForm } from './questionnaire-professeurs-form'
 
-export const metadata: Metadata = {
-  robots: { follow: false, index: false },
-  title: 'Questionnaire enseignants',
-}
-
 type PageProps = {
   params: Promise<{ locale: string }>
 }
 
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'preinscriptions2027' })
+  return {
+    robots: { follow: false, index: false },
+    title: t('questionnaire.metaTitle'),
+  }
+}
+
 export default async function QuestionnaireProfesseursPage({ params }: PageProps) {
   const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'preinscriptions2027' })
   const hub = `/${locale}/pre-inscriptions-2027/majlis-prive-nour-k7m4x2v9`
 
   return (
@@ -27,7 +33,6 @@ export default async function QuestionnaireProfesseursPage({ params }: PageProps
         'dark:from-[hsl(260,14%,10%)] dark:via-background dark:to-background',
       )}
     >
-      {/* Motif pointillé discret (rappel des fonds d’onglet en navigation privée) */}
       <div
         className="pointer-events-none fixed inset-0 -z-10 opacity-[0.4] dark:opacity-[0.22]"
         style={{
@@ -37,7 +42,6 @@ export default async function QuestionnaireProfesseursPage({ params }: PageProps
         aria-hidden
       />
 
-      {/* Même gabarit horizontal que les sections de l’accueil (ex. Actualités) : max-w-7xl px-4 */}
       <div className="mx-auto w-full max-w-7xl px-4 py-12 sm:py-14 md:py-16">
         <Button
           variant="ghost"
@@ -46,8 +50,8 @@ export default async function QuestionnaireProfesseursPage({ params }: PageProps
           asChild
         >
           <Link href={hub}>
-            <ArrowLeft className="h-4 w-4" aria-hidden />
-            Retour au choix
+            <ArrowLeft className="h-4 w-4 rtl:rotate-180" aria-hidden />
+            {t('questionnaire.back')}
           </Link>
         </Button>
 
@@ -64,21 +68,16 @@ export default async function QuestionnaireProfesseursPage({ params }: PageProps
               aria-hidden
             />
             <p className="text-[11px] leading-relaxed text-muted-foreground sm:text-xs">
-              Espace confidentiel : ce lien n’est pas indexé et ne doit pas être partagé publiquement.
+              {t('questionnaire.confidentialBanner')}
             </p>
           </div>
 
           <div className="p-5 sm:p-8 md:p-10">
             <header className="mb-10 sm:mb-12 md:mb-14">
-              {/* Même style de titre que « Actualité » sur l’accueil (section News) */}
-              <h1 className="text-2xl font-bold text-mosque-green md:text-3xl">
-                Questionnaire enseignants
-              </h1>
+              <h1 className="text-2xl font-bold text-mosque-green md:text-3xl">{t('questionnaire.title')}</h1>
               <div className="mt-2 h-1 w-12 rounded-full bg-mosque-green/30" />
               <p className="mt-5 max-w-prose text-sm leading-relaxed text-muted-foreground sm:mt-6 sm:text-base">
-                Indiquez d’abord vos créneaux et le niveau enseigné cette année, puis vos souhaits pour
-                l’année prochaine et vos coordonnées. Le formulaire est traité par l’équipe de la
-                mosquée uniquement.
+                {t('questionnaire.intro')}
               </p>
             </header>
 

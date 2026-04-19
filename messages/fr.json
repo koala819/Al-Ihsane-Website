@@ -175,6 +175,86 @@
       "bookCta": "Demander une réservation"
     }
   },
+  "preinscriptions2027Access": {
+    "title": "Accès pré-inscriptions 2027",
+    "intro": "Cet espace est réservé aux personnes ayant le mot de passe.",
+    "passwordLabel": "Mot de passe",
+    "errorWrongPassword": "Mot de passe incorrect.",
+    "submit": "Accéder à la section privée"
+  },
+  "preinscriptions2027": {
+    "hub": {
+      "eyebrow": "Espace réservé",
+      "questionnaireTitle": "Questionnaire enseignants",
+      "questionnaireDescription": "Indiquez vos préférences de jour et de créneau pour l’année prochaine. Ce court formulaire nous aide à construire le planning.",
+      "inscriptionTitle": "Parcours de pré-inscription",
+      "inscriptionDescription": "Accédez au parcours de pré-inscription pour les élèves."
+    },
+    "inscriptionEnfants": {
+      "metaTitle": "Inscription des enfants",
+      "title": "Inscription des enfants",
+      "intro": "Cette page accueillera le formulaire ou le lien vers l’inscription des enfants. Vous pouvez la remplacer par votre flux (Typeform, Google Forms, page dédiée, etc.).",
+      "back": "Retour au choix"
+    },
+    "questionnaire": {
+      "metaTitle": "Questionnaire enseignants",
+      "title": "Questionnaire enseignants",
+      "intro": "Indiquez d’abord vos créneaux et le niveau enseigné cette année, puis vos souhaits pour l’année prochaine et vos coordonnées. Le formulaire est traité par l’équipe de la mosquée uniquement.",
+      "confidentialBanner": "Espace confidentiel : ce lien n’est pas indexé et ne doit pas être partagé publiquement.",
+      "back": "Retour au choix",
+      "form": {
+        "identityLegend": "Identité",
+        "lastName": "Nom",
+        "firstName": "Prénom",
+        "currentYearLegend": "Cette année — votre emploi du temps",
+        "currentYearIntro": "Sur combien de créneaux enseignez-vous actuellement ? Cochez tous les créneaux concernés (un, deux, trois ou quatre), puis indiquez le niveau du ou des groupes que vous avez cette année.",
+        "slotsTeachingLabel": "Créneaux où vous enseignez",
+        "currentLevelLabel": "Niveau enseigné cette année",
+        "currentLevelPlaceholder": "Ex. débutants, grands débutants, intermédiaire…",
+        "nextYearLevelLegend": "Pour l’année prochaine — niveau souhaité",
+        "nextYearLevelIntro": "Souhaitez-vous un niveau en particulier, ou cela vous est-il égal ?",
+        "levelSpecificTitle": "Un niveau en particulier",
+        "levelSpecificHint": "Vous préciserez lequel ci-dessous.",
+        "levelIndifferentTitle": "Cela m’est égal",
+        "levelIndifferentHint": "Pas de préférence de niveau.",
+        "levelWishedLabel": "Niveau souhaité",
+        "levelWishedPlaceholder": "Ex. débutants, grands débutants, niveau intermédiaire…",
+        "nextYearSlotsLegend": "Pour l’année prochaine — créneaux souhaités",
+        "nextYearSlotsIntro": "Cochez les créneaux qui vous conviennent pour l’année prochaine (plusieurs choix possibles), ou indiquez que vous pouvez assurer les quatre.",
+        "allFourSlots": "Je peux travailler sur les quatre créneaux (samedi et dimanche, matin et après-midi)",
+        "contactLegend": "Contact",
+        "email": "E-mail",
+        "mobile": "Mobile",
+        "mobilePlaceholder": "06 12 34 56 78",
+        "remarksLegend": "Remarques",
+        "remarksIntro": "Espace libre : contraintes personnelles, idées pour l’organisation, ou tout ce que vous jugez utile de signaler — sans obligation.",
+        "remarksPlaceholder": "Optionnel — vous pouvez rester très synthétique.",
+        "submit": "Envoyer",
+        "submitting": "Envoi…",
+        "slotSaturdayMorning": "Samedi matin",
+        "slotSaturdayAfternoon": "Samedi après-midi",
+        "slotSundayMorning": "Dimanche matin",
+        "slotSundayAfternoon": "Dimanche après-midi",
+        "errors": {
+          "firstName": "Le prénom est obligatoire.",
+          "lastName": "Le nom est obligatoire.",
+          "currentLevel": "Indiquez le niveau que vous enseignez cette année.",
+          "levelPreference": "Choisissez une option pour le niveau.",
+          "levelDetail": "Indiquez le niveau souhaité.",
+          "emailRequired": "L’e-mail est obligatoire",
+          "emailInvalid": "L’e-mail n’est pas valide",
+          "phoneRequired": "Le numéro de mobile est obligatoire",
+          "phoneInvalid": "Numéro invalide (ex. 06 12 34 56 78 ou +33 6 12 34 56 78)",
+          "remarksMax": "Maximum 4000 caractères.",
+          "slots2026": "Cochez au moins un créneau sur lequel vous enseignez cette année (un à quatre créneaux possibles).",
+          "slots2027": "Choisissez au moins un créneau, ou cochez l’option pour les quatre créneaux."
+        },
+        "toastSessionExpired": "Votre session a expiré. Reconnectez-vous via la page d’accès.",
+        "toastSendFailed": "Envoi impossible. Réessayez.",
+        "toastSuccess": "Merci, votre réponse a bien été enregistrée. Nous vous recontactons si besoin."
+      }
+    }
+  },
   "footer": {
     "tagline": "Al Ihsane",
     "subtitle": "Mosquée de Colomiers",

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { getTranslations } from 'next-intl/server'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -11,16 +12,25 @@ import {
   PREINSCRIPTIONS_2027_COOKIE,
 } from '@/lib/server/preinscriptions2027'
 
-export const metadata: Metadata = {
-  robots: {
-    follow: false,
-    index: false,
-  },
-}
-
 type AccessPageProps = {
   params: Promise<{ locale: string }>
   searchParams: Promise<{ error?: string; next?: string }>
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'preinscriptions2027Access' })
+  return {
+    title: t('title'),
+    robots: {
+      follow: false,
+      index: false,
+    },
+  }
 }
 
 export default async function PreinscriptionsAccessPage({
@@ -29,6 +39,7 @@ export default async function PreinscriptionsAccessPage({
 }: AccessPageProps) {
   const { locale } = await params
   const resolvedSearchParams = await searchParams
+  const t = await getTranslations({ locale, namespace: 'preinscriptions2027Access' })
 
   const nextPath =
     resolvedSearchParams.next &&
@@ -50,10 +61,8 @@ export default async function PreinscriptionsAccessPage({
   return (
     <section className="mx-auto flex min-h-[60vh] w-full max-w-md items-center px-4 py-16">
       <div className="w-full rounded-lg border bg-card p-6 shadow-sm">
-        <h1 className="text-xl font-semibold">Acces pre-inscriptions 2027</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Cet espace est reserve aux personnes ayant le mot de passe.
-        </p>
+        <h1 className="text-xl font-semibold">{t('title')}</h1>
+        <p className="mt-2 text-sm text-muted-foreground">{t('intro')}</p>
 
         <form action="/api/preinscriptions-2027/session" method="post" className="mt-6 space-y-4">
           <input type="hidden" name="locale" value={locale} />
@@ -61,7 +70,7 @@ export default async function PreinscriptionsAccessPage({
 
           <div className="space-y-2">
             <label htmlFor="private-password" className="text-sm font-medium">
-              Mot de passe
+              {t('passwordLabel')}
             </label>
             <Input
               id="private-password"
@@ -74,7 +83,7 @@ export default async function PreinscriptionsAccessPage({
 
           {hasError && (
             <p className="rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive">
-              Mot de passe incorrect.
+              {t('errorWrongPassword')}
             </p>
           )}
 
@@ -82,7 +91,7 @@ export default async function PreinscriptionsAccessPage({
             type="submit"
             className="w-full bg-mosque-gold text-white transition-colors hover:bg-mosque-gold-hover"
           >
-            Acceder a la section privee
+            {t('submit')}
           </Button>
         </form>
       </div>

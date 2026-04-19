@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { CalendarClock, ChevronRight, GraduationCap } from 'lucide-react'
+import { getTranslations } from 'next-intl/server'
+
+import { cn } from '@/lib/utils'
 
 export const metadata: Metadata = {
   robots: {
@@ -15,23 +18,23 @@ type PageProps = {
 
 export default async function Preinscriptions2027PrivatePage({ params }: PageProps) {
   const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'preinscriptions2027' })
   const base = `/${locale}/pre-inscriptions-2027/majlis-prive-nour-k7m4x2v9`
+  const isAr = locale === 'ar'
 
   const choices = [
     {
       href: `${base}/questionnaire-professeurs`,
-      title: 'Questionnaire enseignants',
-      description:
-        'Indiquez vos préférences de jour et de créneau pour l’année prochaine. Ce court formulaire nous aide à construire le planning.',
+      title: t('hub.questionnaireTitle'),
+      description: t('hub.questionnaireDescription'),
       icon: CalendarClock,
       accent: 'from-mosque-gold/15 to-mosque-gold/5 dark:from-mosque-gold/20 dark:to-mosque-gold/5',
       iconClass: 'bg-mosque-gold/15 text-mosque-gold dark:bg-mosque-gold/25',
     },
     {
       href: `${base}/inscription-enfants`,
-      title: 'Parcours de pré-inscription',
-      description:
-        'Accédez au parcours de pré-inscription pour les élèves.',
+      title: t('hub.inscriptionTitle'),
+      description: t('hub.inscriptionDescription'),
       icon: GraduationCap,
       accent: 'from-mosque-green/12 to-mosque-green/5 dark:from-mosque-green/20 dark:to-mosque-green/5',
       iconClass: 'bg-mosque-green/15 text-mosque-green dark:bg-mosque-green/25',
@@ -41,9 +44,9 @@ export default async function Preinscriptions2027PrivatePage({ params }: PagePro
   return (
     <div className="min-h-[70vh] bg-gradient-to-b from-mosque-muted/40 via-background to-background dark:from-mosque-green/10">
       <section className="mx-auto w-full max-w-lg px-4 pb-16 pt-10 sm:max-w-xl sm:pt-14">
-        <header className="text-center sm:text-left">
+        <header className={cn('text-center', !isAr && 'sm:text-left', isAr && 'sm:text-right')}>
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
-            Espace réservé
+            {t('hub.eyebrow')}
           </p>
         </header>
 
@@ -63,13 +66,18 @@ export default async function Preinscriptions2027PrivatePage({ params }: PagePro
                 >
                   <Icon className="h-6 w-6" strokeWidth={1.75} aria-hidden />
                 </span>
-                <span className="relative min-w-0 flex-1 text-left">
+                <span className="relative min-w-0 flex-1 text-start">
                   <span className="flex items-start justify-between gap-2">
                     <span className="text-base font-semibold leading-snug text-foreground sm:text-lg">
                       {title}
                     </span>
                     <ChevronRight
-                      className="mt-0.5 h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-mosque-gold"
+                      className={cn(
+                        'mt-0.5 h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-200 group-hover:text-mosque-gold',
+                        isAr
+                          ? 'rotate-180 group-hover:-translate-x-0.5'
+                          : 'group-hover:translate-x-0.5',
+                      )}
                       aria-hidden
                     />
                   </span>
