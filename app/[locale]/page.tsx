@@ -3,8 +3,8 @@ import { AssociationIntro } from '@/components/organisms/AssociationIntro'
 import { DonateAlIhsane } from '@/components/organisms/DonateAlIhsane'
 import { HadithDuJour } from '@/components/organisms/HadithDuJour'
 import { History } from '@/components/organisms/History'
-import { NewsSection } from '@/components/organisms/News'
-import { VersetDuJour } from '@/components/organisms/VersetDuJour'
+import { News } from '@/components/organisms/News'
+import { DayVerse } from '@/components/organisms/DayVerse'
 import { AbderrahmaneMesliYoutube } from '@/components/organisms/AbderrahmaneMesliYoutube'
 import { getNewsArticlesPreview } from '@/lib/sanity/queries'
 
@@ -17,9 +17,9 @@ export default async function HomePage() {
 
   return (
     <>
-      <NewsSection cmsArticles={cmsArticles} />
+      <News cmsArticles={cmsArticles} />
 
-      <VersetDuJour locale={locale} />
+      <DayVerse locale={locale} />
 
       <AbderrahmaneMesliYoutube locale={locale} />
 

@@ -9,7 +9,7 @@ function getDayOfYear(): number {
   return Math.floor((now.getTime() - start.getTime()) / 86400000)
 }
 
-export const VersetDuJour = async ({ locale }: { locale: string }) => {
+export const DayVerse = async ({ locale }: { locale: string }) => {
   const isAr = locale === 'ar'
   const versetNumber = (getDayOfYear() % 6236) + 1
 

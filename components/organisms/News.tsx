@@ -24,7 +24,7 @@ function formatDateLabel(article: SanityNewsArticle): string {
   }
 }
 
-export const NewsSection = ({
+export const News = ({
   cmsArticles = [],
   variant = 'home',
 }: NewsProps) => {
