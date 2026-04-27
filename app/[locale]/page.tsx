@@ -1,5 +1,5 @@
 import { getLocale } from 'next-intl/server'
-import { AssociationIntro } from '@/components/organisms/AssociationIntro'
+import { Association } from '@/components/organisms/Association'
 import { DonateAlIhsane } from '@/components/organisms/DonateAlIhsane'
 import { History } from '@/components/organisms/History'
 import { News } from '@/components/organisms/News'
@@ -24,7 +24,7 @@ export default async function HomePage() {
 
       <DonateAlIhsane />
 
-      <AssociationIntro />
+      <Association />
 
       <History />
     </>

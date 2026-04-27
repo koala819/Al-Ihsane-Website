@@ -5,6 +5,7 @@ import { BookOpen, Handshake, Heart, Star, Utensils } from 'lucide-react'
 
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
+import { HeadingBlock } from '@/components/molecules/HeadingBlock'
 
 const ACTIVITIES_KEYS = ['meals', 'social', 'events'] as const
 
@@ -16,11 +17,7 @@ const ACTIVITY_ICONS = {
 
 const VALUE_ICONS = [Heart, BookOpen, Handshake] as const
 
-/**
- * Bloc association sur l’accueil : même vocabulaire que News / History (titre + filet, py-14).
- * Le lien « voir toutes les actualités » reste uniquement sous la section Actualités.
- */
-export function AssociationIntro() {
+export const Association = () => {
   const t = useTranslations('association')
   const tActivities = useTranslations('association.activities')
   const locale = useLocale()
@@ -50,13 +47,9 @@ export function AssociationIntro() {
       className="scroll-mt-[4.5rem] border-t border-mosque-green/10 bg-background py-14"
     >
       <div className="mx-auto max-w-7xl px-4">
-        {/* En-tête — même bloc titre que Actualités (News) */}
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-mosque-green md:text-3xl">{t('title')}</h2>
-          <div className="mt-2 h-1 w-12 rounded-full bg-mosque-green/30" />
-        </div>
+        {/* Notre association*/}
+        <HeadingBlock title={t('title')} isRtl={isAr} />
 
-        {/* Mission (texte) + valeurs (liste compacte) */}
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-14 lg:items-start">
           <div
             className={cn('space-y-6 lg:col-span-7', isAr ? 'text-right' : 'text-left')}
@@ -115,12 +108,9 @@ export function AssociationIntro() {
           </aside>
         </div>
 
-        {/* Sous-section activités — même famille visuelle que les cartes actualités */}
+        {/* Nos activités */}
         <div className="mt-14 border-t border-mosque-green/10 pt-12 md:mt-16 md:pt-14">
-          <div className="mb-8">
-            <h3 className="text-2xl font-bold text-mosque-green md:text-3xl">{tActivities('title')}</h3>
-            <div className="mt-2 h-1 w-12 rounded-full bg-mosque-green/30" />
-          </div>
+          <HeadingBlock title={tActivities('title')} isRtl={isAr} />
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {ACTIVITIES_KEYS.map((key) => {
