@@ -3,9 +3,9 @@
 import { useLocale, useTranslations } from 'next-intl'
 
 import { ActuCard } from '@/components/molecules/ActuCard'
+import { HeadingBlock } from '@/components/molecules/HeadingBlock'
 import { Button } from '@/components/ui/button'
 import { Link } from '@/i18n/navigation'
-import { cn } from '@/lib/utils'
 import { urlForImage } from '@/lib/sanity/image'
 import type { SanityNewsArticle } from '@/lib/sanity/queries'
 import { NewsProps } from '@/types/models'
@@ -37,22 +37,10 @@ export function NewsSection({
   const heading = isHome ? t('title') : t('allActivitiesTitle')
   const showViewAll = isHome && useCms
 
-  const HeadingTag = isHome ? 'h2' : 'h1'
-
   return (
     <section id="news" className="bg-background py-14">
       <div className="mx-auto max-w-7xl px-4">
-        <header className={cn('mb-8 md:mb-10', isAr && 'text-right')}>
-          <HeadingTag className="text-2xl font-bold text-mosque-green md:text-3xl">
-            {heading}
-          </HeadingTag>
-          <div
-            className={cn(
-              'mt-2 h-1 w-12 rounded-full bg-mosque-green/30',
-              isAr && 'ms-auto',
-            )}
-          />
-        </header>
+        <HeadingBlock title={heading} as={isHome ? 'h2' : 'h1'} isRtl={isAr} />
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {useCms ? (
