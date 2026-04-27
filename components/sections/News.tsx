@@ -11,6 +11,7 @@ import { Link } from '@/i18n/navigation'
 import { cn } from '@/lib/utils'
 import { urlForImage } from '@/lib/sanity/image'
 import type { SanityNewsArticle } from '@/lib/sanity/queries'
+import { NewsProps } from '@/types/models'
 
 const ISLAMIC_PATTERN = `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.12'%3E%3Cpath d='M30 0l5 10H25L30 0zm0 60l5-10H25l5 10zM0 30l10-5v10L0 30zm60 0l-10-5v10L60 30zM15 15l5 5-5 5-5-5 5-5zm30 0l5 5-5 5-5-5 5-5zm-30 30l5 5-5 5-5-5 5-5zm30 0l5 5-5 5-5-5 5-5z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
 
@@ -113,18 +114,13 @@ function NewsCard({
   )
 }
 
-type NewsProps = {
-  cmsArticles?: SanityNewsArticle[]
-  /** Accueil : aperçu + bouton ; page dédiée : liste complète et titre adapté. */
-  variant?: 'home' | 'full'
-}
 
-export function News({
+
+export function NewsSection({
   cmsArticles = [],
   variant = 'home',
 }: NewsProps) {
   const t = useTranslations('news')
-  const tActivities = useTranslations('activitiesPage')
   const locale = useLocale()
   const isAr = locale === 'ar'
 
@@ -138,34 +134,6 @@ export function News({
   return (
     <section id="news" className="bg-background py-14">
       <div className="mx-auto max-w-7xl px-4">
-        {/* Même fil d’Ariane que la page Activités : accueil = segment seul ; /actualités = Al'Ihsane / Actualités */}
-        <nav
-          aria-label={isAr ? 'مسار التصفح' : 'Fil d’Ariane'}
-          className={cn(
-            'mb-8 flex flex-wrap items-center text-sm text-muted-foreground md:mb-10',
-            isAr && 'justify-end text-right',
-          )}
-        >
-          {isHome ? (
-            <span className="font-semibold text-foreground">
-              {tActivities('breadcrumb.home')}
-            </span>
-          ) : (
-            <>
-              <Link
-                href="/"
-                className="font-medium transition-colors hover:text-mosque-green"
-              >
-                {tActivities('breadcrumb.home')}
-              </Link>
-              <span className="select-none px-1.5 text-mosque-green/35" aria-hidden>
-                /
-              </span>
-              <span className="font-semibold text-foreground">{t('title')}</span>
-            </>
-          )}
-        </nav>
-
         <header className={cn('mb-8 md:mb-10', isAr && 'text-right')}>
           <HeadingTag className="text-2xl font-bold text-mosque-green md:text-3xl">
             {heading}

@@ -5,7 +5,7 @@
   "description": "Site web Al Ihsane avec gestion multilingue",
   "author": "Xavier",
   "license": "MIT",
-  "packageManager": "pnpm@10.6.4",
+  "packageManager": "pnpm@10.33.2",
   "scripts": {
     "clean": "pnpm store prune && rm -rf .next node_modules pnpm-lock.yaml",
     "dev": "next dev",

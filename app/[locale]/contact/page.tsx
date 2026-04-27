@@ -6,13 +6,13 @@ import toast from 'react-hot-toast'
 import { useLocale, useTranslations } from 'next-intl'
 import { MapPin, Phone, Send } from 'lucide-react'
 
+import { PageBreadcrumb } from '@/components/molecules/PageBreadcrumb'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import { Textarea } from '@/components/ui/textarea'
-import { Link } from '@/i18n/navigation'
 import {
   CONTACT_GOOGLE_MAPS_LISTING_URL,
   getContactMapEmbedSrc,
@@ -22,9 +22,9 @@ import { cn } from '@/lib/utils'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
-export default function Page() {
+export default function ContactPage() {
   const t = useTranslations('contact')
-  const tActivities = useTranslations('activitiesPage')
+  const tCommon = useTranslations('activitiesPage')
   const locale = useLocale()
   const isAr = locale === 'ar'
   const [hideForm, setHideForm] = useState(false)
@@ -91,24 +91,13 @@ export default function Page() {
       {/* En-tête plein fond — lisible, hors carte (comme une page classique) */}
       <div className="shrink-0 border-b border-border bg-background px-4 py-6 pt-[max(1rem,env(safe-area-inset-top))] sm:px-6 sm:py-8 md:px-8">
         <div className="mx-auto max-w-7xl">
-          <nav
-            aria-label={isAr ? 'مسار التصفح' : 'Fil d’Ariane'}
-            className={cn(
-              'mb-5 flex flex-wrap items-center gap-x-1 text-sm text-muted-foreground',
-              isAr && 'justify-end text-right',
-            )}
-          >
-            <Link
-              href="/"
-              className="inline-flex min-h-10 items-center font-medium text-foreground underline-offset-4 hover:text-mosque-green hover:underline"
-            >
-              {tActivities('breadcrumb.home')}
-            </Link>
-            <span className="text-muted-foreground/50" aria-hidden>
-              /
-            </span>
-            <span className="font-medium text-foreground">{t('title')}</span>
-          </nav>
+          <PageBreadcrumb
+            items={[
+              { label: tCommon('breadcrumb.home'), href: '/' },
+              { label: t('title') },
+            ]}
+            className="mb-5"
+          />
 
           <header className={cn(isAr && 'text-right')}>
             <h1 className="text-balance text-xl font-bold tracking-tight text-foreground sm:text-2xl md:text-3xl">

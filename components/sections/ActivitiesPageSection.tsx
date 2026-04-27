@@ -3,7 +3,7 @@
 import { useLocale, useTranslations } from 'next-intl'
 import { ChevronRight, GraduationCap, UtensilsCrossed } from 'lucide-react'
 
-import { ActivitiesBreadcrumb } from '@/components/molecules/ActivitiesBreadcrumb'
+import { PageBreadcrumb } from '@/components/molecules/PageBreadcrumb'
 import { Badge } from '@/components/ui/badge'
 import { Link } from '@/i18n/navigation'
 import { cn } from '@/lib/utils'
@@ -19,7 +19,12 @@ export function ActivitiesPageSection() {
   return (
     <section className="bg-background py-14">
       <div className="mx-auto max-w-7xl px-4">
-        <ActivitiesBreadcrumb />
+        <PageBreadcrumb
+          items={[
+            { label: t('breadcrumb.home'), href: '/' },
+            { label: t('breadcrumb.activities') },
+          ]}
+        />
 
         <header className={cn('mb-8 md:mb-10', isAr && 'text-right')}>
           <h1 className="text-2xl font-bold text-mosque-green md:text-3xl">{t('title')}</h1>

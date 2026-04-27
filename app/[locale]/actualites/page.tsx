@@ -1,6 +1,7 @@
-import { getTranslations } from 'next-intl/server'
+import { getLocale, getTranslations } from 'next-intl/server'
 
-import { News } from '@/components/sections/News'
+import { PageBreadcrumb } from '@/components/molecules/PageBreadcrumb'
+import { NewsSection } from '@/components/sections/News'
 import { getNewsArticlesFull } from '@/lib/sanity/queries'
 
 export const revalidate = 120
@@ -18,7 +19,23 @@ export async function generateMetadata({
 }
 
 export default async function ActualitesPage() {
+  const locale = await getLocale()
+  const tNews = await getTranslations({ locale, namespace: 'news' })
+  const tActivities = await getTranslations({ locale, namespace: 'activitiesPage' })
   const cmsArticles = await getNewsArticlesFull()
 
-  return <News variant="full" cmsArticles={cmsArticles} />
+  return (
+    <>
+      <div className="mx-auto max-w-7xl px-4 pt-14">
+        <PageBreadcrumb
+          items={[
+            { label: tActivities('breadcrumb.home'), href: '/' },
+            { label: tNews('title') },
+          ]}
+          className="mb-0"
+        />
+      </div>
+      <NewsSection variant="full" cmsArticles={cmsArticles} />
+    </>
+  )
 }
