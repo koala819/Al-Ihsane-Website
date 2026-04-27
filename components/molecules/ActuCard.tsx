@@ -24,7 +24,7 @@ type ActuCardProps = {
   imageAlt?: string
 }
 
-export function ActuCard({
+export const ActuCard = ({
   tag,
   title,
   date,
@@ -34,7 +34,7 @@ export function ActuCard({
   isAr,
   imageUrl,
   imageAlt,
-}: ActuCardProps) {
+}: ActuCardProps) => {
   const [expanded, setExpanded] = useState(false)
   const readLabel = isAr ? 'اقرأ المزيد' : 'Lire la suite'
   const collapseLabel = isAr ? 'طي' : 'Réduire'

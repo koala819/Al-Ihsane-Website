@@ -1,19 +1,7 @@
-interface AlquranAyah {
-  number: number
-  text: string
-  numberInSurah: number
-  surah: {
-    number: number
-    name: string
-    englishName: string
-    englishNameTranslation: string
-  }
-}
+import { HeadingBlock } from '@/components/molecules/HeadingBlock'
+import { AlquranResponse } from '@/types/models'
 
-interface AlquranResponse {
-  code: number
-  data: [AlquranAyah, AlquranAyah] // [arabic, french]
-}
+
 
 function getDayOfYear(): number {
   const now = new Date()
@@ -21,7 +9,7 @@ function getDayOfYear(): number {
   return Math.floor((now.getTime() - start.getTime()) / 86400000)
 }
 
-export async function VersetDuJour({ locale }: { locale: string }) {
+export const VersetDuJour = async ({ locale }: { locale: string }) => {
   const isAr = locale === 'ar'
   const versetNumber = (getDayOfYear() % 6236) + 1
 
@@ -41,14 +29,8 @@ export async function VersetDuJour({ locale }: { locale: string }) {
 
     return (
       <section className="bg-mosque-green-light py-14">
-        {/* Même conteneur que Actualités : mx-auto max-w-7xl px-4 (aucune colonne plus étroite) */}
         <div className="mx-auto max-w-7xl px-4">
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-mosque-green md:text-3xl">
-              {isAr ? 'آية اليوم' : 'Verset du jour'}
-            </h2>
-            <div className="mt-2 h-1 w-12 rounded-full bg-mosque-green/30" />
-          </div>
+          <HeadingBlock title={isAr ? 'آية اليوم' : 'Verset du jour'} isRtl={isAr} />
 
           <div className="text-center">
             <p

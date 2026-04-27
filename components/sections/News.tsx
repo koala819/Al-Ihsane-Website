@@ -24,10 +24,10 @@ function formatDateLabel(article: SanityNewsArticle): string {
   }
 }
 
-export function NewsSection({
+export const NewsSection = ({
   cmsArticles = [],
   variant = 'home',
-}: NewsProps) {
+}: NewsProps) => {
   const t = useTranslations('news')
   const locale = useLocale()
   const isAr = locale === 'ar'
