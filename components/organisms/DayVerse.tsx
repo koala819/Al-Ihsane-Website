@@ -1,13 +1,6 @@
 import { HeadingBlock } from '@/components/molecules/HeadingBlock'
 import { AlquranResponse } from '@/types/models'
-
-
-
-function getDayOfYear(): number {
-  const now = new Date()
-  const start = new Date(now.getFullYear(), 0, 0)
-  return Math.floor((now.getTime() - start.getTime()) / 86400000)
-}
+import { getDayOfYear } from '@/lib/utils'
 
 export const DayVerse = async ({ locale }: { locale: string }) => {
   const isAr = locale === 'ar'

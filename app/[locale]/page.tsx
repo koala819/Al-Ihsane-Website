@@ -1,7 +1,6 @@
 import { getLocale } from 'next-intl/server'
 import { AssociationIntro } from '@/components/organisms/AssociationIntro'
 import { DonateAlIhsane } from '@/components/organisms/DonateAlIhsane'
-import { HadithDuJour } from '@/components/organisms/HadithDuJour'
 import { History } from '@/components/organisms/History'
 import { News } from '@/components/organisms/News'
 import { DayVerse } from '@/components/organisms/DayVerse'
@@ -24,8 +23,6 @@ export default async function HomePage() {
       <AbderrahmaneMesliYoutube locale={locale} />
 
       <DonateAlIhsane />
-
-      <HadithDuJour locale={locale} />
 
       <AssociationIntro />
 
