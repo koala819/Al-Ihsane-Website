@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server'
 
-import { CuisinePartageeView } from '@/components/sections/CuisinePartageeView'
+import { CuisinePartageeView } from '@/components/organisms/CuisinePartageeView'
 
 export const revalidate = 120
 

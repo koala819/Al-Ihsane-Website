@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server'
 
-import { ActivitiesPageSection } from '@/components/sections/ActivitiesPageSection'
+import { ActivitiesPageSection } from '@/components/organisms/ActivitiesPageSection'
 
 export const revalidate = 120
 

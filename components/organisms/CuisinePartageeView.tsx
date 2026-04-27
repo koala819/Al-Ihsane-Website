@@ -3,7 +3,7 @@
 import { useLocale, useTranslations } from 'next-intl'
 
 import { PageBreadcrumb } from '@/components/molecules/PageBreadcrumb'
-import { SharedKitchenSection } from '@/components/sections/SharedKitchenSection'
+import { SharedKitchenSection } from '@/components/organisms/SharedKitchenSection'
 import { cn } from '@/lib/utils'
 
 /**

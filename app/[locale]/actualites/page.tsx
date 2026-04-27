@@ -1,7 +1,7 @@
 import { getLocale, getTranslations } from 'next-intl/server'
 
 import { PageBreadcrumb } from '@/components/molecules/PageBreadcrumb'
-import { NewsSection } from '@/components/sections/News'
+import { NewsSection } from '@/components/organisms/News'
 import { getNewsArticlesFull } from '@/lib/sanity/queries'
 
 export const revalidate = 120

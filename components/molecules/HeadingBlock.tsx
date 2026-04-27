@@ -7,6 +7,7 @@ type SectionHeaderProps = {
   as?: 'h1' | 'h2'
   isRtl?: boolean
   className?: string
+  children?: React.ReactNode
 }
 
 export const HeadingBlock = ({
@@ -14,6 +15,7 @@ export const HeadingBlock = ({
   as = 'h2',
   isRtl = false,
   className,
+  children,
 }: SectionHeaderProps) => {
   const HeadingTag = as
 
@@ -23,6 +25,7 @@ export const HeadingBlock = ({
         {title}
       </HeadingTag>
       <div className={cn('mt-2 h-1 w-12 rounded-full bg-mosque-green/30', isRtl && 'ms-auto')} />
+      {children}
     </header>
   )
 }

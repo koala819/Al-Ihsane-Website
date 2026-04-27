@@ -4,7 +4,7 @@ import { getMessages } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { Footer } from '@/components/molecules/Footer'
 import { Navbar } from '@/components/molecules/Navbar'
-import { PrayerTimes } from '@/components/sections/PrayerTimes'
+import { PrayerTimes } from '@/components/organisms/PrayerTimes'
 import GoogleAnalytics from '@/components/util/GoogleAnalytics'
 import SetLocaleAttributes from '@/components/util/SetLocaleAttributes'
 
