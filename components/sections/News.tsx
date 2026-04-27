@@ -3,7 +3,6 @@
 import { useLocale, useTranslations } from 'next-intl'
 
 import { ActuCard } from '@/components/molecules/ActuCard'
-import { PortableArticleBody } from '@/components/portable/PortableArticleBody'
 import { Button } from '@/components/ui/button'
 import { Link } from '@/i18n/navigation'
 import { cn } from '@/lib/utils'
@@ -74,16 +73,12 @@ export function NewsSection({
                   title={title}
                   date={date}
                   preview={excerpt}
+                  body={body}
+                  dir={isAr ? 'rtl' : 'ltr'}
                   isAr={isAr}
                   imageUrl={imageUrl}
                   imageAlt={img?.alt ?? title}
-                >
-                  {body?.length ? (
-                    <PortableArticleBody value={body} dir={isAr ? 'rtl' : 'ltr'} />
-                  ) : (
-                    excerpt && <p>{excerpt}</p>
-                  )}
-                </ActuCard>
+                />
               )
             })
           ) : (

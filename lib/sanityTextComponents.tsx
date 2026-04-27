@@ -1,9 +1,6 @@
-'use client'
+import type { PortableTextComponents } from '@portabletext/react'
 
-import { PortableText, type PortableTextComponents } from '@portabletext/react'
-import type { PortableTextBlock } from '@portabletext/types'
-
-const components: PortableTextComponents = {
+export const sanityTextComponents: PortableTextComponents = {
   block: {
     normal: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
     h3: ({ children }) => (
@@ -23,25 +20,14 @@ const components: PortableTextComponents = {
       const href = value?.href as string | undefined
       if (!href) return <>{children}</>
       return (
-        <a href={href} className="font-medium text-mosque-green underline underline-offset-2 hover:opacity-90" rel="noopener noreferrer">
+        <a
+          href={href}
+          className="font-medium text-mosque-green underline underline-offset-2 hover:opacity-90"
+          rel="noopener noreferrer"
+        >
           {children}
         </a>
       )
     },
   },
-}
-
-export function PortableArticleBody({
-  value,
-  dir,
-}: {
-  value: PortableTextBlock[] | null | undefined
-  dir: 'ltr' | 'rtl'
-}) {
-  if (!value?.length) return null
-  return (
-    <div dir={dir} className="text-sm leading-relaxed text-foreground">
-      <PortableText value={value} components={components} />
-    </div>
-  )
 }

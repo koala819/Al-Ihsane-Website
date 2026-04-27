@@ -1,10 +1,14 @@
 'use client'
 
 import { useState } from 'react'
+import { PortableText } from '@portabletext/react'
+import type { PortableTextBlock } from '@portabletext/types'
 import { Calendar, ChevronDown, ChevronUp } from 'lucide-react'
 import Image from 'next/image'
+
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card'
+import { sanityTextComponents } from '@/lib/sanityTextComponents'
 
 const ISLAMIC_PATTERN = `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.12'%3E%3Cpath d='M30 0l5 10H25L30 0zm0 60l5-10H25l5 10zM0 30l10-5v10L0 30zm60 0l-10-5v10L60 30zM15 15l5 5-5 5-5-5 5-5zm30 0l5 5-5 5-5-5 5-5zm-30 30l5 5-5 5-5-5 5-5zm30 0l5 5-5 5-5-5 5-5z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
 
@@ -13,7 +17,8 @@ type ActuCardProps = {
   title: string
   date: string
   preview: string
-  children: React.ReactNode
+  body?: PortableTextBlock[] | null
+  dir: 'ltr' | 'rtl'
   isAr: boolean
   imageUrl?: string | null
   imageAlt?: string
@@ -24,7 +29,8 @@ export function ActuCard({
   title,
   date,
   preview,
-  children,
+  body,
+  dir,
   isAr,
   imageUrl,
   imageAlt,
@@ -74,7 +80,13 @@ export function ActuCard({
         {!expanded ? (
           <p className="line-clamp-3 flex-1 text-sm leading-relaxed text-muted-foreground">{preview}</p>
         ) : (
-          <div className="flex-1 space-y-2 text-sm leading-relaxed text-foreground">{children}</div>
+          <div dir={dir} className="flex-1 text-sm leading-relaxed text-foreground">
+            {body?.length ? (
+              <PortableText value={body} components={sanityTextComponents} />
+            ) : (
+              <p>{preview}</p>
+            )}
+          </div>
         )}
       </CardContent>
 
