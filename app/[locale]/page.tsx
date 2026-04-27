@@ -1,6 +1,6 @@
 import { getLocale } from 'next-intl/server'
 import { AssociationIntro } from '@/components/organisms/AssociationIntro'
-import { DonateCta } from '@/components/organisms/DonateCta'
+import { DonateAlIhsane } from '@/components/organisms/DonateAlIhsane'
 import { HadithDuJour } from '@/components/organisms/HadithDuJour'
 import { History } from '@/components/organisms/History'
 import { NewsSection } from '@/components/organisms/News'
@@ -17,15 +17,13 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* Actus */}
       <NewsSection cmsArticles={cmsArticles} />
 
       <VersetDuJour locale={locale} />
 
       <AbderrahmaneMesliYoutube locale={locale} />
 
-      {/* Soutenir la mosquée */}
-      <DonateCta />
+      <DonateAlIhsane />
 
       <HadithDuJour locale={locale} />
 
