@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server'
 
-import { CuisinePartageeView } from '@/components/organisms/CuisinePartageeView'
+import { SharedKitchen } from '@/components/organisms/SharedKitchen'
 
 export const revalidate = 120
 
@@ -16,6 +16,8 @@ export async function generateMetadata({
   }
 }
 
-export default function CuisinePartageePage() {
-  return <CuisinePartageeView />
+export const CuisinePartageePage = () => {
+  return <SharedKitchen />
 }
+
+export default CuisinePartageePage
