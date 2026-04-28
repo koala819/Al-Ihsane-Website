@@ -29,8 +29,7 @@ export const News = ({
   variant = 'home',
 }: NewsProps) => {
   const t = useTranslations('news')
-  const locale = useLocale()
-  const isAr = locale === 'ar'
+  const isAr = useLocale() === 'ar'
 
   const useCms = cmsArticles.length > 0
   const isHome = variant === 'home'

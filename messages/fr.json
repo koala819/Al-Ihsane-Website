@@ -118,6 +118,10 @@
     "emptyMessage": "Retrouvez les dernières récitations sur YouTube.",
     "openChannel": "Ouvrir la chaîne"
   },
+  "dayVerse": {
+    "title": "Verset du jour",
+    "reference": "Sourate {surah} ({surahNumber}:{ayahNumber})"
+  },
   "contact": {
     "title": "Contact",
     "address": "7 CHEMIN DE LA PLAINE\n31770 COLOMIERS",

@@ -1,9 +1,11 @@
 import { HeadingBlock } from '@/components/molecules/HeadingBlock'
+import { getTranslations } from 'next-intl/server'
 import { AlquranResponse } from '@/types/models'
 import { getDayOfYear } from '@/lib/utils'
 
 export const DayVerse = async ({ locale }: { locale: string }) => {
   const isAr = locale === 'ar'
+  const t = await getTranslations({ locale, namespace: 'dayVerse' })
   const versetNumber = (getDayOfYear() % 6236) + 1
 
   try {
@@ -18,12 +20,16 @@ export const DayVerse = async ({ locale }: { locale: string }) => {
     const [arabic, french] = json.data
     const ref = isAr
       ? `${arabic.surah.name} (${arabic.surah.number}:${arabic.numberInSurah})`
-      : `Sourate ${arabic.surah.englishName} (${arabic.surah.number}:${arabic.numberInSurah})`
+      : t('reference', {
+          surah: arabic.surah.englishName,
+          surahNumber: arabic.surah.number,
+          ayahNumber: arabic.numberInSurah,
+        })
 
     return (
       <section className="bg-mosque-green-light py-14">
         <div className="mx-auto max-w-7xl px-4">
-          <HeadingBlock title={isAr ? 'آية اليوم' : 'Verset du jour'} isRtl={isAr} />
+          <HeadingBlock title={t('title')} isRtl={isAr} />
 
           <div className="text-center">
             <p

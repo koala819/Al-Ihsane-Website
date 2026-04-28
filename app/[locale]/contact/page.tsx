@@ -25,8 +25,7 @@ import * as yup from 'yup'
 export const ContactPage = () => {
   const t = useTranslations('contact')
   const tCommon = useTranslations('activitiesPage')
-  const locale = useLocale()
-  const isAr = locale === 'ar'
+  const isAr = useLocale() === 'ar'
   const [hideForm, setHideForm] = useState(false)
 
   const schema = useMemo(

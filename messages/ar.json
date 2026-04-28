@@ -118,6 +118,10 @@
     "emptyMessage": "تابع أحدث التلاوات على يوتيوب.",
     "openChannel": "فتح القناة"
   },
+  "dayVerse": {
+    "title": "آية اليوم",
+    "reference": "{surah} ({surahNumber}:{ayahNumber})"
+  },
   "contact": {
     "title": "اتصل بنا",
     "address": "٧ طريق بلاين\n31770 كولومير",

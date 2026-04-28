@@ -17,8 +17,7 @@ const HELLOASSO_URL = 'https://www.helloasso.com'
 export const DonPage = () => {
   const t = useTranslations('donate')
   const tNav = useTranslations('nav')
-  const locale = useLocale()
-  const isAr = locale === 'ar'
+  const isAr = useLocale() === 'ar'
 
   return (
     <section className="mx-auto max-w-3xl px-4 py-12 md:py-20">

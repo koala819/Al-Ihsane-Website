@@ -39,8 +39,7 @@ function isPlausibleGoogleBrowserApiKey(key: string): boolean {
 
 export const SharedKitchen = () => {
   const t = useTranslations('activitiesPage')
-  const locale = useLocale()
-  const isAr = locale === 'ar'
+  const isAr = useLocale() === 'ar'
   const embedUrl =
     typeof process.env.NEXT_PUBLIC_KITCHEN_CALENDAR_EMBED_URL === 'string'
       ? process.env.NEXT_PUBLIC_KITCHEN_CALENDAR_EMBED_URL.trim()
@@ -203,7 +202,7 @@ export const SharedKitchen = () => {
                 <KitchenGoogleCalendar
                   apiKey={apiKey}
                   calendarId={calendarId}
-                  language={locale === 'fr' ? 'FR' : 'EN'}
+                  language={isAr ? 'EN' : 'FR'}
                 />
               </div>
             ) : showIframe ? (

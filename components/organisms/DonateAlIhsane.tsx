@@ -15,8 +15,7 @@ const VERSE_REF_AR = 'سورة سبأ (34:39)'
 export const DonateAlIhsane = () => {
   const t = useTranslations('donate')
   const tNav = useTranslations('nav')
-  const locale = useLocale()
-  const isAr = locale === 'ar'
+  const isAr = useLocale() === 'ar'
 
   return (
     <section className="bg-mosque-gold-light/80 py-14 dark:bg-mosque-gold-light/40">

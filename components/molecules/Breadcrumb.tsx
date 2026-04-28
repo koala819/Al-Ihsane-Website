@@ -24,8 +24,7 @@ export const Breadcrumb = (
     className?: string
   }
 ) => {
-  const locale = useLocale()
-  const isAr = locale === 'ar'
+  const isAr = useLocale() === 'ar'
 
   if (!items.length) return null
 
