@@ -102,3 +102,5 @@ export const DonPage = () => {
     </section>
   )
 }
+
+export default DonPage

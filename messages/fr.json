@@ -122,6 +122,50 @@
     "title": "Verset du jour",
     "reference": "Sourate {surah} ({surahNumber}:{ayahNumber})"
   },
+  "mentionsPage": {
+    "title": "Mentions légales",
+    "publisher": {
+      "title": "Éditeur du site",
+      "siteNameLabel": "Nom du site",
+      "siteNameValue": "Al Ihsane",
+      "siretLabel": "Numéro de Siret",
+      "siretValue": "xxxxxxxxxx",
+      "legalFormLabel": "Forme juridique",
+      "legalFormValue": "Association loi 1901 déclarée",
+      "headOfficeLabel": "Siège social",
+      "headOfficeValue": "7 Chemin de la Plaine, 31770 Colomiers",
+      "phoneLabel": "Téléphone",
+      "phoneValue": "05 61 30 26 50",
+      "emailLabel": "Email de contact",
+      "emailValue": "3cmc@live.fr",
+      "websiteLabel": "Site web",
+      "websiteValue": "https://mosqueedecolomiers.com/",
+      "websiteHref": "https://mosqueedecolomiers.com/",
+      "publicationDirectorLabel": "Directeur de la publication",
+      "publicationDirectorValue": "Al Ihsane",
+      "activityLabel": "Activité",
+      "activityValue": "Association Culturelle et Cultuelle — Mosquée de Colomiers"
+    },
+    "hosting": {
+      "title": "Hébergement",
+      "companyLabel": "Société",
+      "companyValue": "Ligne Web Services (LWS)",
+      "legalFormLabel": "Forme juridique",
+      "legalFormValue": "Société par actions simplifiée (SAS)",
+      "rcsLabel": "RCS",
+      "rcsValue": "Épinal 851 993 683",
+      "addressLabel": "Adresse",
+      "addressValue": "2 rue Jules Ferry, 88190 Golbey, France",
+      "phoneLabel": "Téléphone",
+      "phoneValue": "01 77 62 30 03",
+      "websiteLabel": "Site web",
+      "websiteValue": "www.lws.fr"
+    },
+    "cookies": {
+      "title": "Cookies",
+      "text": "Ce site peut utiliser des cookies à des fins de mesure d'audience (Google Analytics). Aucune donnée personnelle n'est collectée à votre insu."
+    }
+  },
   "contact": {
     "title": "Contact",
     "address": "7 CHEMIN DE LA PLAINE\n31770 COLOMIERS",

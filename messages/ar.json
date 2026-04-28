@@ -122,6 +122,50 @@
     "title": "آية اليوم",
     "reference": "{surah} ({surahNumber}:{ayahNumber})"
   },
+  "mentionsPage": {
+    "title": "الإشعارات القانونية",
+    "publisher": {
+      "title": "ناشر الموقع",
+      "siteNameLabel": "اسم الموقع",
+      "siteNameValue": "الإحسان",
+      "siretLabel": "رقم SIRET",
+      "siretValue": "xxxxxxxxxx",
+      "legalFormLabel": "الشكل القانوني",
+      "legalFormValue": "جمعية مصرح بها وفق قانون 1901",
+      "headOfficeLabel": "المقر الاجتماعي",
+      "headOfficeValue": "7 Chemin de la Plaine، 31770 Colomiers",
+      "phoneLabel": "الهاتف",
+      "phoneValue": "05 61 30 26 50",
+      "emailLabel": "البريد الإلكتروني للتواصل",
+      "emailValue": "3cmc@live.fr",
+      "websiteLabel": "الموقع الإلكتروني",
+      "websiteValue": "https://mosqueedecolomiers.com/",
+      "websiteHref": "https://mosqueedecolomiers.com/",
+      "publicationDirectorLabel": "مدير النشر",
+      "publicationDirectorValue": "الإحسان",
+      "activityLabel": "النشاط",
+      "activityValue": "جمعية ثقافية ودينية — مسجد كولومير"
+    },
+    "hosting": {
+      "title": "الاستضافة",
+      "companyLabel": "الشركة",
+      "companyValue": "Ligne Web Services (LWS)",
+      "legalFormLabel": "الشكل القانوني",
+      "legalFormValue": "شركة مساهمة مبسطة (SAS)",
+      "rcsLabel": "RCS",
+      "rcsValue": "Epinal 851 993 683",
+      "addressLabel": "العنوان",
+      "addressValue": "2 rue Jules Ferry, 88190 Golbey, France",
+      "phoneLabel": "الهاتف",
+      "phoneValue": "01 77 62 30 03",
+      "websiteLabel": "الموقع الإلكتروني",
+      "websiteValue": "www.lws.fr"
+    },
+    "cookies": {
+      "title": "ملفات تعريف الارتباط",
+      "text": "قد يستخدم هذا الموقع ملفات تعريف الارتباط لأغراض قياس الجمهور (Google Analytics). لا يتم جمع أي بيانات شخصية دون علمكم."
+    }
+  },
   "contact": {
     "title": "اتصل بنا",
     "address": "٧ طريق بلاين\n31770 كولومير",
