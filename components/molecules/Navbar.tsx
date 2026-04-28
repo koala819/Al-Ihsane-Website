@@ -1,32 +1,18 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { Menu } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
 import { LangSwitcher } from '@/components/atoms/LangSwitcher'
 import { Logo } from '@/components/atoms/Logo'
+import { NavbarMobileSheet } from '@/components/molecules/NavbarMobileSheet'
 import { Button } from '@/components/ui/button'
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-  SheetClose,
-} from '@/components/ui/sheet'
-import { Separator } from '@/components/ui/separator'
 import { Link } from '@/i18n/navigation'
+import { cn } from '@/lib/utils'
 
-export function Navbar() {
+export const Navbar = () => {
   const t = useTranslations('nav')
   const pathname = usePathname()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
 
   const navLinks = [
     { href: '/', label: t('mosque') },
@@ -51,7 +37,6 @@ export function Navbar() {
             <Logo className="h-9 w-auto max-w-[140px] rounded-md bg-white p-0.5 object-contain shadow-sm ring-1 ring-white/20" />
           </Link>
 
-          {/* Desktop nav */}
           <nav className="hidden items-center gap-1 md:flex">
             {navLinks.map(({ href, label }) => {
               const active = isActive(href)
@@ -59,13 +44,13 @@ export function Navbar() {
                 <Link
                   key={href}
                   href={href}
-                  className={[
+                  className={cn(
                     'relative px-3 py-1.5 text-sm font-semibold transition-opacity',
                     'after:absolute after:bottom-0 after:left-3 after:right-3 after:h-0.5 after:rounded-full after:bg-white after:transition-transform after:duration-200',
                     active
                       ? 'opacity-100 after:scale-x-100'
                       : 'opacity-75 hover:opacity-100 after:scale-x-0 hover:after:scale-x-100',
-                  ].join(' ')}
+                  )}
                   aria-current={active ? 'page' : undefined}
                 >
                   {label}
@@ -86,76 +71,11 @@ export function Navbar() {
             <LangSwitcher />
           </div>
 
-          {/* Mobile burger */}
-          {!mounted ? (
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-9 w-9 text-white hover:bg-white/10 md:hidden"
-              aria-label="Ouvrir le menu"
-              disabled
-            >
-              <Menu className="h-5 w-5" />
-            </Button>
-          ) : (
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-9 w-9 text-white hover:bg-white/10 md:hidden"
-                  aria-label="Ouvrir le menu"
-                >
-                  <Menu className="h-5 w-5" />
-                </Button>
-              </SheetTrigger>
-              <SheetContent
-                side="left"
-                className="w-72 border-r-mosque-green/20 bg-mosque-green p-0 text-white"
-              >
-                <SheetHeader className="border-b border-white/10 px-6 py-4">
-                  <SheetTitle className="flex items-center text-white">
-                    <Logo className="h-9 w-auto max-w-[160px] rounded-md bg-white p-0.5 object-contain shadow-sm ring-1 ring-white/20" />
-                  </SheetTitle>
-                </SheetHeader>
-
-                <nav className="flex flex-col gap-1 px-4 py-4">
-                  {navLinks.map(({ href, label }) => {
-                    const active = isActive(href)
-                    return (
-                      <SheetClose asChild key={href}>
-                        <Link
-                          href={href}
-                          aria-current={active ? 'page' : undefined}
-                          className={[
-                            'rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors',
-                            active
-                              ? 'bg-white/15 text-white'
-                              : 'text-white/80 hover:bg-white/10 hover:text-white',
-                          ].join(' ')}
-                        >
-                          {label}
-                        </Link>
-                      </SheetClose>
-                    )
-                  })}
-                  <SheetClose asChild>
-                    <Link href="/don">
-                      <Button className="mt-1 w-full bg-mosque-gold text-white hover:bg-mosque-gold-hover">
-                        {t('donate')}
-                      </Button>
-                    </Link>
-                  </SheetClose>
-                </nav>
-
-                <Separator className="bg-white/10" />
-
-                <div className="px-4 py-4">
-                  <LangSwitcher />
-                </div>
-              </SheetContent>
-            </Sheet>
-          )}
+          <NavbarMobileSheet
+            navLinks={navLinks}
+            isActive={isActive}
+            donateLabel={t('donate')}
+          />
         </div>
       </div>
     </header>
