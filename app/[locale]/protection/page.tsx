@@ -1,58 +1,57 @@
 import Link from 'next/link'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
+import { getTranslations } from 'next-intl/server'
 
-export default function Page() {
+import { HeadingBlock } from '@/components/molecules/HeadingBlock'
+import { Link as I18nLink } from '@/i18n/navigation'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+
+export const ProtectionPage = async ({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}) => {
+  const { locale } = await params
+  const isAr = locale === 'ar'
+  const t = await getTranslations({ locale, namespace: 'protectionPage' })
+
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 md:py-16">
-      <header className="mb-10 text-center">
-        <h1 className="font-display text-3xl font-normal text-mosque-green md:text-4xl">
-          Protection des données personnelles
-        </h1>
-        <Separator className="mx-auto mt-4 max-w-16 bg-mosque-green/30" />
-      </header>
+      <HeadingBlock title={t('title')} isRtl={isAr} />
 
       <div className="space-y-6">
         <Card className="border-mosque-green/10 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg text-mosque-green">Notre engagement</CardTitle>
+            <CardTitle className="text-lg text-mosque-green">{t('commitment.title')}</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Al Ihsane est soucieux de la protection des données personnelles. Nous nous engageons
-              à assurer le meilleur niveau de protection à vos données personnelles en conformité
-              avec la loi applicable et le{' '}
+              {t('commitment.textBefore')}{' '}
               <Link
                 href="https://www.cnil.fr/fr/reglement-europeen-protection-donnees"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="text-mosque-green underline-offset-2 hover:underline"
               >
-                règlement général sur la protection des données personnelles (RGPD)
+                {t('commitment.rgpdLinkLabel')}
               </Link>
-              .
+              {t('commitment.textAfter')}
             </p>
           </CardContent>
         </Card>
 
         <Card className="border-mosque-green/10 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg text-mosque-green">
-              Responsable du traitement
-            </CardTitle>
+            <CardTitle className="text-lg text-mosque-green">{t('controller.title')}</CardTitle>
           </CardHeader>
           <CardContent>
             <dl className="space-y-3 text-sm">
               <div className="flex flex-col gap-0.5 sm:flex-row sm:gap-2">
-                <dt className="font-semibold text-foreground">Organisation&nbsp;:</dt>
-                <dd className="text-muted-foreground">
-                  Centre Culturel et Cultuel de Colomiers — Mosquée Al Ihsane
-                </dd>
+                <dt className="font-semibold text-foreground">{t('controller.organizationLabel')}&nbsp;:</dt>
+                <dd className="text-muted-foreground">{t('controller.organizationValue')}</dd>
               </div>
               <div className="flex flex-col gap-0.5 sm:flex-row sm:gap-2">
-                <dt className="font-semibold text-foreground">Adresse&nbsp;:</dt>
-                <dd className="text-muted-foreground">
-                  7 Chemin de la Plaine — 31770 Colomiers, France
-                </dd>
+                <dt className="font-semibold text-foreground">{t('controller.addressLabel')}&nbsp;:</dt>
+                <dd className="text-muted-foreground">{t('controller.addressValue')}</dd>
               </div>
             </dl>
           </CardContent>
@@ -60,29 +59,26 @@ export default function Page() {
 
         <Card className="border-mosque-green/10 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg text-mosque-green">Données collectées</CardTitle>
+            <CardTitle className="text-lg text-mosque-green">{t('collectedData.title')}</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Les données collectées via le formulaire de contact (nom, adresse e-mail, message)
-              sont utilisées exclusivement pour répondre à vos demandes. Elles ne sont ni
-              revendues ni transmises à des tiers.
+              {t('collectedData.text')}
             </p>
           </CardContent>
         </Card>
 
         <Card className="border-mosque-green/10 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg text-mosque-green">Vos droits</CardTitle>
+            <CardTitle className="text-lg text-mosque-green">{t('rights.title')}</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Conformément au RGPD, vous disposez d&apos;un droit d&apos;accès, de rectification et de
-              suppression de vos données. Pour exercer ces droits, contactez-nous via la{' '}
-              <Link href="/contact" className="text-mosque-green underline-offset-2 hover:underline">
-                page contact
-              </Link>
-              .
+              {t('rights.textBefore')}{' '}
+              <I18nLink href="/contact" className="text-mosque-green underline-offset-2 hover:underline">
+                {t('rights.contactLinkLabel')}
+              </I18nLink>
+              {t('rights.textAfter')}
             </p>
           </CardContent>
         </Card>
@@ -90,3 +86,5 @@ export default function Page() {
     </div>
   )
 }
+
+export default ProtectionPage

@@ -166,6 +166,32 @@
       "text": "Ce site peut utiliser des cookies à des fins de mesure d'audience (Google Analytics). Aucune donnée personnelle n'est collectée à votre insu."
     }
   },
+  "protectionPage": {
+    "title": "Protection des données personnelles",
+    "commitment": {
+      "title": "Notre engagement",
+      "textBefore": "Al Ihsane est soucieux de la protection des données personnelles. Nous nous engageons à assurer le meilleur niveau de protection à vos données personnelles en conformité avec la loi applicable et le",
+      "rgpdLinkLabel": "règlement général sur la protection des données personnelles (RGPD)",
+      "textAfter": "."
+    },
+    "controller": {
+      "title": "Responsable du traitement",
+      "organizationLabel": "Organisation",
+      "organizationValue": "Centre Culturel et Cultuel de Colomiers — Mosquée Al Ihsane",
+      "addressLabel": "Adresse",
+      "addressValue": "7 Chemin de la Plaine — 31770 Colomiers, France"
+    },
+    "collectedData": {
+      "title": "Données collectées",
+      "text": "Les données collectées via le formulaire de contact (nom, adresse e-mail, message) sont utilisées exclusivement pour répondre à vos demandes. Elles ne sont ni revendues ni transmises à des tiers."
+    },
+    "rights": {
+      "title": "Vos droits",
+      "textBefore": "Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données. Pour exercer ces droits, contactez-nous via la",
+      "contactLinkLabel": "page contact",
+      "textAfter": "."
+    }
+  },
   "contact": {
     "title": "Contact",
     "address": "7 CHEMIN DE LA PLAINE\n31770 COLOMIERS",
