@@ -14,10 +14,11 @@ import { Separator } from '@/components/ui/separator'
 
 const HELLOASSO_URL = 'https://www.helloasso.com'
 
-export default function DonPage() {
+export const DonPage = () => {
   const t = useTranslations('donate')
   const tNav = useTranslations('nav')
   const locale = useLocale()
+  const isAr = locale === 'ar'
 
   return (
     <section className="mx-auto max-w-3xl px-4 py-12 md:py-20">
@@ -55,7 +56,7 @@ export default function DonPage() {
       {/* Hadith */}
       <Card className="mb-10 border-mosque-green/20 bg-mosque-green-light shadow-none">
         <CardContent className="py-5">
-          {locale === 'ar' ? (
+          {isAr ? (
             <p className="font-arabic text-xl leading-relaxed text-mosque-green" dir="rtl">
               {t('hadith')}
             </p>
