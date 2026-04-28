@@ -1,5 +1,6 @@
 'use client'
 
+import { Fragment } from 'react'
 import { useLocale } from 'next-intl'
 
 import {
@@ -38,16 +39,18 @@ export const Breadcrumb = (
         {items.map((item, idx) => {
           const isLast = idx === items.length - 1
           return (
-            <BreadcrumbItem key={`${item.label}-${idx}`}>
-              {item.href && !isLast ? (
-                <BreadcrumbLink asChild className="font-medium hover:text-mosque-green">
-                  <Link href={item.href}>{item.label}</Link>
-                </BreadcrumbLink>
-              ) : (
-                <BreadcrumbPage className="font-semibold">{item.label}</BreadcrumbPage>
-              )}
+            <Fragment key={`${item.label}-${idx}`}>
+              <BreadcrumbItem>
+                {item.href && !isLast ? (
+                  <BreadcrumbLink asChild className="font-medium hover:text-mosque-green">
+                    <Link href={item.href}>{item.label}</Link>
+                  </BreadcrumbLink>
+                ) : (
+                  <BreadcrumbPage className="font-semibold">{item.label}</BreadcrumbPage>
+                )}
+              </BreadcrumbItem>
               {!isLast && <BreadcrumbSeparator className="text-mosque-green/35" />}
-            </BreadcrumbItem>
+            </Fragment>
           )
         })}
       </BreadcrumbList>

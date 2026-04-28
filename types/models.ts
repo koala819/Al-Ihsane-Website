@@ -1,4 +1,15 @@
 import type { SanityNewsArticle } from '@/lib/sanity/queries'
+import { LucideIcon } from 'lucide-react'
+
+export type ActivityCardConfig = {
+  id: 'school' | 'kitchen'
+  title: string
+  body: string
+  icon: LucideIcon
+  href?: string
+  ctaLabel?: string
+  showConstructionNotice?: boolean
+}
 
 interface AlquranAyah {
     number: number
