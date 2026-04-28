@@ -11,8 +11,7 @@ import { ActivityCardConfig } from '@/types/models'
 
 export const Activities = () => {
   const t = useTranslations('activitiesPage')
-  const locale = useLocale()
-  const isAr = locale === 'ar'
+  const isAr = useLocale() === 'ar'
 
   const activities = useMemo<ActivityCardConfig[]>(
     () => [
