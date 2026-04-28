@@ -14,7 +14,7 @@ const LINK_CLASS =
 const LEGAL_LINK_CLASS =
   'text-xs text-mosque-green/80 underline-offset-2 transition-colors hover:text-mosque-green hover:underline dark:text-mosque-green/88'
 
-export function Footer() {
+export const Footer = () => {
   const t = useTranslations('footer')
   const tNav = useTranslations('nav')
   const tContact = useTranslations('contact')
