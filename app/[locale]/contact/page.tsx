@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useLocale, useTranslations } from 'next-intl'
@@ -22,27 +22,28 @@ import { cn } from '@/lib/utils'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 
-export default function ContactPage() {
+export const ContactPage = () => {
   const t = useTranslations('contact')
   const tCommon = useTranslations('activitiesPage')
   const locale = useLocale()
   const isAr = locale === 'ar'
   const [hideForm, setHideForm] = useState(false)
 
-  const addressLine = isAr ? t('addressAr') : t('address')
-  const phoneLine = isAr ? t('phoneAr') : t('phone')
-
-  const schema = yup.object().shape({
-    email: yup
-      .string()
-      .required("L'e-mail est obligatoire")
-      .matches(
-        /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-        "L'e-mail n'est pas valide",
-      ),
-    first_name: yup.string().required('Veuillez saisir votre nom'),
-    msg: yup.string().required('Veuillez saisir votre message'),
-  })
+  const schema = useMemo(
+    () =>
+      yup.object({
+        email: yup
+          .string()
+          .required(t('validation.emailRequired'))
+          .matches(
+            /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+            t('validation.emailInvalid'),
+          ),
+        firstName: yup.string().required(t('validation.nameRequired')),
+        message: yup.string().required(t('validation.messageRequired')),
+      }),
+    [t],
+  )
 
   const {
     control,
@@ -53,34 +54,28 @@ export default function ContactPage() {
   })
 
   async function handleSendMail(values: {
-    first_name: string
+    firstName: string
     email: string
-    msg: string
+    message: string
   }) {
-    const options = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        firstName: values.first_name,
-        email: values.email,
-        message: values.msg,
-      }),
-    }
+    try {
+      const baseUrl = typeof window !== 'undefined' ? window.location.origin : ''
+      const response = await fetch(`${baseUrl}/api/mail`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      })
 
-    const baseUrl =
-      typeof window !== 'undefined' ? window.location.origin : ''
-    fetch(`${baseUrl}/api/mail`, options)
-      .then((response) => {
-        if (response.status === 200) {
-          toast.success(t('successMessage'))
-          setHideForm(true)
-        } else {
-          toast.error("Une erreur s'est produite")
-        }
-      })
-      .catch(() => {
-        toast.error("Une erreur s'est produite")
-      })
+      if (!response.ok) {
+        toast.error(t('sendError'))
+        return
+      }
+
+      toast.success(t('successMessage'))
+      setHideForm(true)
+    } catch {
+      toast.error(t('sendError'))
+    }
   }
 
   const inputClass =
@@ -205,7 +200,7 @@ export default function ContactPage() {
                       aria-hidden
                     />
                     <span className="whitespace-pre-line text-foreground">
-                      {addressLine}
+                      {t('address')}
                     </span>
                   </p>
                   <p
@@ -219,7 +214,7 @@ export default function ContactPage() {
                       href="tel:+33561302650"
                       className="inline-flex min-h-11 items-center text-base font-medium text-mosque-green underline-offset-4 hover:underline"
                     >
-                      {phoneLine}
+                      {t('phone')}
                     </a>
                   </p>
                 </address>
@@ -270,16 +265,16 @@ export default function ContactPage() {
                     className="space-y-4 sm:space-y-5"
                   >
                     <div className="space-y-2">
-                      <Label htmlFor="first_name" className="text-sm text-muted-foreground">
+                      <Label htmlFor="firstName" className="text-sm text-muted-foreground">
                         {t('namePlaceholder')}
                       </Label>
                       <Controller
-                        name="first_name"
+                        name="firstName"
                         control={control}
                         render={({ field }) => (
                           <Input
                             {...field}
-                            id="first_name"
+                            id="firstName"
                             type="text"
                             placeholder={t('namePlaceholder')}
                             autoComplete="name"
@@ -287,9 +282,9 @@ export default function ContactPage() {
                           />
                         )}
                       />
-                      {errors.first_name && (
+                      {errors.firstName && (
                         <p className="text-sm text-destructive" role="alert">
-                          {errors.first_name.message}
+                          {errors.firstName.message}
                         </p>
                       )}
                     </div>
@@ -321,17 +316,17 @@ export default function ContactPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <Label htmlFor="msg" className="text-sm text-muted-foreground">
+                      <Label htmlFor="message" className="text-sm text-muted-foreground">
                         {t('messagePlaceholder')}
                       </Label>
                       <Controller
-                        name="msg"
+                        name="message"
                         control={control}
                         defaultValue=""
                         render={({ field }) => (
                           <Textarea
                             {...field}
-                            id="msg"
+                            id="message"
                             placeholder={t('messagePlaceholder')}
                             rows={5}
                             className={cn(
@@ -341,9 +336,9 @@ export default function ContactPage() {
                           />
                         )}
                       />
-                      {errors.msg && (
+                      {errors.message && (
                         <p className="text-sm text-destructive" role="alert">
-                          {errors.msg.message}
+                          {errors.message.message}
                         </p>
                       )}
                     </div>
@@ -365,3 +360,5 @@ export default function ContactPage() {
     </section>
   )
 }
+
+export default ContactPage

@@ -120,20 +120,25 @@
   },
   "contact": {
     "title": "اتصل بنا",
-    "address": "7 CHEMIN DE LA PLAINE\n31770 COLOMIERS",
-    "addressAr": "٧ طريق بلاين\n31770 كولومير",
-    "phone": "Tél : 05 61 30 26 50",
-    "phoneAr": "هاتف: 05 61 30 26 50",
+    "address": "٧ طريق بلاين\n31770 كولومير",
+    "phone": "هاتف: 05 61 30 26 50",
     "formTitle": "اكتب إلينا",
     "formIntro": "تفضلوا بمراسلتنا — استقبال رسالتكم أمانة نحملها بكل ودّ. نسعى للرد عليكم بإحسان، بقدر استطاعتنا، ونسأل الله أن يتقبل نياتنا ويبارك فيكم.",
     "successTitle": "تم إرسال الرسالة",
     "successMessage": "تم استلام رسالتكم. حفظكم الله.",
+    "sendError": "حدث خطأ. يرجى إعادة المحاولة.",
     "namePlaceholder": "اسمكم",
     "emailPlaceholder": "بريدكم الإلكتروني",
     "messagePlaceholder": "رسالتكم",
     "send": "إرسال",
     "mapTitle": "كيف تصل إلينا",
-    "mapLink": "فتح في خرائط Google"
+    "mapLink": "فتح في خرائط Google",
+    "validation": {
+      "emailRequired": "البريد الإلكتروني إلزامي",
+      "emailInvalid": "البريد الإلكتروني غير صالح",
+      "nameRequired": "يرجى إدخال الاسم",
+      "messageRequired": "يرجى إدخال الرسالة"
+    }
   },
   "activitiesPage": {
     "title": "أنشطتنا",
