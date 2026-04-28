@@ -10,7 +10,6 @@ export const Logo = ({
       alt="Al Ihsane — Centre Culturel et Cultuel Musulman de Colomiers"
       width={280}
       height={120}
-      loading="lazy"
       className={className}
       {...props}
     />
