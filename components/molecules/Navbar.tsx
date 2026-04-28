@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
 import { LangSwitcher } from '@/components/atoms/LangSwitcher'
-import { SiteLogo } from '@/components/atoms/SiteLogo'
+import { Logo } from '@/components/atoms/Logo'
 import { Button } from '@/components/ui/button'
 import {
   Sheet,
@@ -42,7 +42,7 @@ export function Navbar() {
             href="/"
             className="flex shrink-0 items-center transition-opacity hover:opacity-90"
           >
-            <SiteLogo className="h-9 w-auto max-w-[140px] rounded-md bg-white p-0.5 object-contain shadow-sm ring-1 ring-white/20" />
+            <Logo className="h-9 w-auto max-w-[140px] rounded-md bg-white p-0.5 object-contain shadow-sm ring-1 ring-white/20" />
           </Link>
 
           {/* Desktop nav */}
@@ -98,7 +98,7 @@ export function Navbar() {
             >
               <SheetHeader className="border-b border-white/10 px-6 py-4">
                 <SheetTitle className="flex items-center text-white">
-                  <SiteLogo className="h-9 w-auto max-w-[160px] rounded-md bg-white p-0.5 object-contain shadow-sm ring-1 ring-white/20" />
+                  <Logo className="h-9 w-auto max-w-[160px] rounded-md bg-white p-0.5 object-contain shadow-sm ring-1 ring-white/20" />
                 </SheetTitle>
               </SheetHeader>
 

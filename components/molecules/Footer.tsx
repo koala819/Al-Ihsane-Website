@@ -6,7 +6,7 @@ import { useTranslations } from 'next-intl'
 import { Link as LocaleLink } from '@/i18n/navigation'
 import { Separator } from '@/components/ui/separator'
 import { ThemeSwitcher } from '@/components/atoms/ThemeSwitcher'
-import { SiteLogo } from '@/components/atoms/SiteLogo'
+import { Logo } from '@/components/atoms/Logo'
 
 const YOUTUBE_URL = 'https://youtube.com/@abderrahmanemesli4217'
 
@@ -26,7 +26,7 @@ export function Footer() {
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
               <div className="shrink-0 rounded-xl bg-white p-1.5 shadow-sm ring-1 ring-mosque-green/10 dark:bg-white dark:ring-mosque-green/25">
-                <SiteLogo className="h-11 w-auto max-w-[120px] object-contain" />
+                <Logo className="h-11 w-auto max-w-[120px] object-contain" />
               </div>
               <div>
                 <p className="font-bold leading-tight">{t('tagline')}</p>
@@ -59,10 +59,10 @@ export function Footer() {
             </p>
             <nav className="flex flex-col gap-2.5">
               {[
-                { href: '/',            label: tNav('mosque') },
+                { href: '/', label: tNav('mosque') },
                 { href: '/activites', label: tNav('activities') },
-                { href: '/don',         label: tNav('donate') },
-                { href: '/contact',     label: tNav('contact') },
+                { href: '/don', label: tNav('donate') },
+                { href: '/contact', label: tNav('contact') },
               ].map(({ href, label }) => (
                 <LocaleLink
                   key={href}

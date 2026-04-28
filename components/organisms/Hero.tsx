@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl'
 import { Separator } from '@/components/ui/separator'
-import { SiteLogo } from '@/components/atoms/SiteLogo'
+import { Logo } from '@/components/atoms/Logo'
 
 export function Hero() {
   const t = useTranslations('home')
@@ -23,7 +23,7 @@ export function Hero() {
       <div className="relative mx-auto max-w-3xl px-4 text-center">
         <div className="mb-5 flex justify-center">
           <div className="rounded-2xl bg-white p-2 shadow-lg ring-1 ring-white/30">
-            <SiteLogo className="max-h-28 w-auto max-w-[220px] object-contain" />
+            <Logo className="max-h-28 w-auto max-w-[220px] object-contain" />
           </div>
         </div>
 
