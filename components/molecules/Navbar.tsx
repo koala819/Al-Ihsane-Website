@@ -4,7 +4,7 @@ import { Menu } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 
-import LangSwitcher from '@/components/atoms/LangSwitcher'
+import { LangSwitcher } from '@/components/atoms/LangSwitcher'
 import { SiteLogo } from '@/components/atoms/SiteLogo'
 import { Button } from '@/components/ui/button'
 import {

@@ -1,7 +1,8 @@
 'use client'
 
 import { useLocale, useTranslations } from 'next-intl'
-import { usePathname } from '@/i18n/navigation'
+import { usePathname, useRouter } from '@/i18n/navigation'
+import { cn } from '@/lib/utils'
 
 type Locale = 'fr' | 'ar'
 
@@ -10,14 +11,14 @@ const LOCALE_LABELS: Record<Locale, string> = {
   ar: 'العربية',
 }
 
-export default function LangSwitcher() {
+export const LangSwitcher = () => {
   const locale = useLocale() as Locale
   const pathname = usePathname()
+  const router = useRouter()
   const t = useTranslations('lang')
 
-  const switchLocale = (newLocale: Locale) => {
-    const path = pathname === '/' ? '' : pathname
-    window.location.href = `/${newLocale}${path}`
+  function switchLocale(newLocale: Locale) {
+    router.replace(`/${newLocale}${pathname}`)
   }
 
   return (
@@ -30,18 +31,17 @@ export default function LangSwitcher() {
         return (
           <button
             key={loc}
+            type="button"
             onClick={() => switchLocale(loc)}
             disabled={isActive}
             aria-current={isActive ? 'true' : undefined}
-            className={[
+            className={cn(
               'cursor-pointer px-3 py-1.5 text-sm font-semibold transition-colors',
               isActive
                 ? 'bg-white/25 text-white'
                 : 'bg-transparent text-white/85 hover:bg-white/10 hover:text-white',
-              loc === 'ar' ? 'font-arabic' : '',
-            ]
-              .filter(Boolean)
-              .join(' ')}
+              loc === 'ar' && 'font-arabic',
+            )}
           >
             {LOCALE_LABELS[loc]}
           </button>
