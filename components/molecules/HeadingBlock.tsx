@@ -19,10 +19,10 @@ export const HeadingBlock = ({
 
   return (
     <header className={cn('mb-8 md:mb-10', isRtl && 'text-right', className)}>
-      <HeadingTag className="text-2xl font-bold text-mosque-green md:text-3xl">
+      <HeadingTag className="text-2xl font-bold text-brand-green md:text-3xl">
         {title}
       </HeadingTag>
-      <div className={cn('mt-2 h-1 w-12 rounded-full bg-mosque-green/30', isRtl && 'ms-auto')} />
+      <div className={cn('mt-2 h-1 w-12 rounded-full bg-brand-green/30', isRtl && 'ms-auto')} />
       {children}
     </header>
   )

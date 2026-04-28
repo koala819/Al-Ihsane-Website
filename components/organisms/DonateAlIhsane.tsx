@@ -18,7 +18,7 @@ export const DonateAlIhsane = () => {
   const isAr = useLocale() === 'ar'
 
   return (
-    <section className="bg-mosque-gold-light/80 py-14 dark:bg-mosque-gold-light/40">
+    <section className="bg-brand-gold-light/80 py-14 dark:bg-brand-gold-light/40">
       <div className="mx-auto max-w-7xl px-4">
         <HeadingBlock title={t('subtitle')} isRtl={isAr} />
 
@@ -40,13 +40,13 @@ export const DonateAlIhsane = () => {
             {/* Colonne droite — verset */}
             <div
               className={cn(
-                'flex flex-col border-t border-mosque-gold/25 pt-8 md:border-t-0 md:pt-0',
+                'flex flex-col border-t border-brand-gold/25 pt-8 md:border-t-0 md:pt-0',
                 'text-center',
                 isAr ? 'md:items-end md:text-right' : 'md:items-start md:text-left',
               )}
             >
               <p
-                className="font-arabic text-xl leading-loose text-mosque-green sm:text-2xl"
+                className="font-arabic text-xl leading-loose text-brand-green sm:text-2xl"
                 dir="rtl"
                 lang="ar"
               >
@@ -63,11 +63,11 @@ export const DonateAlIhsane = () => {
             </div>
           </div>
 
-          <div className="flex justify-center border-t border-mosque-gold/25 pt-10 dark:border-mosque-gold/20">
+          <div className="flex justify-center border-t border-brand-gold/25 pt-10 dark:border-brand-gold/20">
             <Button
               asChild
               size="lg"
-              className="bg-mosque-gold text-white shadow-md transition-colors hover:bg-mosque-gold-hover"
+              className="bg-brand-gold text-white shadow-md transition-colors hover:bg-brand-gold-hover"
             >
               <Link href="/don">
                 <Heart className="me-2 h-5 w-5" />

@@ -37,21 +37,20 @@
     --chart-4: 43 45% 52%;
     --chart-5: 200 65% 48%;
 
-    /* Tokens « mosque-* » : palette bleue + fonds doux (noms inchangés pour le code existant) */
-    --mosque-green: 217 58% 32%;
-    --mosque-green-text: 217 58% 28%;
-    --mosque-green-light: 214 42% 94%;
-    --mosque-muted: 214 24% 94%;
-    --mosque-footer: 217 28% 97%;
+    /* Palette marque (naming explicite) */
+    --brand-primary: 217 58% 32%;
+    --brand-primary-text: 217 58% 28%;
+    --brand-primary-soft: 214 42% 94%;
+    --brand-muted: 214 24% 94%;
+    --brand-footer: 217 28% 97%;
 
-    /* Orange logo — boutons, filets */
-    --mosque-gold: 24 88% 46%;
-    --mosque-gold-hover: 24 88% 40%;
-    --mosque-gold-light: 32 55% 93%;
+    --brand-accent: 24 88% 46%;
+    --brand-accent-hover: 24 88% 40%;
+    --brand-accent-soft: 32 55% 93%;
 
-    /* Navigation */
-    --mosque-nav-from: 217 62% 24%;
-    --mosque-nav-to: 217 55% 34%;
+    --brand-nav-from: 217 62% 24%;
+    --brand-nav-to: 217 55% 34%;
+
   }
 
   .dark {
@@ -80,18 +79,19 @@
     --chart-4: 43 40% 62%;
     --chart-5: 200 55% 55%;
 
-    --mosque-green: 213 72% 62%;
-    --mosque-green-text: 213 55% 78%;
-    --mosque-green-light: 220 18% 13%;
-    --mosque-muted: 220 16% 15%;
-    --mosque-footer: 222 24% 6%;
+    --brand-primary: 213 72% 62%;
+    --brand-primary-text: 213 55% 78%;
+    --brand-primary-soft: 220 18% 13%;
+    --brand-muted: 220 16% 15%;
+    --brand-footer: 222 24% 6%;
 
-    --mosque-gold: 28 82% 58%;
-    --mosque-gold-hover: 28 82% 52%;
-    --mosque-gold-light: 220 16% 14%;
+    --brand-accent: 28 82% 58%;
+    --brand-accent-hover: 28 82% 52%;
+    --brand-accent-soft: 220 16% 14%;
 
-    --mosque-nav-from: 220 28% 12%;
-    --mosque-nav-to: 220 24% 16%;
+    --brand-nav-from: 220 28% 12%;
+    --brand-nav-to: 220 24% 16%;
+
   }
 
   /* Focus clavier visible (WCAG 2.4.7) */

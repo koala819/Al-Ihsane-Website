@@ -40,7 +40,7 @@ export const ActuCard = ({
   const collapseLabel = isAr ? 'طي' : 'Réduire'
 
   return (
-    <Card className="group flex h-full flex-col overflow-hidden rounded-2xl border-mosque-green/10 shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl">
+    <Card className="group flex h-full flex-col overflow-hidden rounded-2xl border-brand-green/10 shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl">
       <div className="relative h-40 overflow-hidden">
         {imageUrl ? (
           <>
@@ -56,7 +56,7 @@ export const ActuCard = ({
           </>
         ) : (
           <>
-            <div className="absolute inset-0 bg-gradient-to-br from-mosque-green via-mosque-green to-mosque-green/80 dark:from-[hsl(220,22%,14%)] dark:via-[hsl(220,20%,12%)] dark:to-[hsl(220,18%,10%)]" />
+            <div className="absolute inset-0 bg-gradient-to-br from-brand-green via-brand-green to-brand-green/80 dark:from-[hsl(220,22%,14%)] dark:via-[hsl(220,20%,12%)] dark:to-[hsl(220,18%,10%)]" />
             <div className="absolute inset-0" style={{ backgroundImage: ISLAMIC_PATTERN }} />
           </>
         )}
@@ -73,7 +73,7 @@ export const ActuCard = ({
       </div>
 
       <CardContent className="flex flex-1 flex-col px-5 pt-4 pb-0">
-        <CardTitle className="mb-3 text-lg leading-snug text-foreground transition-colors group-hover:text-mosque-green">
+        <CardTitle className="mb-3 text-lg leading-snug text-foreground transition-colors group-hover:text-brand-green">
           {title}
         </CardTitle>
 
@@ -94,7 +94,7 @@ export const ActuCard = ({
         <button
           type="button"
           onClick={() => setExpanded((v) => !v)}
-          className="mt-4 flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-mosque-gold/40 py-2 text-sm font-semibold text-mosque-gold transition-all hover:border-transparent hover:bg-mosque-gold hover:text-white"
+          className="mt-4 flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-brand-gold/40 py-2 text-sm font-semibold text-brand-gold transition-all hover:border-transparent hover:bg-brand-gold hover:text-white"
         >
           {expanded ? (
             <>

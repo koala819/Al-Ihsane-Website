@@ -16,9 +16,9 @@ export const MentionsPage = async ({
       <HeadingBlock title={t('title')} isRtl={isAr} />
 
       <div className="space-y-6">
-        <Card className="border-mosque-green/10 shadow-sm">
+        <Card className="border-brand-green/10 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg text-mosque-green">{t('publisher.title')}</CardTitle>
+            <CardTitle className="text-lg text-brand-green">{t('publisher.title')}</CardTitle>
           </CardHeader>
           <CardContent>
             <dl className="space-y-3 text-sm">
@@ -78,9 +78,9 @@ export const MentionsPage = async ({
           </CardContent>
         </Card>
 
-        <Card className="border-mosque-green/10 shadow-sm">
+        <Card className="border-brand-green/10 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg text-mosque-green">{t('hosting.title')}</CardTitle>
+            <CardTitle className="text-lg text-brand-green">{t('hosting.title')}</CardTitle>
           </CardHeader>
           <CardContent>
             <dl className="space-y-3 text-sm">
@@ -112,18 +112,18 @@ export const MentionsPage = async ({
           </CardContent>
         </Card>
 
-        <Card className="border-mosque-green/10 shadow-sm">
+        <Card className="border-brand-green/10 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg text-mosque-green">{t('cookies.title')}</CardTitle>
+            <CardTitle className="text-lg text-brand-green">{t('cookies.title')}</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm text-muted-foreground">{t('cookies.text')}</p>
           </CardContent>
         </Card>
 
-        <Card className="border-mosque-green/10 shadow-sm">
+        <Card className="border-brand-green/10 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg text-mosque-green">Directeur de la publication</CardTitle>
+            <CardTitle className="text-lg text-brand-green">Directeur de la publication</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm leading-relaxed text-muted-foreground">
@@ -132,9 +132,9 @@ export const MentionsPage = async ({
           </CardContent>
         </Card>
 
-        <Card className="border-mosque-green/10 shadow-sm">
+        <Card className="border-brand-green/10 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg text-mosque-green">
+            <CardTitle className="text-lg text-brand-green">
               Conditions générales d&apos;utilisation (CGU)
             </CardTitle>
           </CardHeader>
@@ -152,9 +152,9 @@ export const MentionsPage = async ({
           </CardContent>
         </Card>
 
-        <Card className="border-mosque-green/10 shadow-sm">
+        <Card className="border-brand-green/10 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg text-mosque-green">Utilisation du site</CardTitle>
+            <CardTitle className="text-lg text-brand-green">Utilisation du site</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm leading-relaxed text-muted-foreground">
@@ -166,9 +166,9 @@ export const MentionsPage = async ({
           </CardContent>
         </Card>
 
-        <Card className="border-mosque-green/10 shadow-sm">
+        <Card className="border-brand-green/10 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg text-mosque-green">Propriété intellectuelle</CardTitle>
+            <CardTitle className="text-lg text-brand-green">Propriété intellectuelle</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 text-sm leading-relaxed text-muted-foreground">
             <p>
@@ -183,9 +183,9 @@ export const MentionsPage = async ({
           </CardContent>
         </Card>
 
-        <Card className="border-mosque-green/10 shadow-sm">
+        <Card className="border-brand-green/10 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg text-mosque-green">Responsabilité</CardTitle>
+            <CardTitle className="text-lg text-brand-green">Responsabilité</CardTitle>
           </CardHeader>
           <CardContent className="space-y-3 text-sm leading-relaxed text-muted-foreground">
             <p>
@@ -200,9 +200,9 @@ export const MentionsPage = async ({
           </CardContent>
         </Card>
 
-        <Card className="border-mosque-green/10 shadow-sm">
+        <Card className="border-brand-green/10 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg text-mosque-green">
+            <CardTitle className="text-lg text-brand-green">
               Protection des données personnelles
             </CardTitle>
           </CardHeader>
@@ -224,9 +224,9 @@ export const MentionsPage = async ({
           </CardContent>
         </Card>
 
-        <Card className="border-mosque-green/10 shadow-sm">
+        <Card className="border-brand-green/10 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg text-mosque-green">
+            <CardTitle className="text-lg text-brand-green">
               Liens hypertextes et plateformes tierces
             </CardTitle>
           </CardHeader>

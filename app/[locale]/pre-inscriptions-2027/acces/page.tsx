@@ -85,7 +85,7 @@ export default async function PreinscriptionsAccessPage({
 
           <Button
             type="submit"
-            className="w-full bg-mosque-gold text-white transition-colors hover:bg-mosque-gold-hover"
+            className="w-full bg-brand-gold text-white transition-colors hover:bg-brand-gold-hover"
           >
             {t('submit')}
           </Button>

@@ -43,7 +43,7 @@ export const Association = () => {
   return (
     <section
       id="association"
-      className="scroll-mt-[4.5rem] border-t border-mosque-green/10 bg-background py-14"
+      className="scroll-mt-[4.5rem] border-t border-brand-green/10 bg-background py-14"
     >
       <div className="mx-auto max-w-7xl px-4">
         {/* Notre association*/}
@@ -60,11 +60,11 @@ export const Association = () => {
 
             <div
               className={cn(
-                'rounded-2xl border border-mosque-green/15 bg-mosque-green-light/50 p-5 shadow-sm dark:bg-mosque-green/10',
+                'rounded-2xl border border-brand-green/15 bg-brand-green-light/50 p-5 shadow-sm dark:bg-brand-green/10',
                 isAr && 'text-right',
               )}
             >
-              <p className="text-xs font-semibold uppercase tracking-wide text-mosque-green">
+              <p className="text-xs font-semibold uppercase tracking-wide text-brand-green">
                 {t('about.mission')}
               </p>
               <p className="mt-3 text-sm leading-relaxed text-foreground md:text-[15px]">
@@ -79,7 +79,7 @@ export const Association = () => {
           <aside className="lg:col-span-5">
             <h3
               className={cn(
-                'mb-4 text-sm font-semibold uppercase tracking-wide text-mosque-green',
+                'mb-4 text-sm font-semibold uppercase tracking-wide text-brand-green',
                 isAr && 'text-right',
               )}
             >
@@ -90,15 +90,15 @@ export const Association = () => {
                 <li
                   key={title}
                   className={cn(
-                    'flex gap-3 rounded-xl border border-mosque-green/10 bg-card p-4 shadow-sm transition-shadow hover:shadow-md',
+                    'flex gap-3 rounded-xl border border-brand-green/10 bg-card p-4 shadow-sm transition-shadow hover:shadow-md',
                     isAr && 'flex-row-reverse text-right',
                   )}
                 >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-mosque-green/10">
-                    <Icon className="h-5 w-5 text-mosque-green" aria-hidden />
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-green/10">
+                    <Icon className="h-5 w-5 text-brand-green" aria-hidden />
                   </div>
                   <div className="min-w-0">
-                    <p className="font-semibold text-mosque-green">{title}</p>
+                    <p className="font-semibold text-brand-green">{title}</p>
                     <p className="mt-0.5 text-sm text-muted-foreground">{text}</p>
                   </div>
                 </li>
@@ -108,7 +108,7 @@ export const Association = () => {
         </div>
 
         {/* Nos activités */}
-        <div className="mt-14 border-t border-mosque-green/10 pt-12 md:mt-16 md:pt-14">
+        <div className="mt-14 border-t border-brand-green/10 pt-12 md:mt-16 md:pt-14">
           <HeadingBlock title={tActivities('title')} isRtl={isAr} />
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -117,24 +117,24 @@ export const Association = () => {
               return (
                 <article
                   key={key}
-                  className="flex flex-col rounded-2xl border border-mosque-green/10 bg-card p-5 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                  className="flex flex-col rounded-2xl border border-brand-green/10 bg-card p-5 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                   lang={isAr ? 'ar' : 'fr'}
                 >
                   <div className={cn('flex gap-3', isAr && 'flex-row-reverse text-right')}>
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-mosque-green/10">
-                      <Icon className="h-5 w-5 text-mosque-green" aria-hidden />
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-green/10">
+                      <Icon className="h-5 w-5 text-brand-green" aria-hidden />
                     </div>
                     <div className="min-w-0 flex-1">
                       <Badge
                         variant="secondary"
-                        className="mb-2 bg-mosque-green/10 text-[11px] text-mosque-green hover:bg-mosque-green/15"
+                        className="mb-2 bg-brand-green/10 text-[11px] text-brand-green hover:bg-brand-green/15"
                       >
                         {tActivities(`${key}.tag`)}
                       </Badge>
                       <h4 className="text-base font-bold leading-snug text-foreground">
                         {tActivities(`${key}.title`)}
                       </h4>
-                      <p className="mt-1 text-sm font-medium text-mosque-green">
+                      <p className="mt-1 text-sm font-medium text-brand-green">
                         {tActivities(`${key}.subtitle`)}
                       </p>
                     </div>

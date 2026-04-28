@@ -41,14 +41,14 @@ export const Breadcrumb = (
             <Fragment key={`${item.label}-${idx}`}>
               <BreadcrumbItem>
                 {item.href && !isLast ? (
-                  <BreadcrumbLink asChild className="font-medium hover:text-mosque-green">
+                  <BreadcrumbLink asChild className="font-medium hover:text-brand-green">
                     <Link href={item.href}>{item.label}</Link>
                   </BreadcrumbLink>
                 ) : (
                   <BreadcrumbPage className="font-semibold">{item.label}</BreadcrumbPage>
                 )}
               </BreadcrumbItem>
-              {!isLast && <BreadcrumbSeparator className="text-mosque-green/35" />}
+              {!isLast && <BreadcrumbSeparator className="text-brand-green/35" />}
             </Fragment>
           )
         })}

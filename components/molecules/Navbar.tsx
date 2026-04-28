@@ -26,7 +26,7 @@ export const Navbar = () => {
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-gradient-to-b from-mosque-nav-from to-mosque-nav-to text-white shadow-md backdrop-blur-sm">
+    <header className="sticky top-0 z-50 bg-gradient-to-b from-brand-nav-from to-brand-nav-to text-white shadow-md backdrop-blur-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-14 items-center justify-between gap-4">
           {/* Logo */}
@@ -60,7 +60,7 @@ export const Navbar = () => {
             <Button
               asChild
               size="sm"
-              className="ml-2 bg-mosque-gold text-white shadow transition-colors hover:bg-mosque-gold-hover"
+              className="ml-2 bg-brand-gold text-white shadow transition-colors hover:bg-brand-gold-hover"
             >
               <Link href="/don">{t('donate')}</Link>
             </Button>

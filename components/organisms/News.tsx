@@ -80,7 +80,7 @@ export const News = ({
             <Button
               asChild
               size="lg"
-              className="min-w-[min(100%,280px)] bg-mosque-gold font-semibold text-white shadow-md transition-colors hover:bg-mosque-gold-hover"
+              className="min-w-[min(100%,280px)] bg-brand-gold font-semibold text-white shadow-md transition-colors hover:bg-brand-gold-hover"
             >
               <Link href="/actualites">{t('viewAllActivities')}</Link>
             </Button>

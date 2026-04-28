@@ -27,13 +27,13 @@ export const DayVerse = async ({ locale }: { locale: string }) => {
         })
 
     return (
-      <section className="bg-mosque-green-light py-14">
+      <section className="bg-brand-green-light py-14">
         <div className="mx-auto max-w-7xl px-4">
           <HeadingBlock title={t('title')} isRtl={isAr} />
 
           <div className="text-center">
             <p
-              className="font-arabic text-2xl leading-loose text-mosque-green sm:text-3xl"
+              className="font-arabic text-2xl leading-loose text-brand-green sm:text-3xl"
               dir="rtl"
               lang="ar"
             >
@@ -46,7 +46,7 @@ export const DayVerse = async ({ locale }: { locale: string }) => {
               </p>
             )}
 
-            <p className="mt-3 text-sm text-mosque-green/75">— {ref}</p>
+            <p className="mt-3 text-sm text-brand-green/75">— {ref}</p>
           </div>
         </div>
       </section>

@@ -20,21 +20,21 @@ export default async function Preinscriptions2027PrivatePage({ params }: PagePro
       title: t('hub.questionnaireTitle'),
       description: t('hub.questionnaireDescription'),
       icon: CalendarClock,
-      accent: 'from-mosque-gold/15 to-mosque-gold/5 dark:from-mosque-gold/20 dark:to-mosque-gold/5',
-      iconClass: 'bg-mosque-gold/15 text-mosque-gold dark:bg-mosque-gold/25',
+      accent: 'from-brand-gold/15 to-brand-gold/5 dark:from-brand-gold/20 dark:to-brand-gold/5',
+      iconClass: 'bg-brand-gold/15 text-brand-gold dark:bg-brand-gold/25',
     },
     {
       href: `${base}/inscription-enfants`,
       title: t('hub.inscriptionTitle'),
       description: t('hub.inscriptionDescription'),
       icon: GraduationCap,
-      accent: 'from-mosque-green/12 to-mosque-green/5 dark:from-mosque-green/20 dark:to-mosque-green/5',
-      iconClass: 'bg-mosque-green/15 text-mosque-green dark:bg-mosque-green/25',
+      accent: 'from-brand-green/12 to-brand-green/5 dark:from-brand-green/20 dark:to-brand-green/5',
+      iconClass: 'bg-brand-green/15 text-brand-green dark:bg-brand-green/25',
     },
   ] as const
 
   return (
-    <div className="min-h-[70vh] bg-gradient-to-b from-mosque-muted/40 via-background to-background dark:from-mosque-green/10">
+    <div className="min-h-[70vh] bg-gradient-to-b from-brand-muted/40 via-background to-background dark:from-brand-green/10">
       <section className="mx-auto w-full max-w-lg px-4 pb-16 pt-10 sm:max-w-xl sm:pt-14">
         <header className={cn('text-center', !isAr && 'sm:text-left', isAr && 'sm:text-right')}>
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground">
@@ -47,7 +47,7 @@ export default async function Preinscriptions2027PrivatePage({ params }: PagePro
             <li key={href}>
               <Link
                 href={href}
-                className={`group relative flex w-full items-start gap-4 overflow-hidden rounded-2xl border border-border/80 bg-card/80 p-5 shadow-sm backdrop-blur-sm transition-all duration-200 hover:border-mosque-gold/35 hover:shadow-md active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mosque-gold focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:p-6`}
+                className={`group relative flex w-full items-start gap-4 overflow-hidden rounded-2xl border border-border/80 bg-card/80 p-5 shadow-sm backdrop-blur-sm transition-all duration-200 hover:border-brand-gold/35 hover:shadow-md active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:p-6`}
               >
                 <span
                   aria-hidden
@@ -65,7 +65,7 @@ export default async function Preinscriptions2027PrivatePage({ params }: PagePro
                     </span>
                     <ChevronRight
                       className={cn(
-                        'mt-0.5 h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-200 group-hover:text-mosque-gold',
+                        'mt-0.5 h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-200 group-hover:text-brand-gold',
                         isAr
                           ? 'rotate-180 group-hover:-translate-x-0.5'
                           : 'group-hover:translate-x-0.5',

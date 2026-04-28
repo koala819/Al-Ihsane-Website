@@ -6,7 +6,7 @@ import { useMemo } from 'react'
 
 import { cn } from '@/lib/utils'
 
-/** Couleur événements alignée sur `--mosque-green` (hsl 217 58% 32%). */
+/** Couleur événements alignée sur `--brand-green` (hsl 217 58% 32%). */
 const MOSQUE_EVENT = 'hsl(217, 58%, 36%)'
 
 const KitchenCalendarSkeleton = () => {

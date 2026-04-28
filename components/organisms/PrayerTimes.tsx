@@ -104,7 +104,7 @@ export async function PrayerTimes({ locale }: { locale: string }) {
     idx === -1 ? prayerData!.shuruq : prayerData!.times[idx]
 
   return (
-    <div className="border-b border-mosque-green/20 bg-mosque-green-light">
+    <div className="border-b border-brand-green/20 bg-brand-green-light">
       <div className="mx-auto max-w-7xl px-4">
         <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 py-2 sm:py-2.5">
 
@@ -112,7 +112,7 @@ export async function PrayerTimes({ locale }: { locale: string }) {
           <div className="flex shrink-0 items-center gap-2 text-[11px]">
             {/* Grégorien — gauche */}
             <span
-              className="capitalize text-mosque-green/70 dark:text-mosque-green/90"
+              className="capitalize text-brand-green/70 dark:text-brand-green/90"
               lang={isAr ? 'ar' : 'fr'}
               dir={isAr ? 'rtl' : 'ltr'}
             >
@@ -120,13 +120,13 @@ export async function PrayerTimes({ locale }: { locale: string }) {
             </span>
 
             {/* Séparateur */}
-            {hijri && <span className="select-none text-mosque-green/30 dark:text-mosque-green/50">·</span>}
+            {hijri && <span className="select-none text-brand-green/30 dark:text-brand-green/50">·</span>}
 
             {/* Hégirien — droite */}
             {hijri && (
               <span
                 className={[
-                  'font-semibold text-mosque-green',
+                  'font-semibold text-brand-green',
                   isAr ? 'font-arabic text-[12px]' : '',
                 ].join(' ')}
                 lang={isAr ? 'ar' : 'fr'}
@@ -149,14 +149,14 @@ export async function PrayerTimes({ locale }: { locale: string }) {
                     className={[
                       'flex min-w-[44px] flex-col items-center rounded-lg px-1.5 py-1 transition-all duration-200 sm:min-w-[58px] sm:px-2',
                       isNext
-                        ? 'bg-mosque-green text-white shadow-sm dark:ring-1 dark:ring-mosque-green/60'
-                        : 'text-mosque-green hover:bg-mosque-green/10',
+                        ? 'bg-brand-green text-white shadow-sm dark:ring-1 dark:ring-brand-green/60'
+                        : 'text-brand-green hover:bg-brand-green/10',
                     ].join(' ')}
                   >
                     <span
                       className={[
                         'text-[9px] font-semibold uppercase tracking-wide sm:text-[10px]',
-                        isNext ? 'text-white/80' : 'text-mosque-green/55 dark:text-mosque-green/80',
+                        isNext ? 'text-white/80' : 'text-brand-green/55 dark:text-brand-green/80',
                       ].join(' ')}
                     >
                       {isAr ? labelAr : label}
@@ -164,7 +164,7 @@ export async function PrayerTimes({ locale }: { locale: string }) {
                     <span
                       className={[
                         'text-[13px] font-bold tabular-nums sm:text-sm',
-                        isNext ? 'text-white' : 'text-mosque-green',
+                        isNext ? 'text-white' : 'text-brand-green',
                       ].join(' ')}
                     >
                       {time}
@@ -178,7 +178,7 @@ export async function PrayerTimes({ locale }: { locale: string }) {
               href="https://mawaqit.net/fr/m/alihsane-colomiers"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-medium text-mosque-green hover:underline"
+              className="text-xs font-medium text-brand-green hover:underline"
             >
               {isAr ? 'مواقيت الصلاة ↗' : 'Horaires de prière ↗'}
             </Link>
@@ -187,7 +187,7 @@ export async function PrayerTimes({ locale }: { locale: string }) {
           {/* ── Jumu'a + Mawaqit ──────────────────────────────────────── */}
           <div className="hidden flex-col items-end gap-0.5 text-[11px] sm:flex">
             {prayerData?.jumua && (
-              <span className="font-semibold text-mosque-green">
+              <span className="font-semibold text-brand-green">
                 {isAr
                   ? `الجمعة\u00a0${prayerData.jumua}`
                   : `Jumu\u2019a\u00a0${prayerData.jumua}`}
@@ -197,7 +197,7 @@ export async function PrayerTimes({ locale }: { locale: string }) {
               href="https://mawaqit.net/fr/m/alihsane-colomiers"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-mosque-green/70 underline-offset-2 hover:text-mosque-green hover:underline dark:text-mosque-green/80"
+              className="text-brand-green/70 underline-offset-2 hover:text-brand-green hover:underline dark:text-brand-green/80"
             >
               Mawaqit ↗
             </Link>

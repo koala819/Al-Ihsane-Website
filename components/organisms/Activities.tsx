@@ -45,10 +45,10 @@ export const Activities = () => {
         />
 
         <header className={cn('mb-8 md:mb-10', isAr && 'text-right')}>
-          <h1 className="text-2xl font-bold text-mosque-green md:text-3xl">{t('title')}</h1>
+          <h1 className="text-2xl font-bold text-brand-green md:text-3xl">{t('title')}</h1>
           <div
             className={cn(
-              'mt-2 h-1 w-12 rounded-full bg-mosque-green/30',
+              'mt-2 h-1 w-12 rounded-full bg-brand-green/30',
               isAr && 'ms-auto',
             )}
           />

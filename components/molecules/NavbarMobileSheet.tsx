@@ -47,7 +47,7 @@ export const NavbarMobileSheet = ({
       </SheetTrigger>
       <SheetContent
         side="left"
-        className="w-72 border-r-mosque-green/20 bg-mosque-green p-0 text-white"
+        className="w-72 border-r-brand-green/20 bg-brand-green p-0 text-white"
       >
         <SheetHeader className="border-b border-white/10 px-6 py-4">
           <SheetTitle className="flex items-center text-white">
@@ -77,7 +77,7 @@ export const NavbarMobileSheet = ({
           })}
           <SheetClose asChild>
             <Link href="/don">
-              <Button className="mt-1 w-full bg-mosque-gold text-white hover:bg-mosque-gold-hover">
+              <Button className="mt-1 w-full bg-brand-gold text-white hover:bg-brand-gold-hover">
                 {donateLabel}
               </Button>
             </Link>

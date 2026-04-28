@@ -231,7 +231,7 @@ export function QuestionnaireProfesseursForm() {
       />
 
       <fieldset className="space-y-4">
-        <legend className="text-sm font-semibold text-mosque-green">{t('identityLegend')}</legend>
+        <legend className="text-sm font-semibold text-brand-green">{t('identityLegend')}</legend>
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-1.5">
             <Label htmlFor="qp-lastName">{t('lastName')}</Label>
@@ -263,7 +263,7 @@ export function QuestionnaireProfesseursForm() {
       </fieldset>
 
       <fieldset className="space-y-4">
-        <legend className="text-sm font-semibold text-mosque-green">{t('currentYearLegend')}</legend>
+        <legend className="text-sm font-semibold text-brand-green">{t('currentYearLegend')}</legend>
         <p className="text-sm text-muted-foreground">{t('currentYearIntro')}</p>
         <div className="space-y-2">
           <span className="text-sm font-medium text-foreground">{t('slotsTeachingLabel')}</span>
@@ -276,13 +276,13 @@ export function QuestionnaireProfesseursForm() {
                 render={({ field }) => (
                   <label
                     className={cn(
-                      'flex cursor-pointer items-start gap-3 rounded-xl border bg-background/60 p-4 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-mosque-gold',
-                      field.value && 'border-mosque-green/35 bg-mosque-green/5',
+                      'flex cursor-pointer items-start gap-3 rounded-xl border bg-background/60 p-4 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand-gold',
+                      field.value && 'border-brand-green/35 bg-brand-green/5',
                     )}
                   >
                     <input
                       type="checkbox"
-                      className="mt-1 h-4 w-4 shrink-0 rounded border-input accent-mosque-gold"
+                      className="mt-1 h-4 w-4 shrink-0 rounded border-input accent-brand-gold"
                       checked={field.value}
                       onChange={(e) => field.onChange(e.target.checked)}
                     />
@@ -316,7 +316,7 @@ export function QuestionnaireProfesseursForm() {
       </fieldset>
 
       <fieldset className="space-y-3">
-        <legend className="text-sm font-semibold text-mosque-green">{t('nextYearLevelLegend')}</legend>
+        <legend className="text-sm font-semibold text-brand-green">{t('nextYearLevelLegend')}</legend>
         <p className="text-sm text-muted-foreground">{t('nextYearLevelIntro')}</p>
         <Controller
           name="levelPreference"
@@ -325,13 +325,13 @@ export function QuestionnaireProfesseursForm() {
             <div className="grid gap-3 sm:grid-cols-2">
               <label
                 className={cn(
-                  'flex cursor-pointer items-start gap-3 rounded-xl border bg-background/60 p-4 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-mosque-gold',
-                  field.value === 'specific' && 'border-mosque-gold/50 bg-mosque-gold/5',
+                  'flex cursor-pointer items-start gap-3 rounded-xl border bg-background/60 p-4 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand-gold',
+                  field.value === 'specific' && 'border-brand-gold/50 bg-brand-gold/5',
                 )}
               >
                 <input
                   type="radio"
-                  className="mt-1 accent-mosque-gold"
+                  className="mt-1 accent-brand-gold"
                   checked={field.value === 'specific'}
                   onChange={() => field.onChange('specific')}
                 />
@@ -344,13 +344,13 @@ export function QuestionnaireProfesseursForm() {
               </label>
               <label
                 className={cn(
-                  'flex cursor-pointer items-start gap-3 rounded-xl border bg-background/60 p-4 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-mosque-gold',
-                  field.value === 'indifferent' && 'border-mosque-gold/50 bg-mosque-gold/5',
+                  'flex cursor-pointer items-start gap-3 rounded-xl border bg-background/60 p-4 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand-gold',
+                  field.value === 'indifferent' && 'border-brand-gold/50 bg-brand-gold/5',
                 )}
               >
                 <input
                   type="radio"
-                  className="mt-1 accent-mosque-gold"
+                  className="mt-1 accent-brand-gold"
                   checked={field.value === 'indifferent'}
                   onChange={() => field.onChange('indifferent')}
                 />
@@ -390,7 +390,7 @@ export function QuestionnaireProfesseursForm() {
       </fieldset>
 
       <fieldset className="space-y-4">
-        <legend className="text-sm font-semibold text-mosque-green">{t('nextYearSlotsLegend')}</legend>
+        <legend className="text-sm font-semibold text-brand-green">{t('nextYearSlotsLegend')}</legend>
         <p className="text-sm text-muted-foreground">{t('nextYearSlotsIntro')}</p>
 
         <Controller
@@ -399,13 +399,13 @@ export function QuestionnaireProfesseursForm() {
           render={({ field }) => (
             <label
               className={cn(
-                'flex cursor-pointer items-start gap-3 rounded-xl border bg-background/60 p-4 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-mosque-gold',
-                field.value && 'border-mosque-gold/50 bg-mosque-gold/5',
+                'flex cursor-pointer items-start gap-3 rounded-xl border bg-background/60 p-4 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand-gold',
+                field.value && 'border-brand-gold/50 bg-brand-gold/5',
               )}
             >
               <input
                 type="checkbox"
-                className="mt-1 h-4 w-4 shrink-0 rounded border-input accent-mosque-gold"
+                className="mt-1 h-4 w-4 shrink-0 rounded border-input accent-brand-gold"
                 checked={field.value}
                 onChange={(e) => field.onChange(e.target.checked)}
               />
@@ -423,15 +423,15 @@ export function QuestionnaireProfesseursForm() {
               render={({ field }) => (
                 <label
                   className={cn(
-                    'flex cursor-pointer items-start gap-3 rounded-xl border bg-background/60 p-4 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-mosque-gold',
-                    field.value && !wantsAllFour && 'border-mosque-green/35 bg-mosque-green/5',
+                    'flex cursor-pointer items-start gap-3 rounded-xl border bg-background/60 p-4 transition-colors has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand-gold',
+                    field.value && !wantsAllFour && 'border-brand-green/35 bg-brand-green/5',
                     wantsAllFour && 'pointer-events-none opacity-40',
                   )}
                 >
                   <input
                     type="checkbox"
                     disabled={wantsAllFour}
-                    className="mt-1 h-4 w-4 shrink-0 rounded border-input accent-mosque-gold disabled:cursor-not-allowed"
+                    className="mt-1 h-4 w-4 shrink-0 rounded border-input accent-brand-gold disabled:cursor-not-allowed"
                     checked={field.value}
                     onChange={(e) => field.onChange(e.target.checked)}
                   />
@@ -447,7 +447,7 @@ export function QuestionnaireProfesseursForm() {
       </fieldset>
 
       <fieldset className="space-y-4">
-        <legend className="text-sm font-semibold text-mosque-green">{t('contactLegend')}</legend>
+        <legend className="text-sm font-semibold text-brand-green">{t('contactLegend')}</legend>
         <div className="space-y-1.5">
           <Label htmlFor="qp-email">{t('email')}</Label>
           <Controller
@@ -480,7 +480,7 @@ export function QuestionnaireProfesseursForm() {
       </fieldset>
 
       <fieldset className="space-y-2">
-        <legend className="text-sm font-semibold text-mosque-green">{t('remarksLegend')}</legend>
+        <legend className="text-sm font-semibold text-brand-green">{t('remarksLegend')}</legend>
         <p className="text-sm text-muted-foreground">{t('remarksIntro')}</p>
         <Controller
           name="remarks"
@@ -502,7 +502,7 @@ export function QuestionnaireProfesseursForm() {
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-mosque-gold text-white hover:bg-mosque-gold-hover sm:max-w-xs"
+        className="w-full bg-brand-gold text-white hover:bg-brand-gold-hover sm:max-w-xs"
       >
         {isSubmitting ? (
           <Loader2 className="me-2 h-4 w-4 animate-spin" aria-hidden />

@@ -71,10 +71,10 @@ export const SharedKitchen = () => {
         />
 
         <header className={cn('mb-8 md:mb-10', isAr && 'text-right')}>
-          <h1 className="text-2xl font-bold text-mosque-green md:text-3xl">{t('kitchen.title')}</h1>
+          <h1 className="text-2xl font-bold text-brand-green md:text-3xl">{t('kitchen.title')}</h1>
           <div
             className={cn(
-              'mt-2 h-1 w-12 rounded-full bg-mosque-green/30',
+              'mt-2 h-1 w-12 rounded-full bg-brand-green/30',
               isAr && 'ms-auto',
             )}
           />
@@ -95,7 +95,7 @@ export const SharedKitchen = () => {
           <div>
             <h3
               className={cn(
-                'mb-6 text-lg font-bold text-mosque-green md:text-xl',
+                'mb-6 text-lg font-bold text-brand-green md:text-xl',
                 isAr && 'text-right',
               )}
             >
@@ -108,18 +108,18 @@ export const SharedKitchen = () => {
                   <div
                     key={key}
                     className={cn(
-                      'rounded-2xl border border-mosque-green/12 bg-card p-5 shadow-sm transition-shadow hover:shadow-md',
+                      'rounded-2xl border border-brand-green/12 bg-card p-5 shadow-sm transition-shadow hover:shadow-md',
                       isAr && 'text-right',
                     )}
                     lang={isAr ? 'ar' : 'fr'}
                   >
                     <div
                       className={cn(
-                        'mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-mosque-green/10',
+                        'mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-brand-green/10',
                         isAr && 'ms-auto',
                       )}
                     >
-                      <Icon className="h-5 w-5 text-mosque-green" aria-hidden />
+                      <Icon className="h-5 w-5 text-brand-green" aria-hidden />
                     </div>
                     <p className="font-semibold text-foreground">{t(`kitchen.${key}Title`)}</p>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
@@ -133,21 +133,21 @@ export const SharedKitchen = () => {
 
           {/* Rates Section */}
           <div className="mt-10 md:mt-12">
-            <h3 className={cn('mb-4 text-lg font-bold text-mosque-green md:text-xl', isAr && 'text-right')}>
+            <h3 className={cn('mb-4 text-lg font-bold text-brand-green md:text-xl', isAr && 'text-right')}>
               {t('kitchen.ratesTitle')}
             </h3>
             <div
-              className="overflow-hidden rounded-2xl border border-mosque-green/12 bg-card shadow-sm"
+              className="overflow-hidden rounded-2xl border border-brand-green/12 bg-card shadow-sm"
               lang={isAr ? 'ar' : 'fr'}
             >
-              <ul className="divide-y divide-mosque-green/10">
+              <ul className="divide-y divide-brand-green/10">
                 <li className={cn('flex flex-wrap items-baseline justify-between gap-2 px-5 py-4', isAr && 'flex-row-reverse')}>
                   <span className="text-sm font-medium text-foreground">{t('kitchen.rateHalfLabel')}</span>
-                  <span className="text-lg font-bold tabular-nums text-mosque-green">{t('kitchen.rateHalfPrice')}</span>
+                  <span className="text-lg font-bold tabular-nums text-brand-green">{t('kitchen.rateHalfPrice')}</span>
                 </li>
                 <li className={cn('flex flex-wrap items-baseline justify-between gap-2 px-5 py-4', isAr && 'flex-row-reverse')}>
                   <span className="text-sm font-medium text-foreground">{t('kitchen.rateFullLabel')}</span>
-                  <span className="text-lg font-bold tabular-nums text-mosque-green">{t('kitchen.rateFullPrice')}</span>
+                  <span className="text-lg font-bold tabular-nums text-brand-green">{t('kitchen.rateFullPrice')}</span>
                 </li>
                 <li className={cn('flex flex-wrap items-baseline justify-between gap-2 px-5 py-4', isAr && 'flex-row-reverse')}>
                   <span className="text-sm font-medium text-foreground">{t('kitchen.rateCollectiveLabel')}</span>
@@ -167,12 +167,12 @@ export const SharedKitchen = () => {
 
           {/* Docs Section */}
           <div className="mt-10 md:mt-12">
-            <h3 className={cn('mb-4 text-lg font-bold text-mosque-green md:text-xl', isAr && 'text-right')}>
+            <h3 className={cn('mb-4 text-lg font-bold text-brand-green md:text-xl', isAr && 'text-right')}>
               {t('kitchen.docsTitle')}
             </h3>
             <div
               className={cn(
-                'rounded-2xl border border-mosque-green/15 bg-mosque-green-light/50 px-5 py-5 dark:bg-mosque-green/10',
+                'rounded-2xl border border-brand-green/15 bg-brand-green-light/50 px-5 py-5 dark:bg-brand-green/10',
                 isAr && 'text-right',
               )}
               lang={isAr ? 'ar' : 'fr'}
@@ -191,12 +191,12 @@ export const SharedKitchen = () => {
 
           {/* Calendar Section */}
           <div className="mt-10 md:mt-12">
-            <h3 className={cn('mb-4 text-lg font-bold text-mosque-green md:text-xl', isAr && 'text-right')}>
+            <h3 className={cn('mb-4 text-lg font-bold text-brand-green md:text-xl', isAr && 'text-right')}>
               {t('kitchen.calendarTitle')}
             </h3>
             {showApiCalendar ? (
-              <div className="overflow-hidden rounded-2xl border border-mosque-green/12 bg-muted/20 shadow-inner">
-                <div className="border-b border-mosque-green/10 bg-mosque-green-light/50 px-4 py-2.5 text-center text-xs font-semibold text-mosque-green dark:bg-mosque-green/15 dark:text-mosque-green">
+              <div className="overflow-hidden rounded-2xl border border-brand-green/12 bg-muted/20 shadow-inner">
+                <div className="border-b border-brand-green/10 bg-brand-green-light/50 px-4 py-2.5 text-center text-xs font-semibold text-brand-green dark:bg-brand-green/15 dark:text-brand-green">
                   Google Calendar — {t('kitchen.title')}
                 </div>
                 <KitchenGoogleCalendar
@@ -206,8 +206,8 @@ export const SharedKitchen = () => {
                 />
               </div>
             ) : showIframe ? (
-              <div className="overflow-hidden rounded-2xl border border-mosque-green/12 bg-muted/20 shadow-inner">
-                <div className="border-b border-mosque-green/10 bg-mosque-green-light/50 px-4 py-2.5 text-center text-xs font-semibold text-mosque-green dark:bg-mosque-green/15 dark:text-mosque-green">
+              <div className="overflow-hidden rounded-2xl border border-brand-green/12 bg-muted/20 shadow-inner">
+                <div className="border-b border-brand-green/10 bg-brand-green-light/50 px-4 py-2.5 text-center text-xs font-semibold text-brand-green dark:bg-brand-green/15 dark:text-brand-green">
                   {t('kitchen.title')}
                 </div>
                 <iframe
@@ -222,7 +222,7 @@ export const SharedKitchen = () => {
             ) : (
               <div
                 className={cn(
-                  'rounded-2xl border border-dashed border-mosque-green/25 bg-muted/40 px-5 py-8 text-center text-sm text-muted-foreground',
+                  'rounded-2xl border border-dashed border-brand-green/25 bg-muted/40 px-5 py-8 text-center text-sm text-muted-foreground',
                   isAr && 'text-right',
                 )}
               >
@@ -235,7 +235,7 @@ export const SharedKitchen = () => {
             <Button
               asChild
               size="lg"
-              className="min-w-[min(100%,280px)] bg-mosque-gold font-semibold text-white shadow-md transition-colors hover:bg-mosque-gold-hover"
+              className="min-w-[min(100%,280px)] bg-brand-gold font-semibold text-white shadow-md transition-colors hover:bg-brand-gold-hover"
             >
               <Link href="/contact">{t('kitchen.bookCta')}</Link>
             </Button>

@@ -22,7 +22,7 @@ export const sanityTextComponents: PortableTextComponents = {
       return (
         <a
           href={href}
-          className="font-medium text-mosque-green underline underline-offset-2 hover:opacity-90"
+          className="font-medium text-brand-green underline underline-offset-2 hover:opacity-90"
           rel="noopener noreferrer"
         >
           {children}

@@ -23,7 +23,7 @@ export const ThemeSwitcher = () => {
       size="icon"
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       aria-label={mounted ? ariaLabel : 'Changer de thème'}
-      className="h-8 w-8 text-mosque-green hover:bg-mosque-green/10 hover:text-mosque-green"
+      className="h-8 w-8 text-brand-green hover:bg-brand-green/10 hover:text-brand-green"
     >
       {!mounted ? null : isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
     </Button>

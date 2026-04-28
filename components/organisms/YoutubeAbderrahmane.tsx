@@ -26,7 +26,7 @@ export const YoutubeAbderrahmaneMesli = async ({ locale }: { locale: string }) =
       <div className="mx-auto max-w-7xl px-4">
         <HeadingBlock title={t('headingTitle')} isRtl={isAr}>
           {videos.length > 0 ? (
-            <p className="mt-3 text-sm font-medium text-mosque-green md:text-base">
+            <p className="mt-3 text-sm font-medium text-brand-green md:text-base">
               {t('headingSubtitle')}
             </p>
           ) : null}
@@ -43,7 +43,7 @@ export const YoutubeAbderrahmaneMesli = async ({ locale }: { locale: string }) =
             return (
               <Card
                 key={video.id}
-                className="group h-full overflow-hidden rounded-xl border-mosque-green/10 shadow-sm transition-opacity hover:opacity-95"
+                className="group h-full overflow-hidden rounded-xl border-brand-green/10 shadow-sm transition-opacity hover:opacity-95"
               >
                 <a href={video.url} target="_blank" rel="noopener noreferrer" className="flex h-full flex-col">
                   <div className="relative aspect-video w-full overflow-hidden bg-black">
@@ -65,13 +65,13 @@ export const YoutubeAbderrahmaneMesli = async ({ locale }: { locale: string }) =
                       alt={CHANNEL_NAME}
                       width={36}
                       height={36}
-                      className="mt-0.5 h-9 w-9 shrink-0 rounded-full object-cover ring-1 ring-mosque-green/15"
+                      className="mt-0.5 h-9 w-9 shrink-0 rounded-full object-cover ring-1 ring-brand-green/15"
                     />
                     <div className="min-w-0">
-                      <p className="line-clamp-2 text-[15px] font-semibold leading-snug text-mosque-green">
+                      <p className="line-clamp-2 text-[15px] font-semibold leading-snug text-brand-green">
                         {video.title}
                       </p>
-                      <p className="text-xs text-mosque-green/60">
+                      <p className="text-xs text-brand-green/60">
                         {t('publishedOn', { date: published })}
                       </p>
                     </div>
@@ -85,19 +85,19 @@ export const YoutubeAbderrahmaneMesli = async ({ locale }: { locale: string }) =
         <div
           className={cn(
             videos.length === 0
-              ? 'rounded-2xl border border-mosque-green/15 bg-mosque-green-light/50 p-6 text-center shadow-sm'
+              ? 'rounded-2xl border border-brand-green/15 bg-brand-green-light/50 p-6 text-center shadow-sm'
               : 'mt-10 flex justify-center',
           )}
         >
-          <p className={cn(videos.length === 0 ? 'text-sm text-mosque-green/80' : 'hidden')}>
+          <p className={cn(videos.length === 0 ? 'text-sm text-brand-green/80' : 'hidden')}>
             {t('emptyMessage')}
           </p>
           <Button
             asChild
             className={cn(
               videos.length === 0
-                ? 'mt-4 rounded-xl bg-mosque-gold text-sm font-semibold text-white hover:bg-mosque-gold-hover'
-                : 'mt-6 rounded-xl bg-mosque-gold text-sm font-semibold text-white shadow-md hover:bg-mosque-gold-hover',
+                ? 'mt-4 rounded-xl bg-brand-gold text-sm font-semibold text-white hover:bg-brand-gold-hover'
+                : 'mt-6 rounded-xl bg-brand-gold text-sm font-semibold text-white shadow-md hover:bg-brand-gold-hover',
             )}
           >
             <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">

@@ -73,8 +73,8 @@ export default async function QuestionnaireProfesseursPage({ params }: PageProps
 
           <div className="p-5 sm:p-8 md:p-10">
             <header className="mb-10 sm:mb-12 md:mb-14">
-              <h1 className="text-2xl font-bold text-mosque-green md:text-3xl">{t('questionnaire.title')}</h1>
-              <div className="mt-2 h-1 w-12 rounded-full bg-mosque-green/30" />
+              <h1 className="text-2xl font-bold text-brand-green md:text-3xl">{t('questionnaire.title')}</h1>
+              <div className="mt-2 h-1 w-12 rounded-full bg-brand-green/30" />
               <p className="mt-5 max-w-prose text-sm leading-relaxed text-muted-foreground sm:mt-6 sm:text-base">
                 {t('questionnaire.intro')}
               </p>

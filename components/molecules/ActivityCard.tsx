@@ -22,9 +22,9 @@ export const ActivityCard = ({
 }: ActivityCardProps) => {
   const Icon = activity.icon
   const cardClassName = cn(
-    'flex flex-col rounded-2xl border border-mosque-green/12 bg-card p-6 shadow-sm md:p-7',
+    'flex flex-col rounded-2xl border border-brand-green/12 bg-card p-6 shadow-sm md:p-7',
     activity.href &&
-    'group transition-all duration-200 hover:-translate-y-0.5 hover:border-mosque-green/25 hover:shadow-md',
+    'group transition-all duration-200 hover:-translate-y-0.5 hover:border-brand-green/25 hover:shadow-md',
     isAr && 'text-right',
   )
   const content = (
@@ -32,11 +32,11 @@ export const ActivityCard = ({
       <div className={cn('mb-4 flex items-start gap-3', isAr && 'flex-row-reverse')}>
         <div
           className={cn(
-            'flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-mosque-green/10',
-            activity.href && 'transition-colors group-hover:bg-mosque-green/15',
+            'flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-brand-green/10',
+            activity.href && 'transition-colors group-hover:bg-brand-green/15',
           )}
         >
-          <Icon className="h-6 w-6 text-mosque-green" aria-hidden />
+          <Icon className="h-6 w-6 text-brand-green" aria-hidden />
         </div>
         <h2 className="text-lg font-bold text-foreground md:text-xl">{activity.title}</h2>
       </div>
@@ -52,13 +52,13 @@ export const ActivityCard = ({
       {activity.showConstructionNotice && (
         <div
           className={cn(
-            'mt-auto rounded-xl border border-dashed border-mosque-green/25 bg-mosque-green-light/40 px-4 py-3 dark:bg-mosque-green/10',
+            'mt-auto rounded-xl border border-dashed border-brand-green/25 bg-brand-green-light/40 px-4 py-3 dark:bg-brand-green/10',
             isAr && 'text-right',
           )}
         >
           <Badge
             variant="secondary"
-            className="mb-2 bg-mosque-green/15 text-xs font-semibold text-mosque-green hover:bg-mosque-green/20"
+            className="mb-2 bg-brand-green/15 text-xs font-semibold text-brand-green hover:bg-brand-green/20"
           >
             {constructionBadgeLabel}
           </Badge>
@@ -71,8 +71,8 @@ export const ActivityCard = ({
       {activity.href && activity.ctaLabel && (
         <span
           className={cn(
-            'mt-auto flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-mosque-gold/40 py-2 text-sm font-semibold text-mosque-gold transition-all',
-            'group-hover:border-transparent group-hover:bg-mosque-gold group-hover:text-white',
+            'mt-auto flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-lg border border-brand-gold/40 py-2 text-sm font-semibold text-brand-gold transition-all',
+            'group-hover:border-transparent group-hover:bg-brand-gold group-hover:text-white',
             isAr && 'flex-row-reverse',
           )}
         >

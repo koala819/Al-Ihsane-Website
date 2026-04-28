@@ -78,7 +78,7 @@ export const ContactPage = () => {
   }
 
   const inputClass =
-    'min-h-11 border-border bg-slate-50 text-base text-foreground transition-colors focus-visible:border-mosque-green focus-visible:ring-mosque-green/25 dark:border-zinc-700 dark:bg-zinc-900 md:text-sm'
+    'min-h-11 border-border bg-slate-50 text-base text-foreground transition-colors focus-visible:border-brand-green focus-visible:ring-brand-green/25 dark:border-zinc-700 dark:bg-zinc-900 md:text-sm'
 
   return (
     <section className="flex min-h-0 flex-1 flex-col bg-background text-foreground">
@@ -103,7 +103,7 @@ export const ContactPage = () => {
                 isAr && 'ms-auto',
               )}
             >
-              <div className="h-full w-2/5 rounded-full bg-mosque-green" />
+              <div className="h-full w-2/5 rounded-full bg-brand-green" />
             </div>
           </header>
         </div>
@@ -195,7 +195,7 @@ export const ContactPage = () => {
                     )}
                   >
                     <MapPin
-                      className="mt-0.5 h-5 w-5 shrink-0 text-mosque-green"
+                      className="mt-0.5 h-5 w-5 shrink-0 text-brand-green"
                       aria-hidden
                     />
                     <span className="whitespace-pre-line text-foreground">
@@ -208,10 +208,10 @@ export const ContactPage = () => {
                       isAr && 'sm:justify-end',
                     )}
                   >
-                    <Phone className="h-5 w-5 shrink-0 text-mosque-green" aria-hidden />
+                    <Phone className="h-5 w-5 shrink-0 text-brand-green" aria-hidden />
                     <a
                       href="tel:+33561302650"
-                      className="inline-flex min-h-11 items-center text-base font-medium text-mosque-green underline-offset-4 hover:underline"
+                      className="inline-flex min-h-11 items-center text-base font-medium text-brand-green underline-offset-4 hover:underline"
                     >
                       {t('phone')}
                     </a>
@@ -219,7 +219,7 @@ export const ContactPage = () => {
                 </address>
                 <Button
                   asChild
-                  className="h-11 w-full bg-mosque-gold text-base text-white hover:bg-mosque-gold-hover sm:w-auto"
+                  className="h-11 w-full bg-brand-gold text-base text-white hover:bg-brand-gold-hover sm:w-auto"
                 >
                   <a
                     href={CONTACT_GOOGLE_MAPS_LISTING_URL}
@@ -344,7 +344,7 @@ export const ContactPage = () => {
 
                     <Button
                       type="submit"
-                      className="h-11 w-full bg-mosque-gold text-base font-medium text-white hover:bg-mosque-gold-hover"
+                      className="h-11 w-full bg-brand-gold text-base font-medium text-white hover:bg-brand-gold-hover"
                     >
                       <Send className="me-2 h-4 w-4" />
                       {t('send')}

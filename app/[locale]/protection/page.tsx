@@ -19,9 +19,9 @@ export const ProtectionPage = async ({
       <HeadingBlock title={t('title')} isRtl={isAr} />
 
       <div className="space-y-6">
-        <Card className="border-mosque-green/10 shadow-sm">
+        <Card className="border-brand-green/10 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg text-mosque-green">{t('commitment.title')}</CardTitle>
+            <CardTitle className="text-lg text-brand-green">{t('commitment.title')}</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm leading-relaxed text-muted-foreground">
@@ -30,7 +30,7 @@ export const ProtectionPage = async ({
                 href="https://www.cnil.fr/fr/reglement-europeen-protection-donnees"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-mosque-green underline-offset-2 hover:underline"
+                className="text-brand-green underline-offset-2 hover:underline"
               >
                 {t('commitment.rgpdLinkLabel')}
               </Link>
@@ -39,9 +39,9 @@ export const ProtectionPage = async ({
           </CardContent>
         </Card>
 
-        <Card className="border-mosque-green/10 shadow-sm">
+        <Card className="border-brand-green/10 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg text-mosque-green">{t('controller.title')}</CardTitle>
+            <CardTitle className="text-lg text-brand-green">{t('controller.title')}</CardTitle>
           </CardHeader>
           <CardContent>
             <dl className="space-y-3 text-sm">
@@ -57,9 +57,9 @@ export const ProtectionPage = async ({
           </CardContent>
         </Card>
 
-        <Card className="border-mosque-green/10 shadow-sm">
+        <Card className="border-brand-green/10 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg text-mosque-green">{t('collectedData.title')}</CardTitle>
+            <CardTitle className="text-lg text-brand-green">{t('collectedData.title')}</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm leading-relaxed text-muted-foreground">
@@ -68,14 +68,14 @@ export const ProtectionPage = async ({
           </CardContent>
         </Card>
 
-        <Card className="border-mosque-green/10 shadow-sm">
+        <Card className="border-brand-green/10 shadow-sm">
           <CardHeader className="pb-3">
-            <CardTitle className="text-lg text-mosque-green">{t('rights.title')}</CardTitle>
+            <CardTitle className="text-lg text-brand-green">{t('rights.title')}</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-sm leading-relaxed text-muted-foreground">
               {t('rights.textBefore')}{' '}
-              <I18nLink href="/contact" className="text-mosque-green underline-offset-2 hover:underline">
+              <I18nLink href="/contact" className="text-brand-green underline-offset-2 hover:underline">
                 {t('rights.contactLinkLabel')}
               </I18nLink>
               {t('rights.textAfter')}
