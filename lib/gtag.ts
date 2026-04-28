@@ -1,4 +1,4 @@
-export const GA_TRACKING_ID: string | undefined = process.env.GA_TRACKING_ID;
+export const GA_TRACKING_ID: string | undefined = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
 
 export const pageview = (url: string) => {
   (window as any).gtag("config", GA_TRACKING_ID, {
