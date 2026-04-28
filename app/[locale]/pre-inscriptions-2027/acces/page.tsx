@@ -26,10 +26,6 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: 'preinscriptions2027Access' })
   return {
     title: t('title'),
-    robots: {
-      follow: false,
-      index: false,
-    },
   }
 }
 

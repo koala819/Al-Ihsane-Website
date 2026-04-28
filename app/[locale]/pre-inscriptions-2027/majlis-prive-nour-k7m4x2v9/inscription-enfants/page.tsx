@@ -13,7 +13,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'preinscriptions2027' })
   return {
-    robots: { follow: false, index: false },
     title: t('inscriptionEnfants.metaTitle'),
   }
 }

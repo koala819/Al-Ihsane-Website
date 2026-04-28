@@ -1,16 +1,8 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
 import { CalendarClock, ChevronRight, GraduationCap } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
 
 import { cn } from '@/lib/utils'
-
-export const metadata: Metadata = {
-  robots: {
-    follow: false,
-    index: false,
-  },
-}
 
 type PageProps = {
   params: Promise<{ locale: string }>
