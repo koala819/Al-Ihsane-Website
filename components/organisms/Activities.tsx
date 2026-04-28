@@ -1,33 +1,39 @@
 'use client'
 
+import { useMemo } from 'react'
 import { useLocale, useTranslations } from 'next-intl'
 import { GraduationCap, UtensilsCrossed } from 'lucide-react'
 
-import { ActivityCard } from '../molecules/ActivityCard'
+import { ActivityCard } from '@/components/molecules/ActivityCard'
 import { Breadcrumb } from '@/components/molecules/Breadcrumb'
 import { cn } from '@/lib/utils'
 import { ActivityCardConfig } from '@/types/models'
 
 export const Activities = () => {
   const t = useTranslations('activitiesPage')
-  const isAr = useLocale() === 'ar'
-  const activities: ActivityCardConfig[] = [
-    {
-      id: 'school',
-      title: t('schoolTitle'),
-      body: t('schoolBody'),
-      icon: GraduationCap,
-      showConstructionNotice: true,
-    },
-    {
-      id: 'kitchen',
-      title: t('kitchen.title'),
-      body: t('kitchen.cardTeaser'),
-      icon: UtensilsCrossed,
-      href: '/activites/cuisine-partagee',
-      ctaLabel: t('kitchen.openPage'),
-    },
-  ]
+  const locale = useLocale()
+  const isAr = locale === 'ar'
+
+  const activities = useMemo<ActivityCardConfig[]>(
+    () => [
+      {
+        id: 'school',
+        title: t('schoolTitle'),
+        body: t('schoolBody'),
+        icon: GraduationCap,
+        showConstructionNotice: true,
+      },
+      {
+        id: 'kitchen',
+        title: t('kitchen.title'),
+        body: t('kitchen.cardTeaser'),
+        icon: UtensilsCrossed,
+        href: '/activites/cuisine-partagee',
+        ctaLabel: t('kitchen.openPage'),
+      },
+    ],
+    [t],
+  )
 
   return (
     <section className="bg-background py-14">
