@@ -9,11 +9,25 @@ import { ThemeSwitcher } from '@/components/atoms/ThemeSwitcher'
 import { Logo } from '@/components/atoms/Logo'
 
 const YOUTUBE_URL = 'https://youtube.com/@abderrahmanemesli4217'
+const LINK_CLASS =
+  'text-sm text-mosque-green/80 transition-colors hover:text-mosque-green dark:text-mosque-green/90'
+const LEGAL_LINK_CLASS =
+  'text-xs text-mosque-green/80 underline-offset-2 transition-colors hover:text-mosque-green hover:underline dark:text-mosque-green/88'
 
 export function Footer() {
   const t = useTranslations('footer')
   const tNav = useTranslations('nav')
   const tContact = useTranslations('contact')
+  const navLinks = [
+    { href: '/', label: tNav('mosque') },
+    { href: '/activites', label: tNav('activities') },
+    { href: '/don', label: tNav('donate') },
+    { href: '/contact', label: tNav('contact') },
+  ]
+  const legalLinks = [
+    { href: '/mentions', label: tNav('mentions') },
+    { href: '/protection', label: tNav('protection') },
+  ]
 
   return (
     <footer className="bg-mosque-footer text-mosque-green">
@@ -37,7 +51,7 @@ export function Footer() {
             </div>
 
             <p className="text-sm leading-relaxed text-mosque-green/80 dark:text-mosque-green/90">
-              Un lieu de prière, d&apos;apprentissage et de fraternité au cœur de Colomiers.
+              {t('description')}
             </p>
 
             {/* Lien YouTube */}
@@ -48,26 +62,21 @@ export function Footer() {
               className="flex w-fit items-center gap-2 rounded-lg border border-mosque-green/25 px-3 py-1.5 text-xs font-medium text-mosque-green/80 transition-colors hover:border-mosque-gold/45 hover:bg-mosque-gold-light hover:text-mosque-gold dark:border-mosque-green/35 dark:text-mosque-green/90 dark:hover:border-mosque-gold/40 dark:hover:bg-mosque-gold/15 dark:hover:text-mosque-gold"
             >
               <Youtube className="h-3.5 w-3.5" />
-              Récitations · Abderrahmane Mesli
+              {t('youtubeLabel')}
             </a>
           </div>
 
           {/* ── Col 2 : Navigation ── */}
           <div>
             <p className="mb-4 text-xs font-bold uppercase tracking-widest text-mosque-green/75 dark:text-mosque-green/85">
-              Navigation
+              {t('navigationTitle')}
             </p>
             <nav className="flex flex-col gap-2.5">
-              {[
-                { href: '/', label: tNav('mosque') },
-                { href: '/activites', label: tNav('activities') },
-                { href: '/don', label: tNav('donate') },
-                { href: '/contact', label: tNav('contact') },
-              ].map(({ href, label }) => (
+              {navLinks.map(({ href, label }) => (
                 <LocaleLink
                   key={href}
                   href={href}
-                  className="text-sm text-mosque-green/80 transition-colors hover:text-mosque-green dark:text-mosque-green/90"
+                  className={LINK_CLASS}
                 >
                   {label}
                 </LocaleLink>
@@ -103,18 +112,11 @@ export function Footer() {
         <p className="text-xs text-mosque-green/80 dark:text-mosque-green/88">{t('copyright')}</p>
 
         <div className="flex items-center gap-4">
-          <LocaleLink
-            href="/mentions"
-            className="text-xs text-mosque-green/80 underline-offset-2 transition-colors hover:text-mosque-green hover:underline dark:text-mosque-green/88"
-          >
-            {tNav('mentions')}
-          </LocaleLink>
-          <LocaleLink
-            href="/protection"
-            className="text-xs text-mosque-green/80 underline-offset-2 transition-colors hover:text-mosque-green hover:underline dark:text-mosque-green/88"
-          >
-            {tNav('protection')}
-          </LocaleLink>
+          {legalLinks.map(({ href, label }) => (
+            <LocaleLink key={href} href={href} className={LEGAL_LINK_CLASS}>
+              {label}
+            </LocaleLink>
+          ))}
           <ThemeSwitcher />
         </div>
       </div>

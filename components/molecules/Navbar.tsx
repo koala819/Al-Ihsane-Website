@@ -28,7 +28,7 @@ export function Navbar() {
     { href: '/contact', label: t('contact') },
   ]
 
-  const isActive = (href: string) => {
+  function isActive(href: string) {
     const bare = pathname.replace(/^\/(fr|ar)/, '') || '/'
     return href === '/' ? bare === '/' : bare.startsWith(href)
   }
