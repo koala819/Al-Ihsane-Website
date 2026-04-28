@@ -10,7 +10,7 @@ import { getNewsArticlesPreview } from '@/lib/sanity/queries'
 /** Actualités Sanity : revalidation ISR (secondes). */
 export const revalidate = 120
 
-export default async function HomePage() {
+const HomePage = async () => {
   const locale = await getLocale()
   const cmsArticles = await getNewsArticlesPreview()
 
@@ -30,3 +30,5 @@ export default async function HomePage() {
     </>
   )
 }
+
+export default HomePage
