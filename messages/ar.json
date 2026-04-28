@@ -122,6 +122,14 @@
     "title": "آية اليوم",
     "reference": "{surah} ({surahNumber}:{ayahNumber})"
   },
+  "prayerTimes": {
+    "fajr": "الفجر",
+    "shuruq": "الشروق",
+    "dhuhr": "الظهر",
+    "asr": "العصر",
+    "maghrib": "المغرب",
+    "isha": "العشاء"
+  },
   "mentionsPage": {
     "title": "الإشعارات القانونية",
     "publisher": {

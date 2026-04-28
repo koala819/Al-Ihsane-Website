@@ -122,6 +122,14 @@
     "title": "Verset du jour",
     "reference": "Sourate {surah} ({surahNumber}:{ayahNumber})"
   },
+  "prayerTimes": {
+    "fajr": "Fajr",
+    "shuruq": "Chorouq",
+    "dhuhr": "Dhuhr",
+    "asr": "Asr",
+    "maghrib": "Maghrib",
+    "isha": "Isha"
+  },
   "mentionsPage": {
     "title": "Mentions légales",
     "publisher": {

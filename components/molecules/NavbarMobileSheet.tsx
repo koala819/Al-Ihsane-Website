@@ -39,10 +39,10 @@ export const NavbarMobileSheet = ({
         <Button
           variant="ghost"
           size="icon"
-          className="h-9 w-9 text-white hover:bg-white/10 md:hidden"
+          className="h-10 w-10 text-white hover:bg-white/10 md:hidden"
           aria-label="Ouvrir le menu"
         >
-          <Menu className="h-5 w-5" />
+          <Menu className="h-[22px] w-[22px]" />
         </Button>
       </SheetTrigger>
       <SheetContent
@@ -51,7 +51,7 @@ export const NavbarMobileSheet = ({
       >
         <SheetHeader className="border-b border-white/10 px-6 py-4">
           <SheetTitle className="flex items-center text-white">
-            <Logo className="h-9 w-auto max-w-[160px] rounded-md bg-white p-0.5 object-contain shadow-sm ring-1 ring-white/20" />
+            <Logo className="h-11 w-auto max-w-[190px] rounded-md bg-white p-0.5 object-contain shadow-sm ring-1 ring-white/20" />
           </SheetTitle>
         </SheetHeader>
 
@@ -64,7 +64,7 @@ export const NavbarMobileSheet = ({
                   href={href}
                   aria-current={active ? 'page' : undefined}
                   className={cn(
-                    'rounded-lg px-3 py-2.5 text-sm font-semibold transition-colors',
+                    'rounded-lg px-3 py-3 text-[15px] font-semibold transition-colors',
                     active
                       ? 'bg-white/15 text-white'
                       : 'text-white/80 hover:bg-white/10 hover:text-white',

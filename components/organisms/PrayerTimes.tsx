@@ -1,13 +1,13 @@
-import Link from 'next/link'
 import { fetchPrayerTimes } from '@/lib/server/prayer-times'
+import { getTranslations } from 'next-intl/server'
 
 const PRAYERS = [
-  { key: 'fajr',    label: 'Fajr',     labelAr: 'الفجر',   idx: 0 },
-  { key: 'shuruq',  label: 'Chourouk', labelAr: 'الشروق',  idx: -1 },
-  { key: 'dhuhr',   label: 'Dhuhr',    labelAr: 'الظهر',   idx: 1 },
-  { key: 'asr',     label: 'Asr',      labelAr: 'العصر',   idx: 2 },
-  { key: 'maghrib', label: 'Maghrib',  labelAr: 'المغرب',  idx: 3 },
-  { key: 'isha',    label: 'Isha',     labelAr: 'العشاء',  idx: 4 },
+  { key: 'fajr', idx: 0 },
+  { key: 'shuruq', idx: -1 },
+  { key: 'dhuhr', idx: 1 },
+  { key: 'asr', idx: 2 },
+  { key: 'maghrib', idx: 3 },
+  { key: 'isha', idx: 4 },
 ]
 
 // ── Types ─────────────────────────────────────────────────────────────────
@@ -59,6 +59,7 @@ function toArabicIndic(s: string): string {
 // ── Composant ─────────────────────────────────────────────────────────────
 
 export async function PrayerTimes({ locale }: { locale: string }) {
+  const tPrayer = await getTranslations({ locale, namespace: 'prayerTimes' })
   const [prayerData, dateData] = await Promise.all([
     fetchPrayerTimes(),
     fetchHijriDate(),
@@ -72,7 +73,7 @@ export async function PrayerTimes({ locale }: { locale: string }) {
     day: 'numeric',
     month: 'short',
     year: 'numeric',
-  })
+  }).toUpperCase()
 
   // ── Date hégirien depuis AlAdhan ──────────────────────────────────────────
   let hijri: string | null = null
@@ -87,122 +88,66 @@ export async function PrayerTimes({ locale }: { locale: string }) {
     }
   }
 
-  // ── Détection de la prochaine prière ─────────────────────────────────────
-  const nowMin = now.getHours() * 60 + now.getMinutes()
-  let nextIdx = -1
-  if (prayerData) {
-    const prayerMins = prayerData.times.map((t) => {
-      const [h, m] = t.split(':').map(Number)
-      return h * 60 + m
-    })
-    nextIdx = prayerMins.findIndex((m) => m > nowMin)
-  }
-  const nextPrayerKey =
-    nextIdx >= 0 ? PRAYERS.filter((p) => p.idx >= 0)[nextIdx]?.key : null
-
   const getTime = (idx: number) =>
     idx === -1 ? prayerData!.shuruq : prayerData!.times[idx]
+
+  let nextPrayerKey: string | null = null
+  if (prayerData) {
+    const nowMin = now.getHours() * 60 + now.getMinutes()
+    const canonicalPrayers = PRAYERS.filter((p) => p.idx >= 0)
+    const prayerMins = canonicalPrayers.map(({ idx }) => {
+      const [h, m] = getTime(idx).split(':').map(Number)
+      return h * 60 + m
+    })
+    const nextIdx = prayerMins.findIndex((m) => m > nowMin)
+    nextPrayerKey = (nextIdx >= 0 ? canonicalPrayers[nextIdx] : canonicalPrayers[0]).key
+  }
+
+  const prayerTokens = prayerData
+    ? PRAYERS.map(({ key, idx }) => ({
+        key,
+        text: `${tPrayer(key)} : ${getTime(idx)}`,
+      }))
+    : []
+
+  const tokens: Array<{ key: string; text: string; highlight?: boolean }> = [
+    ...(hijri ? [{ key: 'hijri', text: hijri }] : []),
+    ...prayerTokens.map((p) => ({
+      key: p.key,
+      text: p.text,
+      highlight: p.key === nextPrayerKey,
+    })),
+    { key: 'gregorian', text: gregorian },
+  ]
 
   return (
     <div className="border-b border-brand-green/20 bg-brand-green-light">
       <div className="mx-auto max-w-7xl px-4">
-        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1.5 py-2 sm:py-2.5">
-
-          {/* ── Dates ─────────────────────────────────────────────────── */}
-          <div className="flex shrink-0 items-center gap-2 text-[11px]">
-            {/* Grégorien — gauche */}
-            <span
-              className="capitalize text-brand-green/70 dark:text-brand-green/90"
-              lang={isAr ? 'ar' : 'fr'}
-              dir={isAr ? 'rtl' : 'ltr'}
-            >
-              {gregorian}
-            </span>
-
-            {/* Séparateur */}
-            {hijri && <span className="select-none text-brand-green/30 dark:text-brand-green/50">·</span>}
-
-            {/* Hégirien — droite */}
-            {hijri && (
+        <div
+          className="overflow-x-auto whitespace-nowrap py-3.5 text-sm font-medium text-brand-green sm:py-4 sm:text-[15px]"
+          lang={isAr ? 'ar' : 'fr'}
+          dir={isAr ? 'rtl' : 'ltr'}
+        >
+          {tokens.map((token, idx) => (
+            <span key={token.key} className="inline-flex items-center">
               <span
-                className={[
-                  'font-semibold text-brand-green',
-                  isAr ? 'font-arabic text-[12px]' : '',
-                ].join(' ')}
-                lang={isAr ? 'ar' : 'fr'}
-                dir={isAr ? 'rtl' : 'ltr'}
+                className={
+                  token.highlight
+                    ? 'rounded-full bg-brand-green px-2.5 py-1 text-xs font-semibold text-white sm:text-sm'
+                    : idx === 0
+                      ? 'font-semibold uppercase tracking-wide'
+                      : ''
+                }
               >
-                {hijri}
+                {token.text}
               </span>
-            )}
-          </div>
-
-          {/* ── Horaires de prière ────────────────────────────────────── */}
-          {prayerData ? (
-            <div className="flex items-center gap-0.5 sm:gap-1">
-              {PRAYERS.map(({ key, label, labelAr, idx }) => {
-                const time = getTime(idx)
-                const isNext = key === nextPrayerKey
-                return (
-                  <div
-                    key={key}
-                    className={[
-                      'flex min-w-[44px] flex-col items-center rounded-lg px-1.5 py-1 transition-all duration-200 sm:min-w-[58px] sm:px-2',
-                      isNext
-                        ? 'bg-brand-green text-white shadow-sm dark:ring-1 dark:ring-brand-green/60'
-                        : 'text-brand-green hover:bg-brand-green/10',
-                    ].join(' ')}
-                  >
-                    <span
-                      className={[
-                        'text-[9px] font-semibold uppercase tracking-wide sm:text-[10px]',
-                        isNext ? 'text-white/80' : 'text-brand-green/55 dark:text-brand-green/80',
-                      ].join(' ')}
-                    >
-                      {isAr ? labelAr : label}
-                    </span>
-                    <span
-                      className={[
-                        'text-[13px] font-bold tabular-nums sm:text-sm',
-                        isNext ? 'text-white' : 'text-brand-green',
-                      ].join(' ')}
-                    >
-                      {time}
-                    </span>
-                  </div>
-                )
-              })}
-            </div>
-          ) : (
-            <Link
-              href="https://mawaqit.net/fr/m/alihsane-colomiers"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs font-medium text-brand-green hover:underline"
-            >
-              {isAr ? 'مواقيت الصلاة ↗' : 'Horaires de prière ↗'}
-            </Link>
-          )}
-
-          {/* ── Jumu'a + Mawaqit ──────────────────────────────────────── */}
-          <div className="hidden flex-col items-end gap-0.5 text-[11px] sm:flex">
-            {prayerData?.jumua && (
-              <span className="font-semibold text-brand-green">
-                {isAr
-                  ? `الجمعة\u00a0${prayerData.jumua}`
-                  : `Jumu\u2019a\u00a0${prayerData.jumua}`}
-              </span>
-            )}
-            <Link
-              href="https://mawaqit.net/fr/m/alihsane-colomiers"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-brand-green/70 underline-offset-2 hover:text-brand-green hover:underline dark:text-brand-green/80"
-            >
-              Mawaqit ↗
-            </Link>
-          </div>
-
+              {idx < tokens.length - 1 && (
+                <span className="px-3.5 text-brand-green/45" aria-hidden>
+                  |
+                </span>
+              )}
+            </span>
+          ))}
         </div>
       </div>
     </div>
