@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils'
 /** Couleur événements alignée sur `--mosque-green` (hsl 217 58% 32%). */
 const MOSQUE_EVENT = 'hsl(217, 58%, 36%)'
 
-function KitchenCalendarSkeleton() {
+const KitchenCalendarSkeleton = () => {
   const t = useTranslations('activitiesPage')
   return (
     <div className="flex min-h-[400px] items-center justify-center px-4 text-sm text-muted-foreground">
@@ -31,12 +31,12 @@ type KitchenGoogleCalendarProps = {
   className?: string
 }
 
-export function KitchenGoogleCalendar({
+export const KitchenGoogleCalendar = ({
   apiKey,
   calendarId,
   language,
   className,
-}: KitchenGoogleCalendarProps) {
+}: KitchenGoogleCalendarProps) => {
   const calendars = useMemo(
     () => [{ calendarId: calendarId.trim(), color: MOSQUE_EVENT }],
     [calendarId],
