@@ -111,6 +111,13 @@
     "viewAllActivities": "عرض جميع الأخبار",
     "empty": "لا توجد أخبار حالياً. ستُنشر الرسائل القادمة هنا."
   },
+  "youtube": {
+    "headingTitle": "تلاوات القرآن",
+    "headingSubtitle": "القارئ عبد الرحمن مسلي",
+    "publishedOn": "نُشر في {date}",
+    "emptyMessage": "تابع أحدث التلاوات على يوتيوب.",
+    "openChannel": "فتح القناة"
+  },
   "contact": {
     "title": "اتصل بنا",
     "address": "7 CHEMIN DE LA PLAINE\n31770 COLOMIERS",

@@ -4,7 +4,7 @@ import { DonateAlIhsane } from '@/components/organisms/DonateAlIhsane'
 import { History } from '@/components/organisms/History'
 import { News } from '@/components/organisms/News'
 import { DayVerse } from '@/components/organisms/DayVerse'
-import { AbderrahmaneMesliYoutube } from '@/components/organisms/AbderrahmaneMesliYoutube'
+import { YoutubeAbderrahmaneMesli } from '@/components/organisms/YoutubeAbderrahmane'
 import { getNewsArticlesPreview } from '@/lib/sanity/queries'
 
 /** Actualités Sanity : revalidation ISR (secondes). */
@@ -20,7 +20,7 @@ const HomePage = async () => {
 
       <DayVerse locale={locale} />
 
-      <AbderrahmaneMesliYoutube locale={locale} />
+      <YoutubeAbderrahmaneMesli locale={locale} />
 
       <DonateAlIhsane />
 

@@ -111,6 +111,13 @@
     "viewAllActivities": "Voir toutes les actualités",
     "empty": "Aucune actualité pour le moment. Les prochains messages seront publiés ici."
   },
+  "youtube": {
+    "headingTitle": "Récitations du Coran",
+    "headingSubtitle": "Par le Qari Abdurrahman Masli",
+    "publishedOn": "Publié le {date}",
+    "emptyMessage": "Retrouvez les dernières récitations sur YouTube.",
+    "openChannel": "Ouvrir la chaîne"
+  },
   "contact": {
     "title": "Contact",
     "address": "7 CHEMIN DE LA PLAINE\n31770 COLOMIERS",

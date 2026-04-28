@@ -1,53 +1,35 @@
 import { PlayCircle, Youtube } from 'lucide-react'
+import { getTranslations } from 'next-intl/server'
 
 import { HeadingBlock } from '@/components/molecules/HeadingBlock'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { fetchLatestYoutubeVideos, fetchYoutubeChannelProfile } from '@/lib/server/youtube'
 import Image from 'next/image'
+import { cn } from '@/lib/utils'
 
 const YOUTUBE_URL = 'https://youtube.com/@abderrahmanemesli4217'
 const CHANNEL_NAME = 'Abderrahmane Mesli'
 const FALLBACK_AVATAR_URL = 'https://unavatar.io/youtube/abderrahmanemesli4217'
 
-export async function AbderrahmaneMesliYoutube({ locale }: { locale: string }) {
+export const YoutubeAbderrahmaneMesli = async ({ locale }: { locale: string }) => {
   const isAr = locale === 'ar'
+  const t = await getTranslations({ locale, namespace: 'youtube' })
   const [videos, channelProfile] = await Promise.all([
     fetchLatestYoutubeVideos(3),
     fetchYoutubeChannelProfile(),
   ])
   const avatarUrl = channelProfile?.avatarUrl ?? FALLBACK_AVATAR_URL
-  if (videos.length === 0) {
-    return (
-      <section className="bg-background py-14">
-        <div className="mx-auto max-w-7xl px-4">
-          <HeadingBlock title={isAr ? 'تلاوات القرآن' : 'Récitations du Coran'} isRtl={isAr} />
-          <div className="rounded-2xl border border-mosque-green/15 bg-mosque-green-light/50 p-6 text-center shadow-sm">
-            <p className="text-sm text-mosque-green/80">
-              {isAr ? 'تابع أحدث التلاوات على يوتيوب.' : 'Retrouvez les dernières récitations sur YouTube.'}
-            </p>
-            <Button
-              asChild
-              className="mt-4 rounded-xl bg-mosque-gold text-sm font-semibold text-white hover:bg-mosque-gold-hover"
-            >
-              <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">
-                <Youtube className="h-4 w-4" />
-                {isAr ? 'فتح القناة' : 'Ouvrir la chaîne'}
-              </a>
-            </Button>
-          </div>
-        </div>
-      </section>
-    )
-  }
 
   return (
     <section className="bg-background py-14">
       <div className="mx-auto max-w-7xl px-4">
-        <HeadingBlock title={isAr ? 'تلاوات القرآن' : 'Récitations du Coran'} isRtl={isAr}>
-          <p className="mt-3 text-sm font-medium text-mosque-green md:text-base">
-            {isAr ? 'القارئ عبد الرحمن مسلي' : 'Par le Qari Abdurrahman Masli'}
-          </p>
+        <HeadingBlock title={t('headingTitle')} isRtl={isAr}>
+          {videos.length > 0 ? (
+            <p className="mt-3 text-sm font-medium text-mosque-green md:text-base">
+              {t('headingSubtitle')}
+            </p>
+          ) : null}
         </HeadingBlock>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -90,7 +72,7 @@ export async function AbderrahmaneMesliYoutube({ locale }: { locale: string }) {
                         {video.title}
                       </p>
                       <p className="text-xs text-mosque-green/60">
-                        {isAr ? `نُشر في ${published}` : `Publié le ${published}`}
+                        {t('publishedOn', { date: published })}
                       </p>
                     </div>
                   </CardContent>
@@ -100,17 +82,31 @@ export async function AbderrahmaneMesliYoutube({ locale }: { locale: string }) {
           })}
         </div>
 
-        <div className="mt-10 flex justify-center">
+        <div
+          className={cn(
+            videos.length === 0
+              ? 'rounded-2xl border border-mosque-green/15 bg-mosque-green-light/50 p-6 text-center shadow-sm'
+              : 'mt-10 flex justify-center',
+          )}
+        >
+          <p className={cn(videos.length === 0 ? 'text-sm text-mosque-green/80' : 'hidden')}>
+            {t('emptyMessage')}
+          </p>
           <Button
             asChild
-            className="mt-6 rounded-xl bg-mosque-gold text-sm font-semibold text-white shadow-md hover:bg-mosque-gold-hover"
+            className={cn(
+              videos.length === 0
+                ? 'mt-4 rounded-xl bg-mosque-gold text-sm font-semibold text-white hover:bg-mosque-gold-hover'
+                : 'mt-6 rounded-xl bg-mosque-gold text-sm font-semibold text-white shadow-md hover:bg-mosque-gold-hover',
+            )}
           >
             <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">
               <Youtube className="h-4 w-4" />
-              <span className="hidden sm:inline ml-2">{isAr ? 'القناة' : 'Voir la chaîne'}</span>
+              <span className="ml-2">{t('openChannel')}</span>
             </a>
           </Button>
         </div>
+
       </div>
     </section>
   )
