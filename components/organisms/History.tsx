@@ -2,22 +2,19 @@
 
 import { useLocale, useTranslations } from 'next-intl'
 import { Badge } from '@/components/ui/badge'
+import { Card, CardContent } from '@/components/ui/card'
+import { HeadingBlock } from '@/components/molecules/HeadingBlock'
 
 const ITEMS = ['item1', 'item2', 'item3', 'item4'] as const
 
-export function History() {
+export const History = () => {
   const t = useTranslations('history')
   const locale = useLocale()
 
   return (
     <section id="history" className="bg-background py-14">
       <div className="mx-auto max-w-7xl px-4">
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-mosque-green md:text-3xl">
-            {t('title')}
-          </h2>
-          <div className="mt-2 h-1 w-12 rounded-full bg-mosque-green/30" />
-        </div>
+        <HeadingBlock title={t('title')} isRtl={locale === 'ar'} />
 
         {/* Timeline verticale */}
         <div className="relative">
@@ -42,20 +39,22 @@ export function History() {
                   </div>
 
                   {/* Contenu */}
-                  <div
+                  <Card
                     className={[
-                      'w-full rounded-xl border border-mosque-green/10 bg-card p-5 shadow-sm transition-shadow hover:shadow-md',
+                      'w-full border-mosque-green/10 transition-shadow hover:shadow-md',
                       'md:w-[calc(50%-2rem)]',
                       isLeft ? 'md:mr-auto md:ml-0' : 'md:ml-auto md:mr-0',
                     ].join(' ')}
                   >
-                    <Badge className="mb-2 bg-mosque-green text-white hover:bg-mosque-green/90 dark:bg-mosque-green/15 dark:text-mosque-green dark:ring-1 dark:ring-mosque-green/50 dark:hover:bg-mosque-green/25">
-                      {t(`${key}.year`)}
-                    </Badge>
-                    <p className="text-sm leading-relaxed text-foreground">
-                      {locale === 'ar' ? t(`${key}.textAr`) : t(`${key}.text`)}
-                    </p>
-                  </div>
+                    <CardContent className="p-5">
+                      <Badge className="mb-2 bg-mosque-green text-white hover:bg-mosque-green/90 dark:bg-mosque-green/15 dark:text-mosque-green dark:ring-1 dark:ring-mosque-green/50 dark:hover:bg-mosque-green/25">
+                        {t(`${key}.year`)}
+                      </Badge>
+                      <p className="text-sm leading-relaxed text-foreground">
+                        {locale === 'ar' ? t(`${key}.textAr`) : t(`${key}.text`)}
+                      </p>
+                    </CardContent>
+                  </Card>
                 </div>
               )
             })}

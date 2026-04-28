@@ -48,7 +48,7 @@ export const Association = () => {
     >
       <div className="mx-auto max-w-7xl px-4">
         {/* Notre association*/}
-        <HeadingBlock title={t('title')} isRtl={isAr} />
+        <HeadingBlock title={t('title')} isRtl={locale === 'ar'} />
 
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-14 lg:items-start">
           <div
@@ -110,7 +110,7 @@ export const Association = () => {
 
         {/* Nos activités */}
         <div className="mt-14 border-t border-mosque-green/10 pt-12 md:mt-16 md:pt-14">
-          <HeadingBlock title={tActivities('title')} isRtl={isAr} />
+          <HeadingBlock title={tActivities('title')} isRtl={locale === 'ar'} />
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {ACTIVITIES_KEYS.map((key) => {
