@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from 'next-intl'
 
-import { PageBreadcrumb } from '@/components/molecules/PageBreadcrumb'
+import { Breadcrumb } from '@/components/molecules/Breadcrumb'
 import { SharedKitchenSection } from '@/components/organisms/SharedKitchenSection'
 import { cn } from '@/lib/utils'
 
@@ -17,7 +17,7 @@ export function CuisinePartageeView() {
   return (
     <section className="bg-background py-14">
       <div className="mx-auto max-w-7xl px-4">
-        <PageBreadcrumb
+        <Breadcrumb
           items={[
             { label: t('breadcrumb.home'), href: '/' },
             { label: t('breadcrumb.activities'), href: '/activites' },

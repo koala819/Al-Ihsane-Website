@@ -3,7 +3,7 @@
 import { useLocale } from 'next-intl'
 
 import {
-  Breadcrumb,
+  Breadcrumb as ShadcnBreadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
@@ -17,18 +17,19 @@ import { BreadcrumbEntry } from '@/types/models'
 
 
 
-export function PageBreadcrumb(
-  { items, className } : {
-  items: BreadcrumbEntry[],
-  className?: string }
-)  {
+export const Breadcrumb = (
+  { items, className }: {
+    items: BreadcrumbEntry[],
+    className?: string
+  }
+) => {
   const locale = useLocale()
   const isAr = locale === 'ar'
 
   if (!items.length) return null
 
   return (
-    <Breadcrumb
+    <ShadcnBreadcrumb
       aria-label={isAr ? 'مسار التصفح' : 'Fil d’Ariane'}
       className={cn('mb-8 md:mb-10', isAr && 'text-right', className)}
       dir={isAr ? 'rtl' : 'ltr'}
@@ -50,6 +51,6 @@ export function PageBreadcrumb(
           )
         })}
       </BreadcrumbList>
-    </Breadcrumb>
+    </ShadcnBreadcrumb>
   )
 }

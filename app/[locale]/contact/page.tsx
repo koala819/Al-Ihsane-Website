@@ -6,7 +6,7 @@ import toast from 'react-hot-toast'
 import { useLocale, useTranslations } from 'next-intl'
 import { MapPin, Phone, Send } from 'lucide-react'
 
-import { PageBreadcrumb } from '@/components/molecules/PageBreadcrumb'
+import { Breadcrumb } from '@/components/molecules/Breadcrumb'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -91,7 +91,7 @@ export default function ContactPage() {
       {/* En-tête plein fond — lisible, hors carte (comme une page classique) */}
       <div className="shrink-0 border-b border-border bg-background px-4 py-6 pt-[max(1rem,env(safe-area-inset-top))] sm:px-6 sm:py-8 md:px-8">
         <div className="mx-auto max-w-7xl">
-          <PageBreadcrumb
+          <Breadcrumb
             items={[
               { label: tCommon('breadcrumb.home'), href: '/' },
               { label: t('title') },

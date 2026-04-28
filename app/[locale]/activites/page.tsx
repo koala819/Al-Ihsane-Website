@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server'
 
-import { ActivitiesPageSection } from '@/components/organisms/ActivitiesPageSection'
+import { Activities } from '@/components/organisms/Activities'
 
 export const revalidate = 120
 
@@ -16,6 +16,8 @@ export async function generateMetadata({
   }
 }
 
-export default function ActivitesPage() {
-  return <ActivitiesPageSection />
+export const ActivitiesPage = () => {
+  return <Activities />
 }
+
+export default ActivitiesPage

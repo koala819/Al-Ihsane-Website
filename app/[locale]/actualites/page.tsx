@@ -1,7 +1,7 @@
 import { getLocale, getTranslations } from 'next-intl/server'
 
-import { PageBreadcrumb } from '@/components/molecules/PageBreadcrumb'
-import { NewsSection } from '@/components/organisms/News'
+import { Breadcrumb } from '@/components/molecules/Breadcrumb'
+import { News } from '@/components/organisms/News'
 import { getNewsArticlesFull } from '@/lib/sanity/queries'
 
 export const revalidate = 120
@@ -27,7 +27,7 @@ export default async function ActualitesPage() {
   return (
     <>
       <div className="mx-auto max-w-7xl px-4 pt-14">
-        <PageBreadcrumb
+        <Breadcrumb
           items={[
             { label: tActivities('breadcrumb.home'), href: '/' },
             { label: tNews('title') },
@@ -35,7 +35,7 @@ export default async function ActualitesPage() {
           className="mb-0"
         />
       </div>
-      <NewsSection variant="full" cmsArticles={cmsArticles} />
+      <News variant="full" cmsArticles={cmsArticles} />
     </>
   )
 }

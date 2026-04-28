@@ -3,15 +3,13 @@
 import { useLocale, useTranslations } from 'next-intl'
 import { ChevronRight, GraduationCap, UtensilsCrossed } from 'lucide-react'
 
-import { PageBreadcrumb } from '@/components/molecules/PageBreadcrumb'
+import { Breadcrumb } from '@/components/molecules/Breadcrumb'
 import { Badge } from '@/components/ui/badge'
 import { Link } from '@/i18n/navigation'
 import { cn } from '@/lib/utils'
 
-/**
- * Page index « Nos activités » : fil d’Ariane + deux cartes uniquement (école en construction, cuisine → sous-page).
- */
-export function ActivitiesPageSection() {
+
+export const Activities = () => {
   const t = useTranslations('activitiesPage')
   const locale = useLocale()
   const isAr = locale === 'ar'
@@ -19,7 +17,7 @@ export function ActivitiesPageSection() {
   return (
     <section className="bg-background py-14">
       <div className="mx-auto max-w-7xl px-4">
-        <PageBreadcrumb
+        <Breadcrumb
           items={[
             { label: t('breadcrumb.home'), href: '/' },
             { label: t('breadcrumb.activities') },
