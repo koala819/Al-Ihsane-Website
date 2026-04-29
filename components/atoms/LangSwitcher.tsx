@@ -18,7 +18,9 @@ export const LangSwitcher = () => {
   const t = useTranslations('lang')
 
   function switchLocale(newLocale: Locale) {
-    router.replace(`/${newLocale}${pathname}`)
+    // Ne pas préfixer la locale à la main : le useRouter de next-intl ajoute
+    // déjà le préfixe courant — sinon on obtient p.ex. /fr/ar.
+    router.replace(pathname, { locale: newLocale })
   }
 
   return (
