@@ -12,6 +12,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "awqat:find-city": "node --env-file=.env.local scripts/awqat-find-city.mjs",
     "sanity": "sanity dev",
     "prepare": "husky"
   },
@@ -30,6 +31,7 @@
     "@radix-ui/react-slot": "1.1.0",
     "@sanity/image-url": "^2.1.1",
     "@trivago/prettier-plugin-sort-imports": "5.2.2",
+    "@xsor/awqat-salah-client": "^1.4.0",
     "class-variance-authority": "0.7.0",
     "clsx": "2.1.1",
     "lucide-react": "0.483.0",
