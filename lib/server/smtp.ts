@@ -17,14 +17,14 @@ export function resolveSmtpServerConfig():
   | { error: string; ok: false } {
   const host = readEnv('SMTP_HOST')
   const user = readEnv('SMTP_USER')
-  const pass = readEnv('SMTP_PASSWORD')
+  const pass = readEnv('SMTP_PWD')
   const portRaw = readEnv('SMTP_PORT')
   const port = Number.parseInt(portRaw, 10)
 
   if (!host || !user || !pass || !Number.isInteger(port)) {
     return {
       error:
-        'SMTP config invalid. Required env: SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASSWORD.',
+        'SMTP config invalid. Required env: SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PWD.',
       ok: false,
     }
   }
